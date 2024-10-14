@@ -1,8 +1,7 @@
-'    '업데이트??
 Sub UpdateAllModulesAndFormsFromGitHub()
     Dim fileList As Variant
     Dim i As Integer
-
+    '??
     ' 업데이트할 파일 목록
     fileList = Array( _
         "Combo.bas", "Module1.bas", "Module2.bas", "Module3.bas", "UPDATE.bas", "Module4.bas", "TESTModule.bas", _
@@ -14,7 +13,6 @@ Sub UpdateAllModulesAndFormsFromGitHub()
     
     ' 모든 파일을 다운로드하고 업데이트
     For i = LBound(fileList) To UBound(fileList)
-        ' 파일명 직접 전달
         DownloadAndUpdateComponentFromGitHub fileList(i)
     Next i
 End Sub
@@ -25,6 +23,7 @@ Sub DownloadAndUpdateComponentFromGitHub(ByVal fileName As String)
     Dim fileData As String
     Dim filePath As String
     Dim componentType As String
+    Dim stream As Object
     
     ' 파일 확장자 추출
     componentType = Right(fileName, 3)
@@ -38,29 +37,44 @@ Sub DownloadAndUpdateComponentFromGitHub(ByVal fileName As String)
     ' HTTP 요청 성공 시 처리
     If http.Status = 200 Then
         fileData = http.responseText
-        ' 파일 저장 경로 설정
         filePath = "C:\Users\ironu\OneDrive\바탕 화면\" & fileName ' 경로를 명시적으로 설정
         
-        ' 파일 경로 디버깅 출력
-        Debug.Print "Saving to: " & filePath
-        
-        ' 파일 저장
-        Dim fileNum As Integer
-        fileNum = FreeFile
-        Open filePath For Output As #fileNum
-        Print #fileNum, fileData
-        Close #fileNum
+        ' ADODB.Stream 객체 사용하여 UTF-8로 파일 저장
+        Set stream = CreateObject("ADODB.Stream")
+        stream.Type = 2 ' 텍스트
+        stream.Charset = "utf-8" ' UTF-8로 설정
+        stream.Open
+        stream.WriteText fileData
+        stream.SaveToFile filePath, 2 ' 2는 덮어쓰기
+        stream.Close
         
         ' 기존 VBA 구성요소 제거 후 새로 가져오기
         On Error Resume Next
         If componentType = "bas" Or componentType = "frm" Then
-            ThisWorkbook.VBProject.VBComponents.Remove ThisWorkbook.VBProject.VBComponents(Left(fileName, Len(fileName) - 4))
+            ' VBProject가 존재하는지 확인
+            If ThisWorkbook.VBProject Is Nothing Then
+                MsgBox "VBProject를 찾을 수 없습니다."
+                Exit Sub
+            End If
+            
+            ' 구성요소가 존재하는지 확인 후 제거
+            Dim comp As Object
+            Set comp = ThisWorkbook.VBProject.VBComponents(Left(fileName, Len(fileName) - 4))
+            If Not comp Is Nothing Then
+                ThisWorkbook.VBProject.VBComponents.Remove comp
+            End If
         End If
         On Error GoTo 0
         
         ' 새 구성요소 추가
+        On Error Resume Next
         ThisWorkbook.VBProject.VBComponents.Import filePath
-        MsgBox fileName & "가 성공적으로 업데이트되었습니다!"
+        If Err.Number <> 0 Then
+            MsgBox fileName & " 가져오기 실패: " & Err.Description
+        Else
+            MsgBox fileName & "가 성공적으로 업데이트되었습니다!"
+        End If
+        On Error GoTo 0
     Else
         MsgBox fileName & " 업데이트 실패: " & http.Status
     End If

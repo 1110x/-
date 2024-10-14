@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} UserForm1 
-   Caption         =   "¸®´º¾î½º-¼öÁúºÐ¼®¼¾ÅÍ"
+   Caption         =   "î½º-Ð¼"
    ClientHeight    =   10815
    ClientLeft      =   120
    ClientTop       =   465
    ClientWidth     =   16620
    OleObjectBlob   =   "UserForm1.frx":0000
-   StartUpPosition =   1  '¼ÒÀ¯ÀÚ °¡¿îµ¥
+   StartUpPosition =   1  ' îµ¥
 End
 Attribute VB_Name = "UserForm1"
 Attribute VB_GlobalNameSpace = False
@@ -25,7 +25,7 @@ End If
 End Sub
 
 Private Sub ComboBox1_Change()
-°ßÀûÁ¾·ùº¯°æ
+
 End Sub
 Private Sub ComboBox2_Change()
 
@@ -41,18 +41,18 @@ Private Sub ComboBox3_Change()
     Dim selectedValue As String
     On Error Resume Next
     
-    ComboBox2.Clear ' ÄÞº¸¹Ú½º3 ÃÊ±âÈ­
+    ComboBox2.Clear ' ÞºÚ½3 Ê±È­
     
-    Set ws = ThisWorkbook.Sheets("¾÷Ã¼´ã´çÀÚ")
+    Set ws = ThisWorkbook.Sheets("Ã¼")
     selectedValue = ComboBox3.Value
     
-    ' ¼±ÅÃµÈ °ª¿¡ ÇØ´çÇÏ´Â ÇàÀÇ E¿­ °ªµéÀ» ÄÞº¸¹Ú½º3¿¡ Ãß°¡
+    ' Ãµ  Ø´Ï´  E  ÞºÚ½3 ß°
     lastRow = ws.Cells(ws.Rows.Count, "A").End(xlUp).row
     Set rng = ws.Range("A2:A" & lastRow)
     
     For Each cell In rng
         If cell.Value = selectedValue Then
-            ComboBox2.AddItem cell.Offset(0, 2).Value & " " & cell.Offset(0, 4).Value & " " & cell.Offset(0, 3).Value ' E¿­ °ªÀ» Ãß°¡
+            ComboBox2.AddItem cell.Offset(0, 2).Value & " " & cell.Offset(0, 4).Value & " " & cell.Offset(0, 3).Value ' E  ß°
         End If
     Next cell
     
@@ -68,20 +68,20 @@ AddTreeViewItem
 End Sub
 
 Private Sub ComboBox7_Change()
-ºÐÀåÇ×¸ñCombo
+×¸Combo
 End Sub
 
-Private Sub CommandButton1_Click()   '====================-=-=-=-=-=-=-=-=-=-=-=- ÃøÁ¤ÀÎ ½ÃÀÛ
+Private Sub CommandButton1_Click()   '====================-=-=-=-=-=-=-=-=-=-=-=-  
     driver.Start "edge"
-    X = 13 - Sheets("ÃøÁ¤DB").Cells(1, "R")
-    ID = Sheets("ÃøÁ¤DB").Cells(X, "P")
-    PS = Sheets("ÃøÁ¤DB").Cells(X, "Q")
+    X = 13 - Sheets("DB").Cells(1, "R")
+    ID = Sheets("DB").Cells(X, "P")
+    PS = Sheets("DB").Cells(X, "Q")
 
-    driver.Get "https://ÃøÁ¤ÀÎ.kr/login.go"
+    driver.Get "https://.kr/login.go"
     driver.FindElementById("user_email").SendKeys ID
     driver.FindElementById("login_pwd_confirm").SendKeys PS
     driver.FindElementById("login").Click
-    driver.Get "https://ÃøÁ¤ÀÎ.kr/ms/field_water.do" '
+    driver.Get "https://.kr/ms/field_water.do" '
 End Sub
 
 Private Sub CommandButton13_Click()
@@ -89,26 +89,26 @@ For r = UserForm1.ListBox1.ListCount - 1 To 0 Step (-1)
 
 UserForm1.ListBox1.RemoveItem (r)
 Next r
-ÇÕ°è±Ý¾×
+Õ°Ý¾
 End Sub
 
 Private Sub CommandButton14_Click()
-°ßÀû¼­ÀÔ·Â
+Ô·
 End Sub
 
 Private Sub CommandButton15_Click()
 Application.ScreenUpdating = False
-Sheets("ºÐ¼®ÀÇ·Ú ÀÔ·Â").Range("A3:BK100") = ""
+Sheets("Ð¼Ç· Ô·").Range("A3:BK100") = ""
 
-Sheets("ºÐ¼®ÀÇ·Ú ÀÔ·Â").Cells(1, "B") = UserForm1.TextBox8.text ' ½Ã·á¸í
-Sheets("ºÐ¼®ÀÇ·Ú ÀÔ·Â").Cells(1, "F") = UserForm1.TextBox9.text ' °ßÀû¹ßÇàÀÏ
-Sheets("ºÐ¼®ÀÇ·Ú ÀÔ·Â").Cells(1, "K") = UserForm1.TextBox10.text ' ½Ã·áÃ¤ÃëÀÏ
+Sheets("Ð¼Ç· Ô·").Cells(1, "B") = UserForm1.TextBox8.text ' Ã·
+Sheets("Ð¼Ç· Ô·").Cells(1, "F") = UserForm1.TextBox9.text ' 
+Sheets("Ð¼Ç· Ô·").Cells(1, "K") = UserForm1.TextBox10.text ' Ã·Ã¤
 
 For r = 0 To UserForm1.ListBox2.ListCount - 1
- Sheets("ºÐ¼®ÀÇ·Ú ÀÔ·Â").Cells(r + 3, "A") = UserForm1.ListBox2.List(r, 0) '±¸ºÐ ¼ø¹ø
- Sheets("ºÐ¼®ÀÇ·Ú ÀÔ·Â").Cells(r + 3, "B") = UserForm1.ListBox2.List(r, 1) '½Ã·á¸í ÀÔ·Â
+ Sheets("Ð¼Ç· Ô·").Cells(r + 3, "A") = UserForm1.ListBox2.List(r, 0) ' 
+ Sheets("Ð¼Ç· Ô·").Cells(r + 3, "B") = UserForm1.ListBox2.List(r, 1) 'Ã· Ô·
 Next r
-ÀÇ·ÚÇ×¸ñÃ¼Å©
+Ç·×¸Ã¼Å©
 Application.ScreenUpdating = True
 
 End Sub
@@ -118,20 +118,20 @@ UserForm1.ListBox2.Clear
 End Sub
 
 Private Sub CommandButton17_Click()
-ÀÛ¾÷½ÃÀÛ
+Û¾
 
 End Sub
 
 Private Sub CommandButton18_Click()
-ÀÛ¾÷½ÃÀÛ2
+Û¾2
 End Sub
 
-Private Sub CommandButton3_Click() ' È¯°æ±â¼úÀÎ(´ã´çÀÚ) ÀÔ·Â -------------------------PAGE1
+Private Sub CommandButton3_Click() ' È¯() Ô· -------------------------PAGE1
 If driver.FindElementById("ui-id-1").Attribute("aria-expanded") = True Then
 driver.FindElementByXPath("//*[@id=""edit_env_psic_name""]").Clear.SendKeys ListView1.ListItems(1).ListSubItems(4).text
 End If
 End Sub
-Private Sub CommandButton4_Click() 'ºÐ¼®½ÃÀÛÀÏÀÚ  -------------------------PAGE1
+Private Sub CommandButton4_Click() 'Ð¼  -------------------------PAGE1
 If driver.FindElementById("ui-id-1").Attribute("aria-expanded") = True Then
     Y = Left(ListView1.ListItems(1).ListSubItems(1).text, 4)
     M = Right(Left(ListView1.ListItems(1).ListSubItems(1).text, 7), 2)
@@ -141,22 +141,22 @@ If driver.FindElementById("ui-id-1").Attribute("aria-expanded") = True Then
     driver.ExecuteScript script1
 End If
 End Sub
-Private Sub CommandButton5_Click() '°è¾à¼±ÅÃ     -------------------------PAGE1
+Private Sub CommandButton5_Click() 'à¼±     -------------------------PAGE1
     Dim keys As New Selenium.keys
     Dim X As Range
-    Set X = Sheets("°è¾àÁ¤º¸").Columns(8).Find(what:=ListView1.ListItems(1).ListSubItems(2).text, lookat:=xlWhole)
+    Set X = Sheets("").Columns(8).Find(what:=ListView1.ListItems(1).ListSubItems(2).text, lookat:=xlWhole)
 If driver.FindElementById("ui-id-1").Attribute("aria-expanded") = True Then
     If Not X Is Nothing Then
-        ' ÇÊ¿äÇÑ µ¿ÀÛ ¼öÇà
+        ' Ê¿  
         driver.FindElementByXPath("//*[@id=""wid-id-1""]/div/div[2]/div/fieldset/div[6]/section/label[2]/span").Click
         driver.FindElementByXPath("/html/body/span/span/span[1]/input").Click
-        driver.FindElementByXPath("/html/body/span/span/span[1]/input").SendKeys Left(Sheets("°è¾àÁ¤º¸").Cells(X.row, "J").text, 6)
+        driver.FindElementByXPath("/html/body/span/span/span[1]/input").SendKeys Left(Sheets("").Cells(X.row, "J").text, 6)
         driver.FindElementByXPath("/html/body/span/span/span[1]/input").SendKeys (keys.Enter)
     End If
 End If
 End Sub
 
-Private Sub CommandButton6_Click() 'ºÐ¼®(ÀÇ·Ú)Ç×¸ñ ÀÔ·Â  -------------------------PAGE1
+Private Sub CommandButton6_Click() 'Ð¼(Ç·)×¸ Ô·  -------------------------PAGE1
 CommandButton7_Click
 
 Dim jsScript As String
@@ -177,15 +177,15 @@ Next i
 
 jsScript = jsScript & "selectElement.dispatchEvent(new Event('change'));"
 
-' JavaScript ÄÚµå¸¦ ½ÇÇà
+' JavaScript Úµå¸¦ 
 driver.ExecuteScript jsScript
 
 End Sub
-Private Sub CommandButton7_Click()  'ºÐ¼®(ÀÇ·Ú)Ç×¸ñ »èÁ¦µ¿ÀÛ  -------------------------PAGE1
+Private Sub CommandButton7_Click()  'Ð¼(Ç·)×¸   -------------------------PAGE1
 Dim itemCountScript As String
 itemCountScript = "return document.querySelectorAll('#wid-id-1 div div:nth-child(2) fieldset div:nth-child(9) section div span span:nth-child(1) span ul li span').length;"
 
-' ½ºÅ©¸³Æ® ½ÇÇà
+' Å©Æ® 
 Dim itemCount As Integer
 itemCount = driver.ExecuteScript(itemCountScript)
 For i = itemCount To 1 Step (-1)
@@ -196,7 +196,7 @@ Next i
 driver.FindElementByXPath("//*[@id=""wid-id-1""]/div/div[2]/div/fieldset/div[9]/section/div/span/span[1]/span/ul").Click
 
 End Sub
-Private Sub CommandButton8_Click() 'ºÐ¼®±â°£     -------------------------PAGE3
+Private Sub CommandButton8_Click() 'Ð¼â°£     -------------------------PAGE3
 If driver.FindElementById("ui-id-3").Attribute("aria-expanded") = True Then
     Y = Left(ListView1.ListItems(1).ListSubItems(1).text, 4)
     M = Right(Left(ListView1.ListItems(1).ListSubItems(1).text, 6), 2)
@@ -211,24 +211,24 @@ If driver.FindElementById("ui-id-3").Attribute("aria-expanded") = True Then
 End If
 End Sub
 
-Private Sub CommandButton9_Click()  '==============================Ã¤¼öÀÎ¿ø ÀÔ·Â   PAGE1
+Private Sub CommandButton9_Click()  '==============================Ã¤Î¿ Ô·   PAGE1
     Dim jsScript As String
     Dim x1 As Range, x2 As Range
 
-    ' "edit_emp_id" ¿ä¼Ò°¡ Ç¥½ÃµÇ´ÂÁö È®ÀÎ
+    ' "edit_emp_id" Ò° Ç¥ÃµÇ´ È®
 If driver.FindElementById("ui-id-1").Attribute("aria-expanded") = True Then
-''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''' ±âÁ¸ Ã¤¼öÀÎ¿ø »èÁ¦
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''  Ã¤Î¿ 
     Dim element As Object
     Dim liElements As Object
     Dim liCount As Integer
 
-    ' XPath·Î ¿ä¼Ò Ã£±â
+    ' XPath  Ã£
     Set element = driver.FindElementByXPath("//*[@id=""wid-id-4""]/div/div[2]/div/fieldset/div[2]/section[2]/span/span[1]/span/ul")
 
-    ' Ã£Àº ¿ä¼Ò¿¡¼­ li ÅÂ±×µé Ã£±â
+    ' Ã£ Ò¿ li Â±×µ Ã£
     Set liElements = element.FindElementsByTag("li")
 
-    ' li ÅÂ±×ÀÇ °³¼ö È®ÀÎ
+    ' li Â±  È®
     liCount = liElements.Count
 
     If liCount > 1 Then
@@ -237,33 +237,33 @@ If driver.FindElementById("ui-id-1").Attribute("aria-expanded") = True Then
     Next r
     End If
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-        ' ListView2¿¡ °ªÀÌ ÀÖ°í 0ÀÌ ¾Æ´Ñ °æ¿ì¿¡¸¸ Ã³¸®
+        ' ListView2  Ö° 0 Æ´ ì¿¡ Ã³
         If ListView2.ListItems(1).text <> "0" And ListView2.ListItems(1).ListSubItems(1).text <> "0" Then
-            ' JavaScript ½ºÅ©¸³Æ® ÃÊ±âÈ­
+            ' JavaScript Å©Æ® Ê±È­
             jsScript = "var selectElement = document.getElementById('edit_emp_id');"
 
-            ' ListView2ÀÇ °ª¿¡ ÇØ´çÇÏ´Â Çà Ã£±â
-            Set x1 = Sheets("ÃøÁ¤DB").Columns(14).Find(what:=ListView2.ListItems(1).text, lookat:=xlWhole).Rows
-            Set x2 = Sheets("ÃøÁ¤DB").Columns(14).Find(what:=ListView2.ListItems(1).ListSubItems(1).text, lookat:=xlWhole).Rows
+            ' ListView2  Ø´Ï´  Ã£
+            Set x1 = Sheets("DB").Columns(14).Find(what:=ListView2.ListItems(1).text, lookat:=xlWhole).Rows
+            Set x2 = Sheets("DB").Columns(14).Find(what:=ListView2.ListItems(1).ListSubItems(1).text, lookat:=xlWhole).Rows
 
-            ' JavaScript ÄÚµå ÀÛ¼º
+            ' JavaScript Úµ Û¼
             jsScript1 = jsScript & "selectElement.options[" & x1.row - 1 & "].selected = true;"
             jsScript2 = jsScript & "selectElement.options[" & x2.row - 1 & "].selected = true;"
 
-            ' JavaScript ÄÚµå¿¡ ÀÌº¥Æ® µð½ºÆÐÄ¡ Ãß°¡
+            ' JavaScript Úµå¿¡ ÌºÆ® Ä¡ ß°
             jsScript1 = jsScript1 & "selectElement.dispatchEvent(new Event('change'));"
             jsScript2 = jsScript2 & "selectElement.dispatchEvent(new Event('change'));"
 
-            ' JavaScript ÄÚµå ½ÇÇà
+            ' JavaScript Úµ 
             driver.ExecuteScript jsScript1
             driver.ExecuteScript jsScript2
         End If
 
-        ' XPath¸¦ »ç¿ëÇÏ¿© ¿ä¼Ò Å¬¸¯
+        ' XPath Ï¿  Å¬
         driver.FindElementByXPath("//*[@id=""wid-id-1""]/div/div[2]/div/fieldset/div[9]/section").Click
 End If
 End Sub
-Private Sub CommandButton2_Click() 'Ã¤Ãë¿ë±â  -------------------------PAGE2
+Private Sub CommandButton2_Click() 'Ã¤  -------------------------PAGE2
 
 If driver.FindElementById("ui-id-2").Attribute("aria-expanded") = True Then
 driver.FindElementById("samp_vesl_desc").Clear.SendKeys "P:2, G:1"
@@ -271,14 +271,14 @@ End If
 
 End Sub
 
-Private Sub CommandButton10_Click() 'PAGE2 ½Ã·áÃ¤Ãë ÁöÁ¡¸í ¼³Á¤ -------------------------PAGE2
+Private Sub CommandButton10_Click() 'PAGE2 Ã·Ã¤   -------------------------PAGE2
 
 If driver.FindElementById("ui-id-2").Attribute("aria-expanded") = True Then
  driver.FindElementByXPath("//*[@id=""edit_meas_loc_desc_1""]").Clear.SendKeys ListView1.ListItems(1).ListSubItems(3).text
 End If
 
 End Sub
-Private Sub CommandButton11_Click() 'PAGE4 ºÐ¼®ÀÚ·á ÀÔ·Â
+Private Sub CommandButton11_Click() 'PAGE4 Ð¼Ú· Ô·
     If driver.FindElementById("ui-id-4").Attribute("aria-expanded") = True Then
         Dim trElements As Object
         Dim desiredValue1 As String, desiredValue2 As String
@@ -289,7 +289,7 @@ Private Sub CommandButton11_Click() 'PAGE4 ºÐ¼®ÀÚ·á ÀÔ·Â
         Dim trCount As Integer
         trCount = trElements.Count
         
-'        Debug.Print "ÃÑ " & trCount & "°³ÀÇ tr ÅÂ±×¸¦ Ã£¾Ò½À´Ï´Ù."
+'        Debug.Print " " & trCount & " tr Â±×¸ Ã£Ò½Ï´."
 
         Y = Left(ListView1.ListItems(1).ListSubItems(1).text, 4)
         M = Right(Left(ListView1.ListItems(1).ListSubItems(1).text, 7), 2)
@@ -302,20 +302,20 @@ Private Sub CommandButton11_Click() 'PAGE4 ºÐ¼®ÀÚ·á ÀÔ·Â
                 If ListView3.ListItems(X).text = driver.FindElementById("meas_item_name_" & i).text Then
                   startTime = Timer
                   
-                    driver.FindElementById("allow_val_" & i).Clear.SendKeys ListView3.ListItems(X).ListSubItems(4).text  'Çã¿ë±âÁØÄ¡
-                    driver.FindElementById("anze_val_" & i).Clear.SendKeys ListView3.ListItems(X).ListSubItems(1).text   'ºÐ¼®°á°ú
+                    driver.FindElementById("allow_val_" & i).Clear.SendKeys ListView3.ListItems(X).ListSubItems(4).text  'Ä¡
+                    driver.FindElementById("anze_val_" & i).Clear.SendKeys ListView3.ListItems(X).ListSubItems(1).text   'Ð¼
 
-                    desiredValue1 = ListView3.ListItems(X).ListSubItems(5).text                                          'ºÐ¼®¹æ¹ý(Method)
-                    desiredValue2 = ListView3.ListItems(X).ListSubItems(6).text                                          'ºÐ¼®Àåºñ
+                    desiredValue1 = ListView3.ListItems(X).ListSubItems(5).text                                          'Ð¼(Method)
+                    desiredValue2 = ListView3.ListItems(X).ListSubItems(6).text                                          'Ð¼
 
-                    Set selectElement1 = driver.FindElementById("anze_mthd_" & i)                                        'ºÐ¼®¹æ¹ý ÀÔ·Â
+                    Set selectElement1 = driver.FindElementById("anze_mthd_" & i)                                        'Ð¼ Ô·
                     selectElement1.AsSelect.SelectByValue desiredValue1
 
-                    Set selectElement2 = driver.FindElementById("anze_equip_no_1" & i)                                   'ºÐ¼®Àåºñ ÀÔ·Â
+                    Set selectElement2 = driver.FindElementById("anze_equip_no_1" & i)                                   'Ð¼ Ô·
                     selectElement2.AsSelect.SelectByValue desiredValue2
                     
-                    Set selectElement = driver.FindElementByName("anze_login_id_1" & i).AsSelect                         'ºÐ¼®ÀÎ·Â (¾÷¹«ºÐÀå¿¡¼­ Ã£¾Æ¼­) ÀÔ·Â
-                    selectElement.SelectByValue Sheets("ÃøÁ¤DB").Cells(Sheets("ÃøÁ¤DB").Columns(14).Find(what:=ListView3.ListItems(X).ListSubItems(7).text, lookat:=xlWhole).row, "R")
+                    Set selectElement = driver.FindElementByName("anze_login_id_1" & i).AsSelect                         'Ð¼Î· (å¿¡ Ã£Æ¼) Ô·
+                    selectElement.SelectByValue Sheets("DB").Cells(Sheets("DB").Columns(14).Find(what:=ListView3.ListItems(X).ListSubItems(7).text, lookat:=xlWhole).row, "R")
                     
 
                     script1 = "var input = document.getElementById('anze_start_dt_" & i & "');" & "input.value = '" & DATES & "';" & "input.blur();"
@@ -346,8 +346,8 @@ End Sub
 Sub TESTcheckbox()
 Dim i As Integer
 
-For i = 1 To 60 ' 3Àº Ã¼Å©¹Ú½ºÀÇ °³¼öÀÔ´Ï´Ù. ÇÊ¿ä¿¡ µû¶ó Á¶ÀýÇÏ¼¼¿ä.
-    Me.Controls("Checkbox" & i).Caption = Sheets("Ç×¸ñÄÚµå").Cells(i, "J")
+For i = 1 To 60 ' 3 Ã¼Å©Ú½ Ô´Ï´. Ê¿ä¿¡  Ï¼.
+    Me.Controls("Checkbox" & i).Caption = Sheets("×¸Úµ").Cells(i, "J")
 Next i
 
 End Sub
@@ -361,7 +361,7 @@ End Sub
 Private Sub ListBox1_DblClick(ByVal Cancel As MSForms.ReturnBoolean)
 sellist = UserForm1.ListBox1.ListIndex
 UserForm1.ListBox1.RemoveItem (sellist)
-    ÇÕ°è±Ý¾×
+    Õ°Ý¾
 End Sub
 
 
@@ -372,20 +372,20 @@ Private Sub ListBox2_DblClick(ByVal Cancel As MSForms.ReturnBoolean)
     Dim selectedIndex As Integer
     Dim i As Integer
     
-    ' ¼±ÅÃµÈ Ç×¸ñÀÇ ÀÎµ¦½º¸¦ °¡Á®¿É´Ï´Ù.
+    ' Ãµ ×¸ Îµ É´Ï´.
     selectedIndex = UserForm1.ListBox2.ListIndex
     
-    ' ¼±ÅÃµÈ Ç×¸ñÀÌ ÀÖ´Â °æ¿ì¿¡¸¸ »èÁ¦ÇÕ´Ï´Ù.
+    ' Ãµ ×¸ Ö´ ì¿¡ Õ´Ï´.
     If selectedIndex <> -1 Then
-        ' Ç×¸ñ »èÁ¦
+        ' ×¸ 
         UserForm1.ListBox2.RemoveItem selectedIndex
         
-        ' Ç×¸ñ »èÁ¦ ÈÄ ¹øÈ£¸¦ ´Ù½Ã ¸Å±â±â
+        ' ×¸   È£ Ù½ Å±
         For i = 0 To UserForm1.ListBox2.ListCount - 1
-            UserForm1.ListBox2.List(i, 0) = Format(i + 1, "00") ' Ã¹ ¹øÂ° ¿­¿¡ ¹øÈ£ ¸Å±â±â
+            UserForm1.ListBox2.List(i, 0) = Format(i + 1, "00") ' Ã¹ Â°  È£ Å±
         Next i
     Else
-        MsgBox "¼±ÅÃµÈ Ç×¸ñÀÌ ¾ø½À´Ï´Ù.", vbExclamation
+        MsgBox "Ãµ ×¸ Ï´.", vbExclamation
     End If
 End Sub
 
@@ -397,10 +397,10 @@ Private Sub MultiPage1_Change()
 x1 = UserForm1.Left
 x2 = UserForm1.Top
 
-' UserFormÀ» (0,0) À§Ä¡·Î ÀÌµ¿
+' UserForm (0,0) Ä¡ Ìµ
 UserForm1.Move 0, 0
 
-' ±× ´ÙÀ½¿¡ ¿ø·¡ À§Ä¡·Î ÀÌµ¿
+'    Ä¡ Ìµ
 UserForm1.Move x1, x2
 End Sub
 
@@ -413,123 +413,123 @@ For r = o To UserForm1.ListBox1.ListCount - 1
 UserForm1.ListBox1.List(r, 2) = TextBox3.text
 Next r
 
-    ÇÕ°è±Ý¾×
+    Õ°Ý¾
 End Sub
 
 Private Sub TreeView1_DblClick()
 
-ºÓÀº»öÀ¸·Î¹°µé¿©¶ó
+Î¹é¿©
 
 End Sub
 
 Private Sub TreeView1_NodeClick(ByVal Node As MSComctlLib.Node)
     Dim ws As Worksheet
-    Dim ¾÷Ã¼¸í As Range
+    Dim Ã¼ As Range
     
            Application.ScreenUpdating = False
 
- Sheets("½ÃÇè¼ºÀû¼­").Range("C1:D7,F3:H7,K1:L7,N3:P7,A10:P41") = ""
+ Sheets("è¼º").Range("C1:D7,F3:H7,K1:L7,N3:P7,A10:P41") = ""
 
    
 If Not TreeView1.SelectedItem Is Nothing Then
     If Not TreeView1.SelectedItem.Parent Is Nothing Then
-        Debug.Print "ÀÚ½Ä³ëµå: " & TreeView1.SelectedItem.Parent.text
-        Set ws = ThisWorkbook.Sheets("ÀÇ·ÚÁ¤º¸")
-        lastRow = Sheets("ÀÇ·ÚÁ¤º¸").Cells(Sheets("ÀÇ·ÚÁ¤º¸").Rows.Count, "A").End(xlUp).row
+        Debug.Print "Ú½Ä³: " & TreeView1.SelectedItem.Parent.text
+        Set ws = ThisWorkbook.Sheets("Ç·")
+        lastRow = Sheets("Ç·").Cells(Sheets("Ç·").Rows.Count, "A").End(xlUp).row
         For r = 2 To lastRow
-         X = "¡¼" & Sheets("ÀÇ·ÚÁ¤º¸").Cells(r, "E").text & "¡½" & Sheets("ÀÇ·ÚÁ¤º¸").Cells(r, "F").Value '  ws.Cells(i, "C")  & ws.Cells(i, 4).Value)
-         If Sheets("ÀÇ·ÚÁ¤º¸").Cells(r, "A") = TreeView1.SelectedItem.Parent.text And X = TreeView1.SelectedItem.text Then
+         X = "" & Sheets("Ç·").Cells(r, "E").text & "" & Sheets("Ç·").Cells(r, "F").Value '  ws.Cells(i, "C")  & ws.Cells(i, 4).Value)
+         If Sheets("Ç·").Cells(r, "A") = TreeView1.SelectedItem.Parent.text And X = TreeView1.SelectedItem.text Then
 
           '===============================================================================================
          ListView1.ListItems.Clear
          With ListView1
-        .ColumnHeaders.Clear ' ±âÁ¸ ÄÃ·³ Á¦°Å
+        .ColumnHeaders.Clear '  Ã· 
         .Gridlines = True
-        .View = lvwReport ' Report ¸ðµå·Î ¼³Á¤
+        .View = lvwReport ' Report  
 
-        ' °¢ ÄÃ·³ÀÇ ³Êºñ¸¦ Á¶ÀýÇÏ·Á¸é ÇÊ¿ä¿¡ µû¶ó Width ¼Ó¼ºÀ» ¼³Á¤ÇÒ ¼ö ÀÖ½À´Ï´Ù.
-        .ColumnHeaders.Add , , "ÀÇ·ÚÀÏÀÚ", 100
-        .ColumnHeaders.Add , , "Ã¤ÃëÀÏÀÚ", 100
-        .ColumnHeaders.Add , , "ÀÇ·Ú»ç¾÷Àå", 100
-        .ColumnHeaders.Add , , "½Ã·á¸í", 120
-        .ColumnHeaders.Add , , "ÀÔÈ¸ÀÚ", 100
+        '  Ã· Êº Ï· Ê¿ä¿¡  Width Ó¼   Ö½Ï´.
+        .ColumnHeaders.Add , , "Ç·", 100
+        .ColumnHeaders.Add , , "Ã¤", 100
+        .ColumnHeaders.Add , , "Ç·Ú»", 100
+        .ColumnHeaders.Add , , "Ã·", 120
+        .ColumnHeaders.Add , , "È¸", 100
 
          End With
 
          ListView2.ListItems.Clear
          With ListView2
-        .ColumnHeaders.Clear ' ±âÁ¸ ÄÃ·³ Á¦°Å
+        .ColumnHeaders.Clear '  Ã· 
         .Gridlines = True
-        .View = lvwReport ' Report ¸ðµå·Î ¼³Á¤
-        ' °¢ ÄÃ·³ÀÇ ³Êºñ¸¦ Á¶ÀýÇÏ·Á¸é ÇÊ¿ä¿¡ µû¶ó Width ¼Ó¼ºÀ» ¼³Á¤ÇÒ ¼ö ÀÖ½À´Ï´Ù.
-        .ColumnHeaders.Add , , "½Ã·áÃ¤ÃëÀÚ1", 100
-        .ColumnHeaders.Add , , "½Ã·áÃ¤ÃëÀÚ2", 100
-        .ColumnHeaders.Add , , "¹æ·ùÇã¿ë±âÁØ", 120
-        .ColumnHeaders.Add , , "Á¤µµº¸ÁõÀ¯¹«", 100
-        .ColumnHeaders.Add , , "ºÐ¼®Á¾·áÀÏ", 100
+        .View = lvwReport ' Report  
+        '  Ã· Êº Ï· Ê¿ä¿¡  Width Ó¼   Ö½Ï´.
+        .ColumnHeaders.Add , , "Ã·Ã¤1", 100
+        .ColumnHeaders.Add , , "Ã·Ã¤2", 100
+        .ColumnHeaders.Add , , "", 120
+        .ColumnHeaders.Add , , "", 100
+        .ColumnHeaders.Add , , "Ð¼", 100
          End With
 
          ListView3.ListItems.Clear
          With ListView3
-        .ColumnHeaders.Clear ' ±âÁ¸ ÄÃ·³ Á¦°Å
+        .ColumnHeaders.Clear '  Ã· 
         .Gridlines = True
-        .View = lvwReport ' Report ¸ðµå·Î ¼³Á¤
-        ' °¢ ÄÃ·³ÀÇ ³Êºñ¸¦ Á¶ÀýÇÏ·Á¸é ÇÊ¿ä¿¡ µû¶ó Width ¼Ó¼ºÀ» ¼³Á¤ÇÒ ¼ö ÀÖ½À´Ï´Ù.
-        .ColumnHeaders.Add , , "ÀÇ·ÚÇ×¸ñ", 130
-        .ColumnHeaders.Add , , "ºÐ¼®°á°ú", 70
-        .ColumnHeaders.Add , , "ºÐ¼®¹æ¹ý", 170
-        .ColumnHeaders.Add , , "ºÐ¼®Àåºñ", 100
-        .ColumnHeaders.Add , , "¹ýÀû±âÁØ", 50
+        .View = lvwReport ' Report  
+        '  Ã· Êº Ï· Ê¿ä¿¡  Width Ó¼   Ö½Ï´.
+        .ColumnHeaders.Add , , "Ç·×¸", 130
+        .ColumnHeaders.Add , , "Ð¼", 70
+        .ColumnHeaders.Add , , "Ð¼", 170
+        .ColumnHeaders.Add , , "Ð¼", 100
+        .ColumnHeaders.Add , , "", 50
         .ColumnHeaders.Add , , "Method NO", 20
         .ColumnHeaders.Add , , "instrument NO", 20
-        .ColumnHeaders.Add , , "ºÐ¼®´ã´çÀÚ", 20
+        .ColumnHeaders.Add , , "Ð¼", 20
          End With
 
 
-         Set item = ListView1.ListItems.Add(1, , Sheets("ÀÇ·ÚÁ¤º¸").Cells(r, "A").Value) 'ÀÇ·ÚÀÏÀÚ
-         item.ListSubItems.Add , , Sheets("ÀÇ·ÚÁ¤º¸").Cells(r, "B").Value                'Ã¤ÃëÀÏÀÚ
-         item.ListSubItems.Add , , Sheets("ÀÇ·ÚÁ¤º¸").Cells(r, "E").Value                'ÀÇ·Ú»ç¾÷Àå '¾àÄª
-         item.ListSubItems.Add , , Sheets("ÀÇ·ÚÁ¤º¸").Cells(r, "F").Value                '½Ã·á¸í
-         item.ListSubItems.Add , , Sheets("ÀÇ·ÚÁ¤º¸").Cells(r, "G").Value                'ÀÔÈ¸ÀÚ
+         Set item = ListView1.ListItems.Add(1, , Sheets("Ç·").Cells(r, "A").Value) 'Ç·
+         item.ListSubItems.Add , , Sheets("Ç·").Cells(r, "B").Value                'Ã¤
+         item.ListSubItems.Add , , Sheets("Ç·").Cells(r, "E").Value                'Ç·Ú» 'Äª
+         item.ListSubItems.Add , , Sheets("Ç·").Cells(r, "F").Value                'Ã·
+         item.ListSubItems.Add , , Sheets("Ç·").Cells(r, "G").Value                'È¸
 
-         Set item = ListView2.ListItems.Add(1, , Sheets("ÀÇ·ÚÁ¤º¸").Cells(r, "H").Value) '½Ã·áÃ¤ÃëÀÚ-1
-         item.ListSubItems.Add , , Sheets("ÀÇ·ÚÁ¤º¸").Cells(r, "I").Value                '½Ã·áÃ¤ÃëÀÚ-2
-         item.ListSubItems.Add , , Sheets("ÀÇ·ÚÁ¤º¸").Cells(r, "J").Value                '¹æ·ùÇã¿ë±âÁØ
-         item.ListSubItems.Add , , Sheets("ÀÇ·ÚÁ¤º¸").Cells(r, "K").Value                'Á¤µµº¸ÁõÀ¯¹«
-         item.ListSubItems.Add , , Sheets("ÀÇ·ÚÁ¤º¸").Cells(r, "L").Value                'ºÐ¼®Á¾·áÀÏ
+         Set item = ListView2.ListItems.Add(1, , Sheets("Ç·").Cells(r, "H").Value) 'Ã·Ã¤-1
+         item.ListSubItems.Add , , Sheets("Ç·").Cells(r, "I").Value                'Ã·Ã¤-2
+         item.ListSubItems.Add , , Sheets("Ç·").Cells(r, "J").Value                '
+         item.ListSubItems.Add , , Sheets("Ç·").Cells(r, "K").Value                '
+         item.ListSubItems.Add , , Sheets("Ç·").Cells(r, "L").Value                'Ð¼
 
          For T = Range("N1").Column To Range("BT1").Column
-'         Sheets("½ÃÇè¼ºÀû¼­").Cells(10, "A") = 1
+'         Sheets("è¼º").Cells(10, "A") = 1
          
-         If Sheets("ÀÇ·ÚÁ¤º¸").Cells(r, T) <> "" Then
+         If Sheets("Ç·").Cells(r, T) <> "" Then
 
          
-               G = Sheets("½ÃÇè¼ºÀû¼­").Range("A42").End(xlUp).row + 1
-               G2 = Sheets("½ÃÇè¼ºÀû¼­").Range("I42").End(xlUp).row + 1
+               G = Sheets("è¼º").Range("A42").End(xlUp).row + 1
+               G2 = Sheets("è¼º").Range("I42").End(xlUp).row + 1
             If G <= 41 Then
-               Sheets("½ÃÇè¼ºÀû¼­").Cells(G, "A") = G - 9
-               Sheets("½ÃÇè¼ºÀû¼­").Cells(G, "D") = Sheets("ÀÇ·ÚÁ¤º¸").Cells(1, T)
-               GX = Sheets("°ßÀû´Ü°¡").Columns(4).Find(what:=Sheets("ÀÇ·ÚÁ¤º¸").Cells(1, T), lookat:=xlWhole).row
-               Sheets("½ÃÇè¼ºÀû¼­").Cells(G, "B") = Sheets("°ßÀû´Ü°¡").Cells(GX, 3)
-               Sheets("½ÃÇè¼ºÀû¼­").Cells(G, "E") = Sheets("°ßÀû´Ü°¡").Cells(GX, 2)
+               Sheets("è¼º").Cells(G, "A") = G - 9
+               Sheets("è¼º").Cells(G, "D") = Sheets("Ç·").Cells(1, T)
+               GX = Sheets("Ü°").Columns(4).Find(what:=Sheets("Ç·").Cells(1, T), lookat:=xlWhole).row
+               Sheets("è¼º").Cells(G, "B") = Sheets("Ü°").Cells(GX, 3)
+               Sheets("è¼º").Cells(G, "E") = Sheets("Ü°").Cells(GX, 2)
                
             Else
-               Sheets("½ÃÇè¼ºÀû¼­").Cells(G2, "I") = G2 - 9
-               GX = Sheets("°ßÀû´Ü°¡").Columns(4).Find(what:=Sheets("ÀÇ·ÚÁ¤º¸").Cells(1, T), lookat:=xlWhole).row
-               Sheets("½ÃÇè¼ºÀû¼­").Cells(G2, "J") = Sheets("°ßÀû´Ü°¡").Cells(GX, 3)
-               Sheets("½ÃÇè¼ºÀû¼­").Cells(G2, "L") = Sheets("ÀÇ·ÚÁ¤º¸").Cells(1, T)
-               Sheets("½ÃÇè¼ºÀû¼­").Cells(G2, "M") = Sheets("°ßÀû´Ü°¡").Cells(GX, 2)
+               Sheets("è¼º").Cells(G2, "I") = G2 - 9
+               GX = Sheets("Ü°").Columns(4).Find(what:=Sheets("Ç·").Cells(1, T), lookat:=xlWhole).row
+               Sheets("è¼º").Cells(G2, "J") = Sheets("Ü°").Cells(GX, 3)
+               Sheets("è¼º").Cells(G2, "L") = Sheets("Ç·").Cells(1, T)
+               Sheets("è¼º").Cells(G2, "M") = Sheets("Ü°").Cells(GX, 2)
 
             End If
             
-         Set Titem = ListView3.ListItems.Add(ListView3.ListItems.Count + 1, , Sheets("ÀÇ·ÚÁ¤º¸").Cells(1, T))
-                     Titem.ListSubItems.Add , , "-"             'Subitem-1 ºÐ¼®°á°ú
-                     Titem.ListSubItems.Add , , "-"             'Subitem-2 ºÐ¼®¹æ¹ý
-                     Titem.ListSubItems.Add , , "-"             'Subitem-3 ºÐ¼®Àåºñ
-                     Titem.ListSubItems.Add , , "-"             'Subitem-4 ¹ýÀû±âÁØ
+         Set Titem = ListView3.ListItems.Add(ListView3.ListItems.Count + 1, , Sheets("Ç·").Cells(1, T))
+                     Titem.ListSubItems.Add , , "-"             'Subitem-1 Ð¼
+                     Titem.ListSubItems.Add , , "-"             'Subitem-2 Ð¼
+                     Titem.ListSubItems.Add , , "-"             'Subitem-3 Ð¼
+                     Titem.ListSubItems.Add , , "-"             'Subitem-4 
                      Titem.ListSubItems.Add , , "-"             'Subitem-5 Method NO
                      Titem.ListSubItems.Add , , "-"             'Subitem-6 instrument NO
-                     Titem.ListSubItems.Add , , "-"             'Subitem-7 ºÐ¼®´ã´çÀÚ
+                     Titem.ListSubItems.Add , , "-"             'Subitem-7 Ð¼
          End If
          Next T
          '===============================================================================================
@@ -538,66 +538,66 @@ If Not TreeView1.SelectedItem Is Nothing Then
 
         Next r
 
-        ºÐ¼®°á°úºÒ·¯¿À±â
-        ¹æ·ù±âÁØÃ£±â
+        Ð¼Ò·
+        Ã£
 
-If ActiveSheet.Name = "¼öÁúÃøÁ¤±â·ÏºÎ" Then
-¹ýÁ¤¾ç½Ä
+If ActiveSheet.Name = "Ïº" Then
+
 End If
 
-Call ½ÃÇè¹ý
+Call 
 
 
-        ListView3.ColumnHeaders(1).text = "ÀÇ·ÚÇ×¸ñ (ÃÑ " & ListView3.ListItems.Count & "°Ç) "
+        ListView3.ColumnHeaders(1).text = "Ç·×¸ ( " & ListView3.ListItems.Count & ") "
     Else
-        Label1.Caption = "¸øÃ£°Î½À´Ï´Ù"
+        Label1.Caption = "Ã£Î½Ï´"
     End If
 
 
 End If
-       Set ¾÷Ã¼¸í = Sheets("°è¾àÁ¤º¸").Columns("H").Find(what:=UserForm1.ListView1.ListItems(1).ListSubItems(2), lookat:=xlWhole)
-       If Sheets("½ÃÇè¼ºÀû¼­").Cells(10, "I") = "" Then
-           Sheets("½ÃÇè¼ºÀû¼­").PageSetup.PrintArea = "A1:H44"
+       Set Ã¼ = Sheets("").Columns("H").Find(what:=UserForm1.ListView1.ListItems(1).ListSubItems(2), lookat:=xlWhole)
+       If Sheets("è¼º").Cells(10, "I") = "" Then
+           Sheets("è¼º").PageSetup.PrintArea = "A1:H44"
            
-           If Not ¾÷Ã¼¸í Is Nothing Then
-           
-           
-           Sheets("½ÃÇè¼ºÀû¼­").Range("C3,K3") = Sheets("°è¾àÁ¤º¸").Cells(¾÷Ã¼¸í.row, "B")
-           Sheets("½ÃÇè¼ºÀû¼­").Range("C4,K4") = Sheets("°è¾àÁ¤º¸").Cells(¾÷Ã¼¸í.row, "D")
-           Sheets("½ÃÇè¼ºÀû¼­").Range("C5,K5") = UserForm1.ListView1.ListItems(1).ListSubItems(4)
-           Sheets("½ÃÇè¼ºÀû¼­").Range("C7,K7") = UserForm1.ListView1.ListItems(1).ListSubItems(3)
+           If Not Ã¼ Is Nothing Then
            
            
-           Sheets("½ÃÇè¼ºÀû¼­").Range("F3,N3") = UserForm1.ListView1.ListItems(1).ListSubItems(1)
-           Sheets("½ÃÇè¼ºÀû¼­").Range("F4,N4") = UserForm1.ListView2.ListItems(1).text & ", " & UserForm1.ListView2.ListItems(1).ListSubItems(1)
+           Sheets("è¼º").Range("C3,K3") = Sheets("").Cells(Ã¼.row, "B")
+           Sheets("è¼º").Range("C4,K4") = Sheets("").Cells(Ã¼.row, "D")
+           Sheets("è¼º").Range("C5,K5") = UserForm1.ListView1.ListItems(1).ListSubItems(4)
+           Sheets("è¼º").Range("C7,K7") = UserForm1.ListView1.ListItems(1).ListSubItems(3)
+           
+           
+           Sheets("è¼º").Range("F3,N3") = UserForm1.ListView1.ListItems(1).ListSubItems(1)
+           Sheets("è¼º").Range("F4,N4") = UserForm1.ListView2.ListItems(1).text & ", " & UserForm1.ListView2.ListItems(1).ListSubItems(1)
            
            If UserForm1.ListView2.ListItems(1).ListSubItems(3) <> "O" Then
-           Sheets("½ÃÇè¼ºÀû¼­").Range("F7,N7") = "Âü°í¿ë"
+           Sheets("è¼º").Range("F7,N7") = ""
            Else
-           Sheets("½ÃÇè¼ºÀû¼­").Range("F7,N7") = "Á¤µµº¸Áõ Àû¿ë"
+           Sheets("è¼º").Range("F7,N7") = " "
            End If
            
            End If
            
          Else
-           Sheets("½ÃÇè¼ºÀû¼­").PageSetup.PrintArea = "A1:H44,I1:P44"
+           Sheets("è¼º").PageSetup.PrintArea = "A1:H44,I1:P44"
            
-           If Not ¾÷Ã¼¸í Is Nothing Then
-           
-           
-           Sheets("½ÃÇè¼ºÀû¼­").Range("C3,K3") = Sheets("°è¾àÁ¤º¸").Cells(¾÷Ã¼¸í.row, "B")
-           Sheets("½ÃÇè¼ºÀû¼­").Range("C4,K4") = Sheets("°è¾àÁ¤º¸").Cells(¾÷Ã¼¸í.row, "D")
-           Sheets("½ÃÇè¼ºÀû¼­").Range("C5,K5") = UserForm1.ListView1.ListItems(1).ListSubItems(4)
-           Sheets("½ÃÇè¼ºÀû¼­").Range("C7,K7") = UserForm1.ListView1.ListItems(1).ListSubItems(3)
+           If Not Ã¼ Is Nothing Then
            
            
-           Sheets("½ÃÇè¼ºÀû¼­").Range("F3,N3") = UserForm1.ListView1.ListItems(1).ListSubItems(1)
-           Sheets("½ÃÇè¼ºÀû¼­").Range("F4,N4") = UserForm1.ListView2.ListItems(1).text & ", " & UserForm1.ListView2.ListItems(1).ListSubItems(1)
+           Sheets("è¼º").Range("C3,K3") = Sheets("").Cells(Ã¼.row, "B")
+           Sheets("è¼º").Range("C4,K4") = Sheets("").Cells(Ã¼.row, "D")
+           Sheets("è¼º").Range("C5,K5") = UserForm1.ListView1.ListItems(1).ListSubItems(4)
+           Sheets("è¼º").Range("C7,K7") = UserForm1.ListView1.ListItems(1).ListSubItems(3)
+           
+           
+           Sheets("è¼º").Range("F3,N3") = UserForm1.ListView1.ListItems(1).ListSubItems(1)
+           Sheets("è¼º").Range("F4,N4") = UserForm1.ListView2.ListItems(1).text & ", " & UserForm1.ListView2.ListItems(1).ListSubItems(1)
            
            If UserForm1.ListView2.ListItems(1).ListSubItems(3) <> "O" Then
-           Sheets("½ÃÇè¼ºÀû¼­").Range("F7,N7") = "Âü°í¿ë"
+           Sheets("è¼º").Range("F7,N7") = ""
            Else
-           Sheets("½ÃÇè¼ºÀû¼­").Range("F7,N7") = "Á¤µµº¸Áõ Àû¿ë"
+           Sheets("è¼º").Range("F7,N7") = " "
            End If
            
            End If
@@ -622,18 +622,18 @@ Private Sub TreeView2_NodeClick(ByVal Node As MSComctlLib.Node)
     Dim selectedColumn As Integer
     Dim amount As Variant
 
-    ' UserForm1ÀÇ ListBox1 ¹× ComboBox1 ÂüÁ¶
+    ' UserForm1 ListBox1  ComboBox1 
     Set listBox = Me.ListBox1
     Set comboBox = Me.ComboBox1
-    Set ws = ThisWorkbook.Sheets("°ßÀû´Ü°¡")
+    Set ws = ThisWorkbook.Sheets("Ü°")
     
-   If UserForm1.TreeView2.SelectedItem.text = "Æ¯Á¤¼öÁúÀ¯ÇØ¹°Áú" Then
-   Æ¯Á¤¼öÁú°ßÀûÀÏ°ýÀÔ·Â
+   If UserForm1.TreeView2.SelectedItem.text = "Æ¯Ø¹" Then
+   Æ¯Ï°Ô·
    End If
    
    
     
-    ' ComboBox¿¡¼­ ¼±ÅÃÇÑ Ç×¸ñ¿¡ ÇØ´çÇÏ´Â ÄÃ·³ Ã£±â
+    ' ComboBox  ×¸ Ø´Ï´ Ã· Ã£
     selectedColumn = 0
     For i = 1 To ws.Cells(1, ws.Columns.Count).End(xlToLeft).Column
         If ws.Cells(1, i).Value = comboBox.Value Then
@@ -643,23 +643,23 @@ Private Sub TreeView2_NodeClick(ByVal Node As MSComctlLib.Node)
     Next i
     
     If selectedColumn = 0 Then
-        MsgBox "ComboBox¿¡¼­ ¼±ÅÃÇÑ Ç×¸ñ¿¡ ÇØ´çÇÏ´Â ÄÃ·³À» Ã£À» ¼ö ¾ø½À´Ï´Ù.", vbExclamation
+        MsgBox "ComboBox  ×¸ Ø´Ï´ Ã· Ã£  Ï´.", vbExclamation
         Exit Sub
     End If
     
-    ' ListBox ÃÊ±âÈ­
+    ' ListBox Ê±È­
 '    listBox.Clear
     
-    ' ¼±ÅÃµÈ Ç×¸ñÀÌ ÀÖ´ÂÁö È®ÀÎ
+    ' Ãµ ×¸ Ö´ È®
     If Not UserForm1.TreeView2.SelectedItem Is Nothing Then
         With UserForm1.TreeView2.SelectedItem
-            ' ¼±ÅÃµÈ Ç×¸ñÀÌ ºÎ¸ð ³ëµåÀÎÁö È®ÀÎ
+            ' Ãµ ×¸ Î¸  È®
             If .Children > 0 Then
-                ' ºÎ¸ð ³ëµåÀÇ ¸ðµç ÇÏÀ§ ³ëµå Ãâ·Â
+                ' Î¸     
                 Set childNode = .Child
                 
                 Do While Not childNode Is Nothing
-                    ' Áßº¹ È®ÀÎ
+                    ' ßº È®
                     IsDuplicate = False
                     For i = 0 To listBox.ListCount - 1
                         If listBox.List(i, 1) = childNode.text Then
@@ -668,7 +668,7 @@ Private Sub TreeView2_NodeClick(ByVal Node As MSComctlLib.Node)
                         End If
                     Next i
                     
-                    ' Áßº¹ÀÌ ¾Æ´Ï¸é ListBox¿¡ ºÎ¸ð ³ëµå¿Í ÀÚ½Ä ³ëµå ¹× ±Ý¾× Ãß°¡
+                    ' ßº Æ´Ï¸ ListBox Î¸  Ú½   Ý¾ ß°
                     If Not IsDuplicate Then
                         listBox.AddItem
                         listBox.List(listBox.ListCount - 1, 0) = .text
@@ -681,10 +681,10 @@ Private Sub TreeView2_NodeClick(ByVal Node As MSComctlLib.Node)
                     Set childNode = childNode.Next
                 Loop
             Else
-                ' ÀÚ½Ä ³ëµåÀÏ °æ¿ì ºÎ¸ð ³ëµå¿Í ¼±ÅÃµÈ ÀÚ½Ä ³ëµå ¹× ±Ý¾× Ãß°¡
+                ' Ú½   Î¸  Ãµ Ú½   Ý¾ ß°
                 If Not .Parent Is Nothing Then
                     Set parentNode = .Parent
-                    ' Áßº¹ È®ÀÎ
+                    ' ßº È®
                     IsDuplicate = False
                     For i = 0 To listBox.ListCount - 1
                         If listBox.List(i, 1) = .text Then
@@ -693,7 +693,7 @@ Private Sub TreeView2_NodeClick(ByVal Node As MSComctlLib.Node)
                         End If
                     Next i
                     
-                    ' Áßº¹ÀÌ ¾Æ´Ï¸é ListBox¿¡ ºÎ¸ð ³ëµå¿Í ÀÚ½Ä ³ëµå ¹× ±Ý¾× Ãß°¡
+                    ' ßº Æ´Ï¸ ListBox Î¸  Ú½   Ý¾ ß°
                     If Not IsDuplicate Then
                         listBox.AddItem
                         listBox.List(listBox.ListCount - 1, 0) = parentNode.text
@@ -712,7 +712,7 @@ Private Sub TreeView2_NodeClick(ByVal Node As MSComctlLib.Node)
         Debug.Print "No item is selected in the TreeView."
     End If
     
-    ÇÕ°è±Ý¾×
+    Õ°Ý¾
     
 End Sub
 
@@ -727,11 +727,11 @@ If Not UserForm1.TreeView3.SelectedItem Is Nothing Then
     If Not UserForm1.TreeView3.SelectedItem.Parent Is Nothing Then
         UserForm1.TextBox9 = UserForm1.TreeView3.SelectedItem.Parent.text
     Else
-        ' ¼±ÅÃµÈ Ç×¸ñÀÌ ÃÖ»óÀ§ ³ëµåÀÎ °æ¿ì, ºÎ¸ð°¡ ¾øÀ¸¹Ç·Î Label12¸¦ ÃÊ±âÈ­
+        ' Ãµ ×¸ Ö»  , Î¸ Ç· Label12 Ê±È­
         UserForm1.TextBox9 = "No Parent"
     End If
 Else
-    ' ¼±ÅÃµÈ Ç×¸ñÀÌ ¾øÀ» °æ¿ì Label12¸¦ ÃÊ±âÈ­
+    ' Ãµ ×¸   Label12 Ê±È­
     UserForm1.TextBox9 = "No Item Selected"
 End If
  
@@ -739,44 +739,44 @@ End If
 If Not TreeView3.SelectedItem Is Nothing Then
     If Not TreeView3.SelectedItem.Parent Is Nothing Then
 
-        Set ws = ThisWorkbook.Sheets("°ßÀû¹ßÇàÁ¤º¸")
-        lastRow = Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(Sheets("°ßÀû¹ßÇàÁ¤º¸").Rows.Count, "A").End(xlUp).row
+        Set ws = ThisWorkbook.Sheets("")
+        lastRow = Sheets("").Cells(Sheets("").Rows.Count, "A").End(xlUp).row
         For r = 2 To lastRow
-         Z = "¡¼" & Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, "C").text & "¡½" & Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, "H").Value '  ws.Cells(i, "C")  & ws.Cells(i, 4).Value)
+         Z = "" & Sheets("").Cells(r, "C").text & "" & Sheets("").Cells(r, "H").Value '  ws.Cells(i, "C")  & ws.Cells(i, 4).Value)
          
-         If Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, "A") = TreeView3.SelectedItem.Parent.text And Z = TreeView3.SelectedItem.text Then
+         If Sheets("").Cells(r, "A") = TreeView3.SelectedItem.Parent.text And Z = TreeView3.SelectedItem.text Then
 
           
           Set listBox = UserForm1.ListBox1
           listBox.Clear
           
-          UserForm1.TextBox1 = Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, "A")
+          UserForm1.TextBox1 = Sheets("").Cells(r, "A")
           
-          Set ¾àÄª = Sheets("°è¾àÁ¤º¸").Columns(8).Find(what:=Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, "C").text, lookat:=xlWhole)
-          If Not ¾àÄª Is Nothing Then
-            UserForm1.ComboBox3.ListIndex = ¾àÄª.row - 2
+          Set Äª = Sheets("").Columns(8).Find(what:=Sheets("").Cells(r, "C").text, lookat:=xlWhole)
+          If Not Äª Is Nothing Then
+            UserForm1.ComboBox3.ListIndex = Äª.row - 2
           End If
           
-          UserForm1.ComboBox4.Value = Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, "K") '#### ¿ä°í ¼öÁ¤ÇØ¾ß ÇÔ..¤»¤»
-          UserForm1.TextBox4.Value = Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, "G")
-          UserForm1.TextBox5.Value = Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, "F")
-          UserForm1.TextBox2.Value = Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, "H")
-          UserForm1.ComboBox2.Value = Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, "E")
+          UserForm1.ComboBox4.Value = Sheets("").Cells(r, "K") '####  Ø¾ ..
+          UserForm1.TextBox4.Value = Sheets("").Cells(r, "G")
+          UserForm1.TextBox5.Value = Sheets("").Cells(r, "F")
+          UserForm1.TextBox2.Value = Sheets("").Cells(r, "H")
+          UserForm1.ComboBox2.Value = Sheets("").Cells(r, "E")
           
                         Total = 0
                         For X = 13 To 193 Step (3)
 
-                        If Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, X) <> "" Then
+                        If Sheets("").Cells(r, X) <> "" Then
                         amount = 0
                        
-                        Z = Sheets("°ßÀû´Ü°¡").Columns(4).Find(what:=Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(1, X), lookat:=xlWhole).row
+                        Z = Sheets("Ü°").Columns(4).Find(what:=Sheets("").Cells(1, X), lookat:=xlWhole).row
                         
                         listBox.AddItem
-                        listBox.List(listBox.ListCount - 1, 0) = Sheets("°ßÀû´Ü°¡").Cells(Z, "C")    'ÀÇ·Ú/ºÐ¼®Ç×¸ñ ´ë±¸ºÐ
-                        listBox.List(listBox.ListCount - 1, 1) = Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(1, X)  'ÀÇ·Ú/ºÐ¼®Ç×¸ñ ¼Ò±¸ºÐ
-                        listBox.List(listBox.ListCount - 1, 2) = Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, X)  'ÀÇ·Ú/ºÐ¼®Ç×¸ñ ¼ö·®
-                        listBox.List(listBox.ListCount - 1, 3) = Format(Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, X + 1), "#,###") 'ÀÇ·Ú/ºÐ¼®Ç×¸ñ ´Ü°¡
-                        amount = Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, X) * Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, X + 1)
+                        listBox.List(listBox.ListCount - 1, 0) = Sheets("Ü°").Cells(Z, "C")    'Ç·/Ð¼×¸ ë±¸
+                        listBox.List(listBox.ListCount - 1, 1) = Sheets("").Cells(1, X)  'Ç·/Ð¼×¸ Ò±
+                        listBox.List(listBox.ListCount - 1, 2) = Sheets("").Cells(r, X)  'Ç·/Ð¼×¸ 
+                        listBox.List(listBox.ListCount - 1, 3) = Format(Sheets("").Cells(r, X + 1), "#,###") 'Ç·/Ð¼×¸ Ü°
+                        amount = Sheets("").Cells(r, X) * Sheets("").Cells(r, X + 1)
                         Total = amount + Total
                         
                         listBox.List(listBox.ListCount - 1, 4) = Format(amount, "#,###")
@@ -796,7 +796,7 @@ If Not TreeView3.SelectedItem Is Nothing Then
 
 
     Else
-        Label1.Caption = "¸øÃ£°Î½À´Ï´Ù"
+        Label1.Caption = "Ã£Î½Ï´"
     End If
 
 
@@ -811,18 +811,18 @@ Next r
 
 If Not UserForm1.ListBox1.ListCount = 0 And UserForm1.TextBox3 <> "" Then
 
-  UserForm1.Label5.Caption = UserForm1.ListBox1.List(0, 1) & "Æ÷ÇÔ " & UserForm1.ListBox1.ListCount & "Á¾ ¡¼" & Format(Total, "#,###¿ø¡½")
+  UserForm1.Label5.Caption = UserForm1.ListBox1.List(0, 1) & " " & UserForm1.ListBox1.ListCount & " " & Format(Total, "#,###")
 Else
-  UserForm1.Label5.Caption = "°ßÀû°Ç¼ö/ÃÑ¾×"
+  UserForm1.Label5.Caption = "Ç¼/Ñ¾"
 End If
 '=========================================================================================================================
 
-Æ®¸®ºä3Å¬¸¯Ã¼Å©
+Æ®3Å¬Ã¼Å©
 
 End Sub
 Private Sub TreeView4_Click()
 UserForm1.TreeView4.SelectedItem.ForeColor = RGB(255, 0, 0)
-ÀÇ·Ú¸®½ºÆ®ÀÌµ¿
+Ç·Ú¸Æ®Ìµ
 End Sub
 Private Sub TreeView5_NodeClick(ByVal Node As MSComctlLib.Node)
     Dim i As Integer
@@ -837,10 +837,10 @@ Private Sub TreeView5_NodeClick(ByVal Node As MSComctlLib.Node)
 
     
     
-    ' ÇöÀç ListView¿¡ ÀÖ´Â ¾ÆÀÌÅÛ ¼ö¿¡ µû¶ó »õ·Î¿î ¹øÈ£ ÁöÁ¤
+    '  ListView Ö´    Î¿ È£ 
     ItemIndex = ListView4.ListItems.Count + 1
     
-    ' ºÎ¸ð ³ëµåÀÎ °æ¿ì ÀÚ½Ä ³ëµå ÀüÃ¼¸¦ Ã³¸®
+    ' Î¸   Ú½  Ã¼ Ã³
     If Node.Children > 0 Then
         ParentText = Node.text
         Set childNode = Node.Child
@@ -849,7 +849,7 @@ Private Sub TreeView5_NodeClick(ByVal Node As MSComctlLib.Node)
             NodeText = childNode.text
             IsDuplicate = False
             
-            ' Áßº¹ Ã¼Å©
+            ' ßº Ã¼Å©
             For i = 1 To ListView4.ListItems.Count
                 If ListView4.ListItems(i).SubItems(1) = ParentText And ListView4.ListItems(i).SubItems(2) = NodeText Then
                     IsDuplicate = True
@@ -857,21 +857,21 @@ Private Sub TreeView5_NodeClick(ByVal Node As MSComctlLib.Node)
                 End If
             Next i
             
-            ' Áßº¹µÇÁö ¾Ê´Â °æ¿ì¿¡¸¸ Ãß°¡
+            ' ßº Ê´ ì¿¡ ß°
             If Not IsDuplicate Then
                 Set ListItem = ListView4.ListItems.Add(, , ItemIndex)
                 ListItem.SubItems(1) = ParentText
                 ListItem.SubItems(2) = NodeText
-                ListItem.SubItems(3) = "±âÁØ"
+                ListItem.SubItems(3) = ""
                 ItemIndex = ItemIndex + 1
-                ºÐ¼®°á°úÀÔ·Â¸®½ºÆ®ÀÇ¹ýÀû±âÁØ
+                Ð¼Ô·Â¸Æ®Ç¹
            End If
             
-            ' ´ÙÀ½ ÀÚ½Ä ³ëµå·Î ÀÌµ¿
+            '  Ú½  Ìµ
             Set childNode = childNode.Next
         Loop
     Else
-        ' ÀÚ½Ä ³ëµå°¡ ¾ø´Â °æ¿ì (¸®ÇÁ ³ëµå)
+        ' Ú½ å°¡   ( )
         If Not Node.Parent Is Nothing Then
             ParentText = Node.Parent.text
         Else
@@ -881,7 +881,7 @@ Private Sub TreeView5_NodeClick(ByVal Node As MSComctlLib.Node)
         NodeText = Node.text
         IsDuplicate = False
         
-        ' Áßº¹ Ã¼Å©
+        ' ßº Ã¼Å©
         For i = 1 To ListView4.ListItems.Count
             If ListView4.ListItems(i).SubItems(1) = ParentText And ListView4.ListItems(i).SubItems(2) = NodeText Then
                 IsDuplicate = True
@@ -889,13 +889,13 @@ Private Sub TreeView5_NodeClick(ByVal Node As MSComctlLib.Node)
             End If
         Next i
         
-        ' Áßº¹µÇÁö ¾Ê´Â °æ¿ì¿¡¸¸ Ãß°¡
+        ' ßº Ê´ ì¿¡ ß°
         If Not IsDuplicate Then
             Set ListItem = ListView4.ListItems.Add(, , ItemIndex)
             ListItem.SubItems(1) = ParentText
             ListItem.SubItems(2) = NodeText
-            ListItem.SubItems(3) = "±âÁØ"
-            ºÐ¼®°á°úÀÔ·Â¸®½ºÆ®ÀÇ¹ýÀû±âÁØ
+            ListItem.SubItems(3) = ""
+            Ð¼Ô·Â¸Æ®Ç¹
         End If
     End If
     
@@ -921,60 +921,60 @@ If Not UserForm1.TreeView6.SelectedItem Is Nothing Then
         UserForm1.TextBox8 = UserForm1.TreeView6.SelectedItem.text
         UserForm1.TextBox9 = UserForm1.TreeView6.SelectedItem.Parent.text
     Else
-        ' ¼±ÅÃµÈ Ç×¸ñÀÌ ÃÖ»óÀ§ ³ëµåÀÎ °æ¿ì, ºÎ¸ð°¡ ¾øÀ¸¹Ç·Î Label12¸¦ ÃÊ±âÈ­
+        ' Ãµ ×¸ Ö»  , Î¸ Ç· Label12 Ê±È­
         UserForm1.TextBox9 = UserForm1.TreeView6.SelectedItem.text
 
     End If
 Else
-    ' ¼±ÅÃµÈ Ç×¸ñÀÌ ¾øÀ» °æ¿ì Label12¸¦ ÃÊ±âÈ­
+    ' Ãµ ×¸   Label12 Ê±È­
     UserForm1.TextBox9 = "No Item Selected"
 End If
  
-´ÜÃà¾îÃ£±â
+Ã£
 
  
    
 ''If Not TreeView3.SelectedItem Is Nothing Then
 ''    If Not TreeView3.SelectedItem.Parent Is Nothing Then
 ''
-''        Set ws = ThisWorkbook.Sheets("°ßÀû¹ßÇàÁ¤º¸")
-''        lastRow = Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(Sheets("°ßÀû¹ßÇàÁ¤º¸").Rows.Count, "A").End(xlUp).Row
+''        Set ws = ThisWorkbook.Sheets("")
+''        lastRow = Sheets("").Cells(Sheets("").Rows.Count, "A").End(xlUp).Row
 ''        For r = 2 To lastRow
-''         Z = "¡¼" & Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, "C").Text & "¡½" & Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, "H").Value '  ws.Cells(i, "C")  & ws.Cells(i, 4).Value)
+''         Z = "" & Sheets("").Cells(r, "C").Text & "" & Sheets("").Cells(r, "H").Value '  ws.Cells(i, "C")  & ws.Cells(i, 4).Value)
 ''
-''         If Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, "A") = TreeView3.SelectedItem.Parent.Text And Z = TreeView3.SelectedItem.Text Then
+''         If Sheets("").Cells(r, "A") = TreeView3.SelectedItem.Parent.Text And Z = TreeView3.SelectedItem.Text Then
 ''
 ''
 ''          Set listBox = UserForm1.ListBox1
 ''          listBox.Clear
 ''
-''          UserForm1.TextBox1 = Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, "A")
+''          UserForm1.TextBox1 = Sheets("").Cells(r, "A")
 ''
-''          Set ¾àÄª = Sheets("°è¾àÁ¤º¸").Columns(8).Find(what:=Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, "C").Text, lookat:=xlWhole)
-''          If Not ¾àÄª Is Nothing Then
-''            UserForm1.ComboBox3.ListIndex = ¾àÄª.Row - 2
+''          Set Äª = Sheets("").Columns(8).Find(what:=Sheets("").Cells(r, "C").Text, lookat:=xlWhole)
+''          If Not Äª Is Nothing Then
+''            UserForm1.ComboBox3.ListIndex = Äª.Row - 2
 ''          End If
 ''
-''          UserForm1.ComboBox4.Value = Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, "K") '#### ¿ä°í ¼öÁ¤ÇØ¾ß ÇÔ..¤»¤»
-''          UserForm1.TextBox4.Value = Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, "G")
-''          UserForm1.TextBox5.Value = Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, "F")
-''          UserForm1.TextBox2.Value = Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, "H")
-''          UserForm1.ComboBox2.Value = Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, "E")
+''          UserForm1.ComboBox4.Value = Sheets("").Cells(r, "K") '####  Ø¾ ..
+''          UserForm1.TextBox4.Value = Sheets("").Cells(r, "G")
+''          UserForm1.TextBox5.Value = Sheets("").Cells(r, "F")
+''          UserForm1.TextBox2.Value = Sheets("").Cells(r, "H")
+''          UserForm1.ComboBox2.Value = Sheets("").Cells(r, "E")
 ''
 ''                        Total = 0
 ''                        For X = 13 To 193 Step (3)
 ''
-''                        If Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, X) <> "" Then
+''                        If Sheets("").Cells(r, X) <> "" Then
 ''                        amount = 0
 ''
-''                        Z = Sheets("°ßÀû´Ü°¡").Columns(4).Find(what:=Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(1, X), lookat:=xlWhole).Row
+''                        Z = Sheets("Ü°").Columns(4).Find(what:=Sheets("").Cells(1, X), lookat:=xlWhole).Row
 ''
 ''                        listBox.AddItem
-''                        listBox.List(listBox.ListCount - 1, 0) = Sheets("°ßÀû´Ü°¡").Cells(Z, "C")    'ÀÇ·Ú/ºÐ¼®Ç×¸ñ ´ë±¸ºÐ
-''                        listBox.List(listBox.ListCount - 1, 1) = Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(1, X)  'ÀÇ·Ú/ºÐ¼®Ç×¸ñ ¼Ò±¸ºÐ
-''                        listBox.List(listBox.ListCount - 1, 2) = Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, X)  'ÀÇ·Ú/ºÐ¼®Ç×¸ñ ¼ö·®
-''                        listBox.List(listBox.ListCount - 1, 3) = Format(Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, X + 1), "#,###") 'ÀÇ·Ú/ºÐ¼®Ç×¸ñ ´Ü°¡
-''                        amount = Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, X) * Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, X + 1)
+''                        listBox.List(listBox.ListCount - 1, 0) = Sheets("Ü°").Cells(Z, "C")    'Ç·/Ð¼×¸ ë±¸
+''                        listBox.List(listBox.ListCount - 1, 1) = Sheets("").Cells(1, X)  'Ç·/Ð¼×¸ Ò±
+''                        listBox.List(listBox.ListCount - 1, 2) = Sheets("").Cells(r, X)  'Ç·/Ð¼×¸ 
+''                        listBox.List(listBox.ListCount - 1, 3) = Format(Sheets("").Cells(r, X + 1), "#,###") 'Ç·/Ð¼×¸ Ü°
+''                        amount = Sheets("").Cells(r, X) * Sheets("").Cells(r, X + 1)
 ''                        Total = amount + Total
 ''
 ''                        listBox.List(listBox.ListCount - 1, 4) = Format(amount, "#,###")
@@ -994,7 +994,7 @@ End If
 ''
 ''
 ''    Else
-''        Label1.Caption = "¸øÃ£°Î½À´Ï´Ù"
+''        Label1.Caption = "Ã£Î½Ï´"
 ''    End If
 ''
 ''
@@ -1020,16 +1020,16 @@ Private Sub TreeView7_DblClick()
     Dim childNode As Node
     Dim allChildrenBlack As Boolean
     Dim parentNode As Node
-        ' ¼±ÅÃµÈ ³ëµåÀÇ »ö»óÀ» RGB(0, 0, 0)À¸·Î º¯°æ
+        ' Ãµ   RGB(0, 0, 0) 
         UserForm1.TreeView7.SelectedItem.ForeColor = RGB(0, 0, 0)
         
         
-    ' ¼±ÅÃµÈ ³ëµå°¡ ºÎ¸ð ³ëµå¸¦ °¡Áö°í ÀÖ´ÂÁö È®ÀÎ
+    ' Ãµ å°¡ Î¸ å¸¦  Ö´ È®
     If Not UserForm1.TreeView7.SelectedItem.Parent Is Nothing Then
-        ' ºÎ¸ð ³ëµå¸¦ °¡Á®¿È
+        ' Î¸ å¸¦ 
         Set parentNode = UserForm1.TreeView7.SelectedItem.Parent
         
-        ' ¸ðµç ÀÚ½Ä ³ëµåÀÇ »ö»óÀÌ RGB(0,0,0)ÀÎÁö È®ÀÎ
+        '  Ú½   RGB(0,0,0) È®
         allChildrenBlack = True
         Set childNode = parentNode.Child
         Do While Not childNode Is Nothing
@@ -1040,7 +1040,7 @@ Private Sub TreeView7_DblClick()
             Set childNode = childNode.Next
         Loop
         
-        ' ÀÚ½Ä ³ëµå°¡ ÀüºÎ RGB(0,0,0)ÀÎ °æ¿ì ºÎ¸ð ³ëµåµµ RGB(0,0,0)À¸·Î º¯°æ
+        ' Ú½ å°¡  RGB(0,0,0)  Î¸ åµµ RGB(0,0,0) 
         If allChildrenBlack Then
             parentNode.ForeColor = RGB(0, 0, 0)
             parentNode.Expanded = False
@@ -1076,66 +1076,66 @@ End Sub
 
 
 Private Sub AddListView1Columns()
-    ' ¸®½ºÆ®ºäÀÇ ÄÃ·³ Ãß°¡
+    ' Æ® Ã· ß°
     With ListView1
-        .ColumnHeaders.Clear ' ±âÁ¸ ÄÃ·³ Á¦°Å
-        .View = lvwReport ' Report ¸ðµå·Î ¼³Á¤
+        .ColumnHeaders.Clear '  Ã· 
+        .View = lvwReport ' Report  
         .Gridlines = True
-        ' °¢ ÄÃ·³ÀÇ ³Êºñ¸¦ Á¶ÀýÇÏ·Á¸é ÇÊ¿ä¿¡ µû¶ó Width ¼Ó¼ºÀ» ¼³cnÁ¤ÇÒ ¼ö ÀÖ½À´Ï´Ù.
-        .ColumnHeaders.Add , , "ÀÇ·ÚÀÏÀÚ", 100
-        .ColumnHeaders.Add , , "Ã¤ÃëÀÏÀÚ", 100
-        .ColumnHeaders.Add , , "ÀÇ·Ú»ç¾÷Àå", 100
-        .ColumnHeaders.Add , , "½Ã·á¸í", 100
-        .ColumnHeaders.Add , , "ÀÔÈ¸ÀÚ", 100
+        '  Ã· Êº Ï· Ê¿ä¿¡  Width Ó¼ cn  Ö½Ï´.
+        .ColumnHeaders.Add , , "Ç·", 100
+        .ColumnHeaders.Add , , "Ã¤", 100
+        .ColumnHeaders.Add , , "Ç·Ú»", 100
+        .ColumnHeaders.Add , , "Ã·", 100
+        .ColumnHeaders.Add , , "È¸", 100
 
     End With
 End Sub
 Private Sub AddListView2Columns()
-    ' ¸®½ºÆ®ºäÀÇ ÄÃ·³ Ãß°¡
+    ' Æ® Ã· ß°
     With ListView2
-        .ColumnHeaders.Clear ' ±âÁ¸ ÄÃ·³ Á¦°Å
-        .View = lvwReport ' Report ¸ðµå·Î ¼³Á¤
+        .ColumnHeaders.Clear '  Ã· 
+        .View = lvwReport ' Report  
         .Gridlines = True
-        ' °¢ ÄÃ·³ÀÇ ³Êºñ¸¦ Á¶ÀýÇÏ·Á¸é ÇÊ¿ä¿¡ µû¶ó Width ¼Ó¼ºÀ» ¼³Á¤ÇÒ ¼ö ÀÖ½À´Ï´Ù.
-        .ColumnHeaders.Add , , "½Ã·áÃ¤ÃëÀÚ1", 100
-        .ColumnHeaders.Add , , "½Ã·áÃ¤ÃëÀÚ2", 100
-        .ColumnHeaders.Add , , "¹æ·ùÇã¿ë±âÁØ", 100
-        .ColumnHeaders.Add , , "Á¤º¸º¸ÁõÀ¯¹«", 100
-        .ColumnHeaders.Add , , "ºÐ¼®Á¾·áÀÏ", 100
+        '  Ã· Êº Ï· Ê¿ä¿¡  Width Ó¼   Ö½Ï´.
+        .ColumnHeaders.Add , , "Ã·Ã¤1", 100
+        .ColumnHeaders.Add , , "Ã·Ã¤2", 100
+        .ColumnHeaders.Add , , "", 100
+        .ColumnHeaders.Add , , "", 100
+        .ColumnHeaders.Add , , "Ð¼", 100
 
     End With
 End Sub
 Private Sub AddListView3Columns()
-    ' ¸®½ºÆ®ºäÀÇ ÄÃ·³ Ãß°¡
+    ' Æ® Ã· ß°
     With ListView3
-        .ColumnHeaders.Clear ' ±âÁ¸ ÄÃ·³ Á¦°Å
-        .View = lvwReport ' Report ¸ðµå·Î ¼³Á¤
+        .ColumnHeaders.Clear '  Ã· 
+        .View = lvwReport ' Report  
         .Gridlines = True
-        ' °¢ ÄÃ·³ÀÇ ³Êºñ¸¦ Á¶ÀýÇÏ·Á¸é ÇÊ¿ä¿¡ µû¶ó Width ¼Ó¼ºÀ» ¼³Á¤ÇÒ ¼ö ÀÖ½À´Ï´Ù.
-        .ColumnHeaders.Add , , "ÀÇ·ÚÇ×¸ñ", 130
-        .ColumnHeaders.Add , , "ºÐ¼®°á°ú", 70
-        .ColumnHeaders.Add , , "ºÐ¼®¹æ¹ý", 170
-        .ColumnHeaders.Add , , "ºÐ¼®Àåºñ", 100
-        .ColumnHeaders.Add , , "¹ýÀû±âÁØ", 50
+        '  Ã· Êº Ï· Ê¿ä¿¡  Width Ó¼   Ö½Ï´.
+        .ColumnHeaders.Add , , "Ç·×¸", 130
+        .ColumnHeaders.Add , , "Ð¼", 70
+        .ColumnHeaders.Add , , "Ð¼", 170
+        .ColumnHeaders.Add , , "Ð¼", 100
+        .ColumnHeaders.Add , , "", 50
         .ColumnHeaders.Add , , "Method NO", 20
         .ColumnHeaders.Add , , "instrument NO", 20
-        .ColumnHeaders.Add , , "ºÐ¼®´ã´çÀÚ", 20
+        .ColumnHeaders.Add , , "Ð¼", 20
     End With
 End Sub
 
-Sub ¹æ·ù±âÁØÃ£±â()
+Sub Ã£()
     Dim X As Integer
     Dim XT As Range
     Dim T As Range, TR As Range
     
-    ±âÁØ = ListView2.ListItems(1).ListSubItems(2).text
-    Set T = Sheets("¹æ·ù±âÁØÇ¥").Rows(2).Find(what:=±âÁØ, lookat:=xlWhole)
+     = ListView2.ListItems(1).ListSubItems(2).text
+    Set T = Sheets("Ç¥").Rows(2).Find(what:=, lookat:=xlWhole)
     
     If Not T Is Nothing Then
         For r = 1 To ListView3.ListItems.Count
-         Set TR = Sheets("¹æ·ù±âÁØÇ¥").Columns(1).Find(what:=ListView3.ListItems(r).text, lookat:=xlWhole)
+         Set TR = Sheets("Ç¥").Columns(1).Find(what:=ListView3.ListItems(r).text, lookat:=xlWhole)
          If Not TR Is Nothing Then
-          ListView3.ListItems(r).ListSubItems(4).text = Sheets("¹æ·ù±âÁØÇ¥").Cells(TR.row, T.Column)
+          ListView3.ListItems(r).ListSubItems(4).text = Sheets("Ç¥").Cells(TR.row, T.Column)
          End If
         Next r
     End If
@@ -1143,19 +1143,19 @@ Sub ¹æ·ù±âÁØÃ£±â()
 
 End Sub
 
-Sub ºÐ¼®´ã´çÃ£±â()
+Sub Ð¼Ã£()
     Dim X As Integer
     Dim XT As Range
     Dim T As Range, TR As Range
     
-    ±âÁØ = ListView2.ListItems(1).ListSubItems(2).text
-    Set T = Sheets("¹æ·ù±âÁØÇ¥").Rows(2).Find(what:=±âÁØ, lookat:=xlWhole)
+     = ListView2.ListItems(1).ListSubItems(2).text
+    Set T = Sheets("Ç¥").Rows(2).Find(what:=, lookat:=xlWhole)
     
     If Not T Is Nothing Then
         For r = 1 To ListView3.ListItems.Count
-         Set TR = Sheets("¹æ·ù±âÁØÇ¥").Columns(1).Find(what:=ListView3.ListItems(r).text, lookat:=xlWhole)
+         Set TR = Sheets("Ç¥").Columns(1).Find(what:=ListView3.ListItems(r).text, lookat:=xlWhole)
          If Not TR Is Nothing Then
-          ListView3.ListItems(r).ListSubItems(4).text = Sheets("¹æ·ù±âÁØÇ¥").Cells(TR.row, T.Column)
+          ListView3.ListItems(r).ListSubItems(4).text = Sheets("Ç¥").Cells(TR.row, T.Column)
          End If
         Next r
     End If
@@ -1163,48 +1163,48 @@ Sub ºÐ¼®´ã´çÃ£±â()
 
 End Sub
 
-Sub ¹ýÁ¤¾ç½Ä()
+Sub ()
 On Error Resume Next
 
-If ActiveSheet.Name = "¼öÁúÃøÁ¤±â·ÏºÎ" Then
-    SHN = "¼öÁúÃøÁ¤±â·ÏºÎ"
+If ActiveSheet.Name = "Ïº" Then
+    SHN = "Ïº"
     '=-=-=-=-==--=-=-=-=-=-=-=
     X = UserForm1.ListView1.ListItems(1).ListSubItems(2)
-    xR = Sheets("°è¾àÁ¤º¸").Columns("H").Find(what:=X, lookat:=xlWhole).row
+    xR = Sheets("").Columns("H").Find(what:=X, lookat:=xlWhole).row
     
-    Sheets(SHN).Cells(2, "D") = Sheets("°è¾àÁ¤º¸").Cells(xR, "B") '»óÈ£¸í
-    Sheets(SHN).Cells(2, "I") = Sheets("°è¾àÁ¤º¸").Cells(xR, "E") '½Ã¼³º°
+    Sheets(SHN).Cells(2, "D") = Sheets("").Cells(xR, "B") 'È£
+    Sheets(SHN).Cells(2, "I") = Sheets("").Cells(xR, "E") 'Ã¼
     
-    Sheets(SHN).Cells(3, "D") = Sheets("°è¾àÁ¤º¸").Cells(xR, "C") '¼ÒÀçÁö
-    Sheets(SHN).Cells(3, "I") = Sheets("°è¾àÁ¤º¸").Cells(xR, "F") 'Á¾·ùº°
+    Sheets(SHN).Cells(3, "D") = Sheets("").Cells(xR, "C") '
+    Sheets(SHN).Cells(3, "I") = Sheets("").Cells(xR, "F") '
     
-    Sheets(SHN).Cells(4, "D") = Sheets("°è¾àÁ¤º¸").Cells(xR, "D") '´ëÇ¥ÀÚ
-    Sheets(SHN).Cells(4, "I") = Sheets("°è¾àÁ¤º¸").Cells(xR, "G") '»ý»êÇ°
+    Sheets(SHN).Cells(4, "D") = Sheets("").Cells(xR, "D") 'Ç¥
+    Sheets(SHN).Cells(4, "I") = Sheets("").Cells(xR, "G") 'Ç°
     
-    Sheets(SHN).Cells(5, "D") = UserForm1.ListView1.ListItems(1).ListSubItems(4) 'È¯°æ±â¼úÀÎ=ÀÔÈ¸ÀÚ
-    Sheets(SHN).Cells(6, "D") = "Á¦Ãâ ¶Ç´Â º¸°í¿ë"
+    Sheets(SHN).Cells(5, "D") = UserForm1.ListView1.ListItems(1).ListSubItems(4) 'È¯=È¸
+    Sheets(SHN).Cells(6, "D") = " Ç´ "
     Sheets(SHN).Cells(7, "D") = UserForm1.ListView1.ListItems(1).ListSubItems(3)
-    Sheets(SHN).Cells(8, "D") = UserForm1.ListView3.ListItems(1).text & "¿Ü " & ListView3.ListItems.Count - 1 & "°Ç" & "(¾Æ·¡ ¨ëÃøÁ¤ºÐ¼® °á°úÀÇ Ç×¸ñ°ú °°À½)"
+    Sheets(SHN).Cells(8, "D") = UserForm1.ListView3.ListItems(1).text & " " & ListView3.ListItems.Count - 1 & "" & "(Æ· Ð¼  ×¸ )"
     Sheets(SHN).Cells(9, "D") = "P:4L G:4L"
-    '======================================================= ¼ö¼ÒÀÌ¿Â ³óµµ ÀÖ´ÂÁö È®ÀÎ
+    '======================================================= Ì¿  Ö´ È®
     Dim itemExists As Boolean
     itemExists = False
     Dim index As Long
     Dim item As ListItem
     For Each item In ListView3.ListItems
         index = index + 1
-        If item.text = "¼ö¼ÒÀÌ¿Â³óµµ(pH)" Then
+        If item.text = "Ì¿Â³(pH)" Then
             itemExists = True
             Exit For
         End If
     Next item
     
     If itemExists Then
-       Sheets(SHN).Cells(10, "D") = "ÇöÀåÃøÁ¤Ç×¸ñ : pH" & ListView3.ListItems(index).ListSubItems(1).text
+       Sheets(SHN).Cells(10, "D") = "×¸ : pH" & ListView3.ListItems(index).ListSubItems(1).text
     Else
        Sheets(SHN).Cells(10, "D") = ""
     End If
-    '======================================================= ¼ö¼ÒÀÌ¿Â ³óµµ ÀÖ´ÂÁö È®ÀÎ
+    '======================================================= Ì¿  Ö´ È®
     Sheets(SHN).Cells(11, "D") = UserForm1.ListView1.ListItems(1).text
     
     If UserForm1.ListView2.ListItems(1).text <> "" Then
@@ -1223,10 +1223,10 @@ If ActiveSheet.Name = "¼öÁúÃøÁ¤±â·ÏºÎ" Then
     r = r + 1
     Sheets(SHN).Cells(r + 12, "B") = Data
     Sheets(SHN).Cells(r + 12, "D") = ListView3.ListItems(r).ListSubItems(4)
-        X = Sheets("ÃøÁ¤DB").Columns("s").Find(what:=UserForm1.ListView3.ListItems(r).text, lookat:=xlWhole).row
+        X = Sheets("DB").Columns("s").Find(what:=UserForm1.ListView3.ListItems(r).text, lookat:=xlWhole).row
 
-    If Not UserForm1.ListView3.ListItems(r).ListSubItems(1) = "ºÒ°ËÃâ" Then
-       Sheets(SHN).Cells(r + 12, "F") = Round(UserForm1.ListView3.ListItems(r).ListSubItems(1), Sheets("ÃøÁ¤DB").Cells(X, "T"))
+    If Not UserForm1.ListView3.ListItems(r).ListSubItems(1) = "Ò°" Then
+       Sheets(SHN).Cells(r + 12, "F") = Round(UserForm1.ListView3.ListItems(r).ListSubItems(1), Sheets("DB").Cells(X, "T"))
     Else
        Sheets(SHN).Cells(r + 12, "F") = UserForm1.ListView3.ListItems(r).ListSubItems(1)
     End If
@@ -1235,7 +1235,7 @@ If ActiveSheet.Name = "¼öÁúÃøÁ¤±â·ÏºÎ" Then
     Next Data
     
     Sheets(SHN).Cells(73, "D") = ListView1.ListItems(1).ListSubItems(1) & " ~ " & ListView2.ListItems(1).ListSubItems(4)
-    Sheets(SHN).Cells(77, "A") = Format(CDate(ListView2.ListItems(1).ListSubItems(4)), "YYYY³â MM¿ù DDÀÏ")
+    Sheets(SHN).Cells(77, "A") = Format(CDate(ListView2.ListItems(1).ListSubItems(4)), "YYYY MM DD")
     
     If UserForm1.ListView3.ListItems.Count >= 23 Then
     Sheets(SHN).Rows("35:72").Hidden = False

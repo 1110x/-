@@ -1,4 +1,4 @@
-Attribute VB_Name = "Æ®¸®ºä_¼¼ÆÃ"
+Attribute VB_Name = "Æ®_"
 Sub LoadTreeViewWithData1()
     Dim ws As Worksheet
     Dim treeView As Object
@@ -8,19 +8,19 @@ Sub LoadTreeViewWithData1()
     Dim currentDate As Variant
     Application.ScreenUpdating = False
     
-    ' "ÀÇ·ÚÁ¤º¸" ½ÃÆ®¸¦ Ã£½À´Ï´Ù. ½ÃÆ® ÀÌ¸§¿¡ ¸Â°Ô ¼öÁ¤ÇØÁÖ¼¼¿ä.
-    Set ws = ThisWorkbook.Sheets("ÀÇ·ÚÁ¤º¸")
+    ' "Ç·" Æ® Ã£Ï´. Æ® Ì¸ Â° Ö¼.
+    Set ws = ThisWorkbook.Sheets("Ç·")
     
-    ' Æ®¸®ºä¸¦ Ãß°¡ÇÕ´Ï´Ù. "MSComctlLib.TreeCtrl"¸¦ ÂüÁ¶ Ãß°¡ÇØ¾ß ÇÕ´Ï´Ù.
+    ' Æ®ä¸¦ ß°Õ´Ï´. "MSComctlLib.TreeCtrl"  ß°Ø¾ Õ´Ï´.
     Set treeView = UserForm1.TreeView1
 
-    ' Æ®¸®ºä ÃÊ±âÈ­
+    ' Æ® Ê±È­
     treeView.Nodes.Clear
     
-    ' ¸¶Áö¸· ÇàÀ» Ã£½À´Ï´Ù.
+    '   Ã£Ï´.
     lastRow = ws.Cells(ws.Rows.Count, "A").End(xlUp).row
     
-    ' ³¯Â¥¸¦ ±âÁØÀ¸·Î ³»¸²Â÷¼ø Á¤·Ä
+    ' Â¥   
     ws.Sort.SortFields.Clear
     ws.Sort.SortFields.Add Key:=Range("A2:A" & lastRow), SortOn:=xlSortOnValues, Order:=xlDescending, DataOption:=xlSortNormal
     With ws.Sort
@@ -32,20 +32,20 @@ Sub LoadTreeViewWithData1()
         .Apply
     End With
     
-    ' °¢ ³¯Â¥º°·Î ºÎ¸ð ³ëµå¿Í ÀÚ½Ä ³ëµå¸¦ Ãß°¡
+    '  Â¥ Î¸  Ú½ å¸¦ ß°
     For i = 2 To lastRow
-        ' ÇöÀç ³¯Â¥¸¦ °¡Á®¿É´Ï´Ù.
+        '  Â¥ É´Ï´.
         currentDate = ws.Cells(i, 1).Value
         
-        ' ºÎ¸ð ³ëµå°¡ ¾ø°Å³ª ÇöÀç ³¯Â¥¿Í ÀÌÀü ³¯Â¥°¡ ´Ù¸¦ °æ¿ì »õ·Î¿î ºÎ¸ð ³ëµå¸¦ Ãß°¡
+        ' Î¸ å°¡ Å³  Â¥  Â¥ Ù¸  Î¿ Î¸ å¸¦ ß°
         If parentNode Is Nothing Or currentDate <> ws.Cells(i - 1, 1).Value Then
             Set parentNode = treeView.Nodes.Add(, , "ParentKey" & i, currentDate)
             parentNode.ForeColor = RGB(0, 128, 0)
         End If
         
         Dim childNode As Object
-        Set childNode = treeView.Nodes.Add(parentNode.index, tvwChild, "ChildKey" & i, "¡¼" & ws.Cells(i, "E").text & "¡½" & ws.Cells(i, "F").Value)
-        ' ÀÚ½Ä ³ëµå ÅØ½ºÆ®ÀÇ »ö»óÀ» ÆÄ¶õ»öÀ¸·Î ¼³Á¤
+        Set childNode = treeView.Nodes.Add(parentNode.index, tvwChild, "ChildKey" & i, "" & ws.Cells(i, "E").text & "" & ws.Cells(i, "F").Value)
+        ' Ú½  Ø½Æ®  Ä¶ 
         childNode.ForeColor = RGB(0, 0, 128)
     Next i
     
@@ -54,7 +54,7 @@ Sub LoadTreeViewWithData1()
         treeView.Nodes(i).Expanded = False
     Next i
 
-    ' Ã³À½ 20°³ÀÇ ºÎ¸ð ³ëµå¸¸ ÆîÃÄÁø »óÅÂ·Î ¼³Á¤
+    ' Ã³ 20 Î¸ å¸¸  Â· 
     For i = 1 To 60
         If treeView.Nodes(i).Children > 0 Then
             treeView.Nodes(i).Expanded = True
@@ -80,56 +80,56 @@ Sub LoadTreeViewWithData3()
     
 
     
-    ' TreeView2 ÄÁÆ®·Ñ ÂüÁ¶
+    ' TreeView2 Æ® 
     Set treeView = UserForm1.TreeView2
     
-    ' Æ®¸®ºä ÃÊ±âÈ­
+    ' Æ® Ê±È­
     treeView.Nodes.Clear
     
-    ' "°ßÀû´Ü°¡" ½ÃÆ® ÂüÁ¶
-    Set ws = ThisWorkbook.Sheets("°ßÀû´Ü°¡")
+    ' "Ü°" Æ® 
+    Set ws = ThisWorkbook.Sheets("Ü°")
 
-    ' C ¿­ÀÇ ¸¶Áö¸· Çà Ã£±â
+    ' C    Ã£
     lastRow = ws.Cells(ws.Rows.Count, "C").End(xlUp).row
 
-    ' µñ¼Å³Ê¸® ÃÊ±âÈ­
+    ' Å³Ê¸ Ê±È­
     Set parentDict = CreateObject("Scripting.Dictionary")
 
-    ' C2:C41ÀÇ ºÎ¸ð ³ëµå Ãß°¡ ¹× Áßº¹ Ã³¸®
+    ' C2:C41 Î¸  ß°  ßº Ã³
     For i = 2 To lastRow
         ParentItem = ws.Cells(i, 3).Value
 
-        ' ºÎ¸ð ³ëµå°¡ ÀÌ¹Ì µñ¼Å³Ê¸®¿¡ ÀÖ´ÂÁö È®ÀÎ
+        ' Î¸ å°¡ Ì¹ Å³Ê¸ Ö´ È®
         If Not parentDict.exists(ParentItem) Then
-            ' ºÎ¸ð ³ëµå°¡ ¾øÀ¸¸é Ãß°¡
+            ' Î¸ å°¡  ß°
             Set parentNode = treeView.Nodes.Add(, , "P" & i, ParentItem)
             parentDict.Add ParentItem, parentNode
         Else
-            ' ºÎ¸ð ³ëµå°¡ ÀÖÀ¸¸é °¡Á®¿À±â
+            ' Î¸ å°¡  
             Set parentNode = parentDict(ParentItem)
         End If
 
-        ' D2:D42ÀÇ ÇÏÀ§ ³ëµå Ãß°¡
+        ' D2:D42   ß°
         childItem = ws.Cells(i, 4).Value
         If childItem <> "" Then
             treeView.Nodes.Add parentNode, tvwChild, "C" & i, childItem
         End If
     Next i
 
-    ' "Æ¯Á¤¼öÁúÀ¯ÇØ¹°Áú" ºÎ¸ð ³ëµå Ãß°¡
+    ' "Æ¯Ø¹" Î¸  ß°
     Dim specificNode As MSComctlLib.Node
-    If Not parentDict.exists("Æ¯Á¤¼öÁúÀ¯ÇØ¹°Áú") Then
-        Set specificNode = treeView.Nodes.Add(, , "P_Special", "Æ¯Á¤¼öÁúÀ¯ÇØ¹°Áú")
-        parentDict.Add "Æ¯Á¤¼öÁúÀ¯ÇØ¹°Áú", specificNode
+    If Not parentDict.exists("Æ¯Ø¹") Then
+        Set specificNode = treeView.Nodes.Add(, , "P_Special", "Æ¯Ø¹")
+        parentDict.Add "Æ¯Ø¹", specificNode
     Else
-        Set specificNode = parentDict("Æ¯Á¤¼öÁúÀ¯ÇØ¹°Áú")
+        Set specificNode = parentDict("Æ¯Ø¹")
     End If
     
     For i = 1 To treeView.Nodes.Count
         treeView.Nodes(i).Expanded = False
     Next i
 
-    ' Ã³À½ 20°³ÀÇ ºÎ¸ð ³ëµå¸¸ ÆîÃÄÁø »óÅÂ·Î ¼³Á¤
+    ' Ã³ 20 Î¸ å¸¸  Â· 
     For i = 1 To 60
         If treeView.Nodes(i).Children > 0 Then
             treeView.Nodes(i).Expanded = True
@@ -147,19 +147,19 @@ Sub LoadTreeViewWithData2()
     Dim currentDate As Variant
     Application.ScreenUpdating = False
     
-    ' "ÀÇ·ÚÁ¤º¸" ½ÃÆ®¸¦ Ã£½À´Ï´Ù. ½ÃÆ® ÀÌ¸§¿¡ ¸Â°Ô ¼öÁ¤ÇØÁÖ¼¼¿ä.
-    Set ws = ThisWorkbook.Sheets("°ßÀû¹ßÇàÁ¤º¸")
+    ' "Ç·" Æ® Ã£Ï´. Æ® Ì¸ Â° Ö¼.
+    Set ws = ThisWorkbook.Sheets("")
     
-    ' Æ®¸®ºä¸¦ Ãß°¡ÇÕ´Ï´Ù. "MSComctlLib.TreeCtrl"¸¦ ÂüÁ¶ Ãß°¡ÇØ¾ß ÇÕ´Ï´Ù.
+    ' Æ®ä¸¦ ß°Õ´Ï´. "MSComctlLib.TreeCtrl"  ß°Ø¾ Õ´Ï´.
     Set treeView = UserForm1.TreeView3
     
-    ' Æ®¸®ºä ÃÊ±âÈ­
+    ' Æ® Ê±È­
     treeView.Nodes.Clear
     
-    ' ¸¶Áö¸· ÇàÀ» Ã£½À´Ï´Ù.
+    '   Ã£Ï´.
     lastRow = ws.Cells(ws.Rows.Count, "A").End(xlUp).row
     
-    ' ³¯Â¥¸¦ ±âÁØÀ¸·Î ³»¸²Â÷¼ø Á¤·Ä
+    ' Â¥   
     ws.Sort.SortFields.Clear
     ws.Sort.SortFields.Add Key:=Range("A3:A" & lastRow), SortOn:=xlSortOnValues, Order:=xlDescending, DataOption:=xlSortNormal
     With ws.Sort
@@ -171,27 +171,27 @@ Sub LoadTreeViewWithData2()
         .Apply
     End With
     
-    ' °¢ ³¯Â¥º°·Î ºÎ¸ð ³ëµå¿Í ÀÚ½Ä ³ëµå¸¦ Ãß°¡
+    '  Â¥ Î¸  Ú½ å¸¦ ß°
     For i = 3 To lastRow
-        ' ÇöÀç ³¯Â¥¸¦ °¡Á®¿É´Ï´Ù.
+        '  Â¥ É´Ï´.
         currentDate = ws.Cells(i, 1).Value
         
-        ' ºÎ¸ð ³ëµå°¡ ¾ø°Å³ª ÇöÀç ³¯Â¥¿Í ÀÌÀü ³¯Â¥°¡ ´Ù¸¦ °æ¿ì »õ·Î¿î ºÎ¸ð ³ëµå¸¦ Ãß°¡
+        ' Î¸ å°¡ Å³  Â¥  Â¥ Ù¸  Î¿ Î¸ å¸¦ ß°
         If parentNode Is Nothing Or currentDate <> ws.Cells(i - 1, 1).Value Then
             Set parentNode = treeView.Nodes.Add(, , "ParentKey" & i, currentDate)
             parentNode.ForeColor = RGB(0, 128, 0)
         End If
         
         Dim childNode As Object
-        Set childNode = treeView.Nodes.Add(parentNode.index, tvwChild, "ChildKey" & i, "¡¼" & ws.Cells(i, "C").text & "¡½" & ws.Cells(i, "H").Value)
-        ' ÀÚ½Ä ³ëµå ÅØ½ºÆ®ÀÇ »ö»óÀ» ÆÄ¶õ»öÀ¸·Î ¼³Á¤
+        Set childNode = treeView.Nodes.Add(parentNode.index, tvwChild, "ChildKey" & i, "" & ws.Cells(i, "C").text & "" & ws.Cells(i, "H").Value)
+        ' Ú½  Ø½Æ®  Ä¶ 
         childNode.ForeColor = RGB(0, 0, 128)
     Next i
     For i = 1 To treeView.Nodes.Count
         treeView.Nodes(i).Expanded = False
     Next i
 
-    ' Ã³À½ 20°³ÀÇ ºÎ¸ð ³ëµå¸¸ ÆîÃÄÁø »óÅÂ·Î ¼³Á¤
+    ' Ã³ 20 Î¸ å¸¸  Â· 
     For i = 1 To 60
         If treeView.Nodes(i).Children > 0 Then
             treeView.Nodes(i).Expanded = True
@@ -210,19 +210,19 @@ Sub LoadTreeViewWithData4()
     Dim currentDate As Variant
     Application.ScreenUpdating = False
     
-    ' "ÀÇ·ÚÁ¤º¸" ½ÃÆ®¸¦ Ã£½À´Ï´Ù. ½ÃÆ® ÀÌ¸§¿¡ ¸Â°Ô ¼öÁ¤ÇØÁÖ¼¼¿ä.
-    Set ws = ThisWorkbook.Sheets("ÀÇ·ÚÁ¤º¸")
+    ' "Ç·" Æ® Ã£Ï´. Æ® Ì¸ Â° Ö¼.
+    Set ws = ThisWorkbook.Sheets("Ç·")
     
-    ' Æ®¸®ºä¸¦ Ãß°¡ÇÕ´Ï´Ù. "MSComctlLib.TreeCtrl"¸¦ ÂüÁ¶ Ãß°¡ÇØ¾ß ÇÕ´Ï´Ù.
+    ' Æ®ä¸¦ ß°Õ´Ï´. "MSComctlLib.TreeCtrl"  ß°Ø¾ Õ´Ï´.
     Set treeView = UserForm1.TreeView4
 
-    ' Æ®¸®ºä ÃÊ±âÈ­
+    ' Æ® Ê±È­
     treeView.Nodes.Clear
     
-    ' ¸¶Áö¸· ÇàÀ» Ã£½À´Ï´Ù.
+    '   Ã£Ï´.
     lastRow = ws.Cells(ws.Rows.Count, "A").End(xlUp).row
     
-    ' ³¯Â¥¸¦ ±âÁØÀ¸·Î ³»¸²Â÷¼ø Á¤·Ä
+    ' Â¥   
     ws.Sort.SortFields.Clear
     ws.Sort.SortFields.Add Key:=Range("A2:A" & lastRow), SortOn:=xlSortOnValues, Order:=xlDescending, DataOption:=xlSortNormal
     With ws.Sort
@@ -234,20 +234,20 @@ Sub LoadTreeViewWithData4()
         .Apply
     End With
     
-    ' °¢ ³¯Â¥º°·Î ºÎ¸ð ³ëµå¿Í ÀÚ½Ä ³ëµå¸¦ Ãß°¡
+    '  Â¥ Î¸  Ú½ å¸¦ ß°
     For i = 2 To lastRow
-        ' ÇöÀç ³¯Â¥¸¦ °¡Á®¿É´Ï´Ù.
+        '  Â¥ É´Ï´.
         currentDate = ws.Cells(i, 1).Value
         
-        ' ºÎ¸ð ³ëµå°¡ ¾ø°Å³ª ÇöÀç ³¯Â¥¿Í ÀÌÀü ³¯Â¥°¡ ´Ù¸¦ °æ¿ì »õ·Î¿î ºÎ¸ð ³ëµå¸¦ Ãß°¡
+        ' Î¸ å°¡ Å³  Â¥  Â¥ Ù¸  Î¿ Î¸ å¸¦ ß°
         If parentNode Is Nothing Or currentDate <> ws.Cells(i - 1, 1).Value Then
             Set parentNode = treeView.Nodes.Add(, , "ParentKey" & i, currentDate)
             parentNode.ForeColor = RGB(0, 128, 0)
         End If
         
         Dim childNode As Object
-        Set childNode = treeView.Nodes.Add(parentNode.index, tvwChild, "ChildKey" & i, "¡¼" & ws.Cells(i, "E").text & "¡½" & ws.Cells(i, "F").Value)
-        ' ÀÚ½Ä ³ëµå ÅØ½ºÆ®ÀÇ »ö»óÀ» ÆÄ¶õ»öÀ¸·Î ¼³Á¤
+        Set childNode = treeView.Nodes.Add(parentNode.index, tvwChild, "ChildKey" & i, "" & ws.Cells(i, "E").text & "" & ws.Cells(i, "F").Value)
+        ' Ú½  Ø½Æ®  Ä¶ 
         childNode.ForeColor = RGB(0, 0, 128)
     Next i
     
@@ -256,7 +256,7 @@ Sub LoadTreeViewWithData4()
         treeView.Nodes(i).Expanded = False
     Next i
 
-    ' Ã³À½ 20°³ÀÇ ºÎ¸ð ³ëµå¸¸ ÆîÃÄÁø »óÅÂ·Î ¼³Á¤
+    ' Ã³ 20 Î¸ å¸¸  Â· 
     For i = 1 To 60
         If treeView.Nodes(i).Children > 0 Then
             treeView.Nodes(i).Expanded = True
@@ -278,19 +278,19 @@ Sub LoadTreeViewWithData5()
     Dim currentDate As Variant
     Application.ScreenUpdating = False
     
-    ' "ÀÇ·ÚÁ¤º¸" ½ÃÆ®¸¦ Ã£½À´Ï´Ù. ½ÃÆ® ÀÌ¸§¿¡ ¸Â°Ô ¼öÁ¤ÇØÁÖ¼¼¿ä.
-    Set ws = ThisWorkbook.Sheets("ÀÇ·ÚÁ¤º¸")
+    ' "Ç·" Æ® Ã£Ï´. Æ® Ì¸ Â° Ö¼.
+    Set ws = ThisWorkbook.Sheets("Ç·")
     
-    ' Æ®¸®ºä¸¦ Ãß°¡ÇÕ´Ï´Ù. "MSComctlLib.TreeCtrl"¸¦ ÂüÁ¶ Ãß°¡ÇØ¾ß ÇÕ´Ï´Ù.
+    ' Æ®ä¸¦ ß°Õ´Ï´. "MSComctlLib.TreeCtrl"  ß°Ø¾ Õ´Ï´.
     Set treeView = UserForm1.TreeView5
 
-    ' Æ®¸®ºä ÃÊ±âÈ­
+    ' Æ® Ê±È­
     treeView.Nodes.Clear
     
-    ' ¸¶Áö¸· ÇàÀ» Ã£½À´Ï´Ù.
+    '   Ã£Ï´.
     lastRow = ws.Cells(ws.Rows.Count, "A").End(xlUp).row
     
-    ' ³¯Â¥¸¦ ±âÁØÀ¸·Î ³»¸²Â÷¼ø Á¤·Ä
+    ' Â¥   
     ws.Sort.SortFields.Clear
     ws.Sort.SortFields.Add Key:=Range("A2:A" & lastRow), SortOn:=xlSortOnValues, Order:=xlDescending, DataOption:=xlSortNormal
     With ws.Sort
@@ -302,20 +302,20 @@ Sub LoadTreeViewWithData5()
         .Apply
     End With
     
-    ' °¢ ³¯Â¥º°·Î ºÎ¸ð ³ëµå¿Í ÀÚ½Ä ³ëµå¸¦ Ãß°¡
+    '  Â¥ Î¸  Ú½ å¸¦ ß°
     For i = 2 To lastRow
-        ' ÇöÀç ³¯Â¥¸¦ °¡Á®¿É´Ï´Ù.
+        '  Â¥ É´Ï´.
         currentDate = ws.Cells(i, 1).Value
         
-        ' ºÎ¸ð ³ëµå°¡ ¾ø°Å³ª ÇöÀç ³¯Â¥¿Í ÀÌÀü ³¯Â¥°¡ ´Ù¸¦ °æ¿ì »õ·Î¿î ºÎ¸ð ³ëµå¸¦ Ãß°¡
+        ' Î¸ å°¡ Å³  Â¥  Â¥ Ù¸  Î¿ Î¸ å¸¦ ß°
         If parentNode Is Nothing Or currentDate <> ws.Cells(i - 1, 1).Value Then
             Set parentNode = treeView.Nodes.Add(, , "ParentKey" & i, currentDate)
             parentNode.ForeColor = RGB(0, 128, 0)
         End If
         
         Dim childNode As Object
-        Set childNode = treeView.Nodes.Add(parentNode.index, tvwChild, "ChildKey" & i, "¡¼" & ws.Cells(i, "E").text & "¡½" & ws.Cells(i, "F").Value)
-        ' ÀÚ½Ä ³ëµå ÅØ½ºÆ®ÀÇ »ö»óÀ» ÆÄ¶õ»öÀ¸·Î ¼³Á¤
+        Set childNode = treeView.Nodes.Add(parentNode.index, tvwChild, "ChildKey" & i, "" & ws.Cells(i, "E").text & "" & ws.Cells(i, "F").Value)
+        ' Ú½  Ø½Æ®  Ä¶ 
         childNode.ForeColor = RGB(0, 0, 128)
     Next i
     
@@ -324,7 +324,7 @@ Sub LoadTreeViewWithData5()
         treeView.Nodes(i).Expanded = False
     Next i
 
-    ' Ã³À½ 20°³ÀÇ ºÎ¸ð ³ëµå¸¸ ÆîÃÄÁø »óÅÂ·Î ¼³Á¤
+    ' Ã³ 20 Î¸ å¸¸  Â· 
     For i = 1 To 60
         If treeView.Nodes(i).Children > 0 Then
             treeView.Nodes(i).Expanded = True
@@ -346,19 +346,19 @@ Sub LoadTreeViewWithData6()
     Dim currentDate As Variant
     Application.ScreenUpdating = False
     
-    ' "ÀÇ·ÚÁ¤º¸" ½ÃÆ®¸¦ Ã£½À´Ï´Ù. ½ÃÆ® ÀÌ¸§¿¡ ¸Â°Ô ¼öÁ¤ÇØÁÖ¼¼¿ä.
-    Set ws = ThisWorkbook.Sheets("°ßÀû¹ßÇàÁ¤º¸")
+    ' "Ç·" Æ® Ã£Ï´. Æ® Ì¸ Â° Ö¼.
+    Set ws = ThisWorkbook.Sheets("")
     
-    ' Æ®¸®ºä¸¦ Ãß°¡ÇÕ´Ï´Ù. "MSComctlLib.TreeCtrl"¸¦ ÂüÁ¶ Ãß°¡ÇØ¾ß ÇÕ´Ï´Ù.
+    ' Æ®ä¸¦ ß°Õ´Ï´. "MSComctlLib.TreeCtrl"  ß°Ø¾ Õ´Ï´.
     Set treeView = UserForm1.TreeView6
     
-    ' Æ®¸®ºä ÃÊ±âÈ­
+    ' Æ® Ê±È­
     treeView.Nodes.Clear
     
-    ' ¸¶Áö¸· ÇàÀ» Ã£½À´Ï´Ù.
+    '   Ã£Ï´.
     lastRow = ws.Cells(ws.Rows.Count, "A").End(xlUp).row
     
-    ' ³¯Â¥¸¦ ±âÁØÀ¸·Î ³»¸²Â÷¼ø Á¤·Ä
+    ' Â¥   
     ws.Sort.SortFields.Clear
     ws.Sort.SortFields.Add Key:=Range("A3:A" & lastRow), SortOn:=xlSortOnValues, Order:=xlDescending, DataOption:=xlSortNormal
     With ws.Sort
@@ -370,27 +370,27 @@ Sub LoadTreeViewWithData6()
         .Apply
     End With
     
-    ' °¢ ³¯Â¥º°·Î ºÎ¸ð ³ëµå¿Í ÀÚ½Ä ³ëµå¸¦ Ãß°¡
+    '  Â¥ Î¸  Ú½ å¸¦ ß°
     For i = 3 To lastRow
-        ' ÇöÀç ³¯Â¥¸¦ °¡Á®¿É´Ï´Ù.
+        '  Â¥ É´Ï´.
         currentDate = ws.Cells(i, 1).Value
         
-        ' ºÎ¸ð ³ëµå°¡ ¾ø°Å³ª ÇöÀç ³¯Â¥¿Í ÀÌÀü ³¯Â¥°¡ ´Ù¸¦ °æ¿ì »õ·Î¿î ºÎ¸ð ³ëµå¸¦ Ãß°¡
+        ' Î¸ å°¡ Å³  Â¥  Â¥ Ù¸  Î¿ Î¸ å¸¦ ß°
         If parentNode Is Nothing Or currentDate <> ws.Cells(i - 1, 1).Value Then
             Set parentNode = treeView.Nodes.Add(, , "ParentKey" & i, currentDate)
             parentNode.ForeColor = RGB(0, 128, 0)
         End If
         
         Dim childNode As Object
-        Set childNode = treeView.Nodes.Add(parentNode.index, tvwChild, "ChildKey" & i, "¡¼" & ws.Cells(i, "C").text & "¡½" & ws.Cells(i, "H").Value)
-        ' ÀÚ½Ä ³ëµå ÅØ½ºÆ®ÀÇ »ö»óÀ» ÆÄ¶õ»öÀ¸·Î ¼³Á¤
+        Set childNode = treeView.Nodes.Add(parentNode.index, tvwChild, "ChildKey" & i, "" & ws.Cells(i, "C").text & "" & ws.Cells(i, "H").Value)
+        ' Ú½  Ø½Æ®  Ä¶ 
         childNode.ForeColor = RGB(0, 0, 128)
     Next i
     For i = 1 To treeView.Nodes.Count
         treeView.Nodes(i).Expanded = False
     Next i
 
-    ' Ã³À½ 20°³ÀÇ ºÎ¸ð ³ëµå¸¸ ÆîÃÄÁø »óÅÂ·Î ¼³Á¤
+    ' Ã³ 20 Î¸ å¸¸  Â· 
     For i = 1 To 60
         If treeView.Nodes(i).Children > 0 Then
             treeView.Nodes(i).Expanded = True
@@ -411,36 +411,36 @@ Sub LoadTreeViewWithData7()
     
 
     
-    ' TreeView2 ÄÁÆ®·Ñ ÂüÁ¶
+    ' TreeView2 Æ® 
     Set treeView = UserForm1.TreeView7
     
-    ' Æ®¸®ºä ÃÊ±âÈ­
+    ' Æ® Ê±È­
     treeView.Nodes.Clear
     
-    ' "°ßÀû´Ü°¡" ½ÃÆ® ÂüÁ¶
-    Set ws = ThisWorkbook.Sheets("°ßÀû´Ü°¡")
+    ' "Ü°" Æ® 
+    Set ws = ThisWorkbook.Sheets("Ü°")
 
-    ' C ¿­ÀÇ ¸¶Áö¸· Çà Ã£±â
+    ' C    Ã£
     lastRow = ws.Cells(ws.Rows.Count, "C").End(xlUp).row
 
-    ' µñ¼Å³Ê¸® ÃÊ±âÈ­
+    ' Å³Ê¸ Ê±È­
     Set parentDict = CreateObject("Scripting.Dictionary")
 
-    ' C2:C41ÀÇ ºÎ¸ð ³ëµå Ãß°¡ ¹× Áßº¹ Ã³¸®
+    ' C2:C41 Î¸  ß°  ßº Ã³
     For i = 2 To lastRow
         ParentItem = ws.Cells(i, 3).Value
 
-        ' ºÎ¸ð ³ëµå°¡ ÀÌ¹Ì µñ¼Å³Ê¸®¿¡ ÀÖ´ÂÁö È®ÀÎ
+        ' Î¸ å°¡ Ì¹ Å³Ê¸ Ö´ È®
         If Not parentDict.exists(ParentItem) Then
-            ' ºÎ¸ð ³ëµå°¡ ¾øÀ¸¸é Ãß°¡
+            ' Î¸ å°¡  ß°
             Set parentNode = treeView.Nodes.Add(, , "P" & i, ParentItem)
             parentDict.Add ParentItem, parentNode
         Else
-            ' ºÎ¸ð ³ëµå°¡ ÀÖÀ¸¸é °¡Á®¿À±â
+            ' Î¸ å°¡  
             Set parentNode = parentDict(ParentItem)
         End If
 
-        ' D2:D42ÀÇ ÇÏÀ§ ³ëµå Ãß°¡
+        ' D2:D42   ß°
         childItem = ws.Cells(i, 4).Value
         If childItem <> "" Then
             treeView.Nodes.Add parentNode, tvwChild, "C" & i, childItem
@@ -453,7 +453,7 @@ Sub LoadTreeViewWithData7()
         treeView.Nodes(i).Expanded = False
     Next i
 
-    ' Ã³À½ 20°³ÀÇ ºÎ¸ð ³ëµå¸¸ ÆîÃÄÁø »óÅÂ·Î ¼³Á¤
+    ' Ã³ 20 Î¸ å¸¸  Â· 
     For i = 1 To 60
         If treeView.Nodes(i).Children > 0 Then
             treeView.Nodes(i).Expanded = True
@@ -479,7 +479,7 @@ Sub SetInitialNodeStates1()
     
     Set treeView = UserForm1.TreeView1
     
-    ' Ã³À½ºÎÅÍ 20°³ÀÇ ºÎ¸ð ³ëµå´Â ÆîÃÄÁø »óÅÂ·Î, ±× ÀÌÈÄÀÇ ³ëµå´Â ´ÝÈù »óÅÂ·Î ¼³Á¤
+    ' Ã³ 20 Î¸   Â·,     Â· 
     For i = 1 To treeView.Nodes.Count
         If i <= 20 Then
             treeView.Nodes(i).Expanded = True
@@ -488,12 +488,12 @@ Sub SetInitialNodeStates1()
         End If
     Next i
 
-    ' ¸ðµç ³ëµå¸¦ ´ÝÈù »óÅÂ·Î ¼³Á¤
+    '  å¸¦  Â· 
     For i = 1 To treeView.Nodes.Count
         treeView.Nodes(i).Expanded = False
     Next i
 
-    ' Ã³À½ 20°³ÀÇ ºÎ¸ð ³ëµå¸¸ ÆîÃÄÁø »óÅÂ·Î ¼³Á¤
+    ' Ã³ 20 Î¸ å¸¸  Â· 
     For i = 1 To 60
         If treeView.Nodes(i).Children > 0 Then
             treeView.Nodes(i).Expanded = True
@@ -521,59 +521,59 @@ Sub SetInitialNodeStates2()
     
     
 
-    ' TreeView2 ÄÁÆ®·Ñ ÂüÁ¶
+    ' TreeView2 Æ® 
     Set treeView = UserForm1.TreeView2
 
-    ' "°ßÀû´Ü°¡" ½ÃÆ® ÂüÁ¶
-    Set ws = ThisWorkbook.Sheets("°ßÀû´Ü°¡")
+    ' "Ü°" Æ® 
+    Set ws = ThisWorkbook.Sheets("Ü°")
 
-    ' C ¿­ÀÇ ¸¶Áö¸· Çà Ã£±â
+    ' C    Ã£
     lastRow = ws.Cells(ws.Rows.Count, "C").End(xlUp).row
 
-    ' µñ¼Å³Ê¸® ÃÊ±âÈ­
+    ' Å³Ê¸ Ê±È­
     Set parentDict = CreateObject("Scripting.Dictionary")
 
-    ' C2:C41ÀÇ ºÎ¸ð ³ëµå Ãß°¡ ¹× Áßº¹ Ã³¸®
+    ' C2:C41 Î¸  ß°  ßº Ã³
     For i = 2 To lastRow
         ParentItem = ws.Cells(i, 3).Value
 
-        ' ºÎ¸ð ³ëµå°¡ ÀÌ¹Ì µñ¼Å³Ê¸®¿¡ ÀÖ´ÂÁö È®ÀÎ
+        ' Î¸ å°¡ Ì¹ Å³Ê¸ Ö´ È®
         If Not parentDict.exists(ParentItem) Then
-            ' ºÎ¸ð ³ëµå°¡ ¾øÀ¸¸é Ãß°¡
+            ' Î¸ å°¡  ß°
             Set parentNode = treeView.Nodes.Add(, , "P" & i, ParentItem)
             parentDict.Add ParentItem, parentNode
         Else
-            ' ºÎ¸ð ³ëµå°¡ ÀÖÀ¸¸é °¡Á®¿À±â
+            ' Î¸ å°¡  
             Set parentNode = parentDict(ParentItem)
         End If
 
-        ' D2:D42ÀÇ ÇÏÀ§ ³ëµå Ãß°¡
+        ' D2:D42   ß°
         childItem = ws.Cells(i, 4).Value
         If childItem <> "" Then
             treeView.Nodes.Add parentNode, tvwChild, "C" & i, childItem
         End If
     Next i
 
-    ' "Æ¯Á¤¼öÁúÀ¯ÇØ¹°Áú" ºÎ¸ð ³ëµå Ãß°¡
+    ' "Æ¯Ø¹" Î¸  ß°
     Dim specificNode As MSComctlLib.Node
-    If Not parentDict.exists("Æ¯Á¤¼öÁúÀ¯ÇØ¹°Áú") Then
-        Set specificNode = treeView.Nodes.Add(, , "P_Special", "Æ¯Á¤¼öÁúÀ¯ÇØ¹°Áú")
-        parentDict.Add "Æ¯Á¤¼öÁúÀ¯ÇØ¹°Áú", specificNode
+    If Not parentDict.exists("Æ¯Ø¹") Then
+        Set specificNode = treeView.Nodes.Add(, , "P_Special", "Æ¯Ø¹")
+        parentDict.Add "Æ¯Ø¹", specificNode
     Else
-        Set specificNode = parentDict("Æ¯Á¤¼öÁúÀ¯ÇØ¹°Áú")
+        Set specificNode = parentDict("Æ¯Ø¹")
     End If
 
-    ' Æ¯Á¤ ³ëµå ¾Æ·¡¿¡ ÇÏÀ§ ³ëµå Ãß°¡ ¿¹½Ã
-    ' ¿©±â¿¡ ÇÏÀ§ ³ëµå Ãß°¡ ÄÚµå¸¦ ÀÛ¼ºÇÏ¼¼¿ä
-'    treeView.Nodes.Add specificNode, tvwChild, "C_Special1", "ÇÏÀ§³ëµå1"
-'    treeView.Nodes.Add specificNode, tvwChild, "C_Special2", "ÇÏÀ§³ëµå2"
+    ' Æ¯  Æ·   ß° 
+    ' â¿¡   ß° Úµå¸¦ Û¼Ï¼
+'    treeView.Nodes.Add specificNode, tvwChild, "C_Special1", "1"
+'    treeView.Nodes.Add specificNode, tvwChild, "C_Special2", "2"
 
-    ' ¸ðµç ³ëµå¸¦ ´ÝÈù »óÅÂ·Î ¼³Á¤
+    '  å¸¦  Â· 
     For i = 1 To treeView.Nodes.Count
         treeView.Nodes(i).Expanded = False
     Next i
 
-    ' Ã³À½ 20°³ÀÇ ºÎ¸ð ³ëµå¸¸ ÆîÃÄÁø »óÅÂ·Î ¼³Á¤
+    ' Ã³ 20 Î¸ å¸¸  Â· 
     parentNodesCount = 0
     For Each ParentItem In parentDict.keys
         If parentNodesCount < 20 Then
@@ -587,12 +587,12 @@ Sub SetInitialNodeStates2()
     
     Set treeView = UserForm1.TreeView3
     
-        ' ¸ðµç ³ëµå¸¦ ´ÝÈù »óÅÂ·Î ¼³Á¤
+        '  å¸¦  Â· 
     For i = 1 To treeView.Nodes.Count
         treeView.Nodes(i).Expanded = False
     Next i
 
-    ' Ã³À½ 20°³ÀÇ ºÎ¸ð ³ëµå¸¸ ÆîÃÄÁø »óÅÂ·Î ¼³Á¤
+    ' Ã³ 20 Î¸ å¸¸  Â· 
     parentNodesCount = 0
     For Each ParentItem In parentDict.keys
         If parentNodesCount < 20 Then
@@ -614,22 +614,22 @@ Sub AddTreeViewItem()
 
     Application.ScreenUpdating = False
 
-    ' TreeView¸¦ ÃÊ±âÈ­
+    ' TreeView Ê±È­
     UserForm1.TreeView4.Nodes.Clear
     
-    ' ½ÃÆ®¿Í COMBOBOX5ÀÇ °ªÀ» ¼³Á¤
-    Set ws = ThisWorkbook.Sheets("ÀÇ·ÚÁ¤º¸")
+    ' Æ® COMBOBOX5  
+    Set ws = ThisWorkbook.Sheets("Ç·")
     comboValue = UserForm1.ComboBox5.Value
     
-    ' Dictionary °´Ã¼ ÃÊ±âÈ­ (Scripting.Dictionary »ç¿ë)
+    ' Dictionary Ã¼ Ê±È­ (Scripting.Dictionary )
     Set dict = CreateObject("Scripting.Dictionary")
     
 
     
     
     
-    ' ÀÇ·ÚÁ¤º¸ ½ÃÆ®ÀÇ ¸¶Áö¸· ÇàÀ» Ã£½À´Ï´Ù.
-    If UserForm1.ComboBox6.Value <> "ÀüÃ¼±â°£ -_-'" Then
+    ' Ç· Æ®   Ã£Ï´.
+    If UserForm1.ComboBox6.Value <> "Ã¼â°£ -_-'" Then
 
 
        For Z = ws.Cells(ws.Rows.Count, 4).End(xlUp).row To 2 Step (-1)
@@ -645,18 +645,18 @@ Sub AddTreeViewItem()
     
     
 '    lastRow = ws.Cells(ws.Rows.Count, 4).End(xlUp).Row
-    ' ÄÞº¸¹Ú½º °ªÀÌ ºñ¾îÀÖ´ÂÁö È®ÀÎÇÕ´Ï´Ù.
+    ' ÞºÚ½  Ö´ È®Õ´Ï´.
     If comboValue = "" Then
-        MsgBox "ÄÞº¸¹Ú½ºÀÇ °ªÀÌ ºñ¾î ÀÖ½À´Ï´Ù.", vbExclamation
+        MsgBox "ÞºÚ½   Ö½Ï´.", vbExclamation
         Exit Sub
     End If
     
-    ' ÀÇ·ÚÁ¤º¸ ½ÃÆ®¿¡¼­ ÄÞº¸¹Ú½º °ª°ú ÀÏÄ¡ÇÏ´Â Ç×¸ñÀ» Ã£½À´Ï´Ù.
+    ' Ç· Æ® ÞºÚ½  Ä¡Ï´ ×¸ Ã£Ï´.
     For i = 2 To lastRow ' Assuming headers are in the first row
         If ws.Cells(i, 4).Value = comboValue Then
-            ' Dictionary¸¦ »ç¿ëÇÏ¿© ÀÌ¹Ì Ãß°¡µÈ Ç×¸ñÀÎÁö È®ÀÎ
+            ' Dictionary Ï¿ Ì¹ ß° ×¸ È®
             If Not dict.exists(ws.Cells(i, 6).Value) Then
-                ' Ç×¸ñÀÌ Ãß°¡µÇÁö ¾Ê¾ÒÀ¸¸é TreeView¿¡ Ãß°¡ÇÏ°í, Dictionary¿¡ Ãß°¡
+                ' ×¸ ß° Ê¾ TreeView ß°Ï°, Dictionary ß°
                 UserForm1.TreeView4.Nodes.Add , , , ws.Cells(i, 6).Value
                 dict.Add ws.Cells(i, 6).Value, Nothing
             End If
@@ -666,17 +666,17 @@ Sub AddTreeViewItem()
     Application.ScreenUpdating = True
 End Sub
 
-Sub Æ®¸®ºä3Å¬¸¯Ã¼Å©()
+Sub Æ®3Å¬Ã¼Å©()
     Dim r As Integer
     Dim X As Node
     Dim NodeText As String
 
-    ' ¸ðµç ³ëµåÀÇ ±ÛÀÚ»öÀ» °ËÁ¤À¸·Î ÃÊ±âÈ­
+    '   Ú»  Ê±È­
     For r = 1 To UserForm1.TreeView2.Nodes.Count
         UserForm1.TreeView2.Nodes(r).ForeColor = RGB(0, 0, 0)
     Next r
 
-    ' ListBox1ÀÇ Ç×¸ñÀ» °Ë»çÇÏ¿© ÇØ´çÇÏ´Â ³ëµåÀÇ ±ÛÀÚ»öÀ» »¡°£»öÀ¸·Î º¯°æ
+    ' ListBox1 ×¸ Ë»Ï¿ Ø´Ï´  Ú»  
     For r = 0 To UserForm1.ListBox1.ListCount - 1
         For Each X In UserForm1.TreeView2.Nodes
             NodeText = X.text

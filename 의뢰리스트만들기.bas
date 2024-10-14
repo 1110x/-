@@ -1,14 +1,14 @@
-Attribute VB_Name = "ÀÇ·Ú¸®½ºÆ®¸¸µé±â"
+Attribute VB_Name = "Ç·Ú¸Æ®"
 'Global SR As Integer
 
-Sub ÀÇ·Ú¸®½ºÆ®ÀÌµ¿()
+Sub Ç·Ú¸Æ®Ìµ()
     Dim X As String
     Dim i As Integer
     Dim IsDuplicate As Boolean
     
     X = UserForm1.TreeView4.SelectedItem.text
     
-    ' Áßº¹ ¿©ºÎ¸¦ È®ÀÎÇÕ´Ï´Ù.
+    ' ßº Î¸ È®Õ´Ï´.
     IsDuplicate = False
     For i = 0 To UserForm1.ListBox2.ListCount - 1
         If UserForm1.ListBox2.List(i, 1) = X Then
@@ -17,10 +17,10 @@ Sub ÀÇ·Ú¸®½ºÆ®ÀÌµ¿()
         End If
     Next i
     
-    ' Áßº¹µÇÁö ¾Ê´Â °æ¿ì¿¡¸¸ Ç×¸ñÀ» Ãß°¡ÇÕ´Ï´Ù.
+    ' ßº Ê´ ì¿¡ ×¸ ß°Õ´Ï´.
     If Not IsDuplicate Then
-        UserForm1.ListBox2.AddItem "" ' ºó Ç×¸ñ Ãß°¡ÇÏ¿© »õ·Î¿î Çà »ý¼º
-        ' ListBoxÀÇ ¸¶Áö¸· Ãß°¡µÈ ÇàÀÇ Æ¯Á¤ ¿­¿¡ °ªÀ» ¼³Á¤
+        UserForm1.ListBox2.AddItem "" '  ×¸ ß°Ï¿ Î¿  
+        ' ListBox  ß°  Æ¯   
         UserForm1.ListBox2.List(UserForm1.ListBox2.ListCount - 1, 0) = Format(UserForm1.ListBox2.ListCount, "00")
         UserForm1.ListBox2.List(UserForm1.ListBox2.ListCount - 1, 1) = X
     Else
@@ -29,29 +29,29 @@ Sub ÀÇ·Ú¸®½ºÆ®ÀÌµ¿()
     End If
 End Sub
 
-Sub ÀÇ·ÚÇ×¸ñÃ¼Å©()
+Sub Ç·×¸Ã¼Å©()
 Application.ScreenUpdating = False
-        Set ws = ThisWorkbook.Sheets("°ßÀû¹ßÇàÁ¤º¸")
-        lastRow = Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(Sheets("°ßÀû¹ßÇàÁ¤º¸").Rows.Count, "A").End(xlUp).row
+        Set ws = ThisWorkbook.Sheets("")
+        lastRow = Sheets("").Cells(Sheets("").Rows.Count, "A").End(xlUp).row
         For r = 2 To lastRow
-         Z = "¡¼" & Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, "C").text & "¡½" & Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, "H").Value '  ws.Cells(i, "C")  & ws.Cells(i, 4).Value)
+         Z = "" & Sheets("").Cells(r, "C").text & "" & Sheets("").Cells(r, "H").Value '  ws.Cells(i, "C")  & ws.Cells(i, 4).Value)
          
          
-                If Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, "A") = Sheets("ºÐ¼®ÀÇ·Ú ÀÔ·Â").Cells(1, "F") And Z = Sheets("ºÐ¼®ÀÇ·Ú ÀÔ·Â").Cells(1, "B") Then
+                If Sheets("").Cells(r, "A") = Sheets("Ð¼Ç· Ô·").Cells(1, "F") And Z = Sheets("Ð¼Ç· Ô·").Cells(1, "B") Then
                       Debug.Print Z
-                       Sheets("ºÐ¼®ÀÇ·Ú ÀÔ·Â").Cells(1, "A") = Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, "C")
-                       Set ¾àÄª = Sheets("°è¾àÁ¤º¸").Columns(8).Find(what:=Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, "C").text, lookat:=xlWhole)
+                       Sheets("Ð¼Ç· Ô·").Cells(1, "A") = Sheets("").Cells(r, "C")
+                       Set Äª = Sheets("").Columns(8).Find(what:=Sheets("").Cells(r, "C").text, lookat:=xlWhole)
                        
-                       If Not ¾àÄª Is Nothing Then
-                         Sheets("ºÐ¼®ÀÇ·Ú ÀÔ·Â").Cells(1, "A") = Sheets("°è¾àÁ¤º¸").Cells(¾àÄª.row, "H")
+                       If Not Äª Is Nothing Then
+                         Sheets("Ð¼Ç· Ô·").Cells(1, "A") = Sheets("").Cells(Äª.row, "H")
                        End If
                                      Total = 0
                                      For X = 13 To 193 Step (3)
-                                             If Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, X) <> "" Then
+                                             If Sheets("").Cells(r, X) <> "" Then
                                                  For TR = 3 To Cells(2, "B").End(xlDown).row
                                                  
-                                                  TX = Sheets("ºÐ¼®ÀÇ·Ú ÀÔ·Â").Rows(2).Find(what:=Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(1, X), lookat:=xlWhole).Column
-                                                  Sheets("ºÐ¼®ÀÇ·Ú ÀÔ·Â").Cells(TR, TX) = "O"
+                                                  TX = Sheets("Ð¼Ç· Ô·").Rows(2).Find(what:=Sheets("").Cells(1, X), lookat:=xlWhole).Column
+                                                  Sheets("Ð¼Ç· Ô·").Cells(TR, TX) = "O"
                                                  Next TR
                                              End If
                                      Next X
@@ -61,77 +61,77 @@ Application.ScreenUpdating = False
         Next r
 Application.ScreenUpdating = True
 End Sub
-Sub ºÐ¼®ÀÇ·ÚÀÔ·ÂTOÀÇ·ÚÁ¤º¸()
+Sub Ð¼Ç·Ô·TOÇ·()
     Dim TS As Worksheet
     Dim SS As Worksheet
     Dim FoundCell As Range
-    Dim FirstFound As Range ' Ã¹ ¹øÂ°·Î Ã£Àº ¼¿À» ±â¾ïÇÏ´Â º¯¼ö
+    Dim FirstFound As Range ' Ã¹ Â° Ã£  Ï´ 
     Dim targetDate As String
-    Dim ÀÇ·Ú»ç¾÷ÀÚ As String
-    Dim ¾àÄª As String
-    Dim Ã¤ÃëÀÚ1 As String, Ã¤ÃëÀÚ2 As String, ÀÔÈ¸ÀÚ As String
+    Dim Ç·Ú» As String
+    Dim Äª As String
+    Dim Ã¤1 As String, Ã¤2 As String, È¸ As String
     Dim SR As Long, TR As Long, SC As Long
     Dim AN As Integer
-    Dim isFound As Boolean ' Ã£¾Ò´ÂÁö ¿©ºÎ¸¦ ±â·ÏÇÏ´Â º¯¼ö
-    Dim XE As Integer ' µð¹ö±×¿ë º¯¼ö
+    Dim isFound As Boolean ' Ã£Ò´ Î¸ Ï´ 
+    Dim XE As Integer ' ×¿ 
     
-    Set TS = Sheets("ÀÇ·ÚÁ¤º¸")
-    Set SS = Sheets("ºÐ¼®ÀÇ·Ú ÀÔ·Â")
+    Set TS = Sheets("Ç·")
+    Set SS = Sheets("Ð¼Ç· Ô·")
 
-    ' ½Ã·á¸®½ºÆ®°¡ Á¸ÀçÇÏÁö ¾ÊÀ¸¸é Áï½Ã ¼­ºê Á¾·á
+    ' Ã·á¸®Æ®     
     If SS.Cells(50, "B").End(xlUp).row < 3 Then
-        Debug.Print "Á¾·á"
+        Debug.Print ""
         Exit Sub
     End If
 
-    ' ÀÔ·Â °ª ¼³Á¤
-    ÀÇ·Ú»ç¾÷ÀÚ = Sheets("°è¾àÁ¤º¸").Cells(Sheets("°è¾àÁ¤º¸").Columns("H").Find(what:=SS.Cells(1, 1), lookat:=xlWhole).row, "B")
-    ¾àÄª = SS.Cells(1, 1)
-    Ã¤ÃëÀÚ1 = SS.Cells(1, "P")
-    Ã¤ÃëÀÚ2 = SS.Cells(1, "S")
-    ÀÔÈ¸ÀÚ = SS.Cells(1, "X")
+    ' Ô·  
+    Ç·Ú» = Sheets("").Cells(Sheets("").Columns("H").Find(what:=SS.Cells(1, 1), lookat:=xlWhole).row, "B")
+    Äª = SS.Cells(1, 1)
+    Ã¤1 = SS.Cells(1, "P")
+    Ã¤2 = SS.Cells(1, "S")
+    È¸ = SS.Cells(1, "X")
 
     targetDate = Format(SS.Cells(1, "F"), "YYYY-MM-DD")
 
-    ' ºÐ¼®ÀÇ·Ú ÀÔ·Â µ¥ÀÌÅÍ Ã³¸®
+    ' Ð¼Ç· Ô·  Ã³
     For SR = 3 To SS.Cells(50, "B").End(xlUp).row
         TR = TS.Cells(2, "A").End(xlDown).row + 1
         Set FoundCell = TS.Columns(1).Find(what:=CDate(targetDate), LookIn:=xlValues, lookat:=xlWhole)
 
-        ' ÃÊ±â »óÅÂ·Î Ã£Àº °ª ¾øÀ½
+        ' Ê± Â· Ã£  
         isFound = False
 
-        ' Ã£´Â °ªÀÌ ¾øÀ¸¸é ¹Ù·Î »õ µ¥ÀÌÅÍ ÀÔ·ÂÀ¸·Î ÀÌµ¿
+        ' Ã£   Ù·   Ô· Ìµ
         If FoundCell Is Nothing Then
             GoTo NoMatchFound
         Else
-            ' Ã¹ ¹øÂ°·Î Ã£Àº ¼¿À» ±â¾ï
+            ' Ã¹ Â° Ã£  
             Set FirstFound = FoundCell
         End If
 
-        ' µ¥ÀÌÅÍ Áßº¹ È®ÀÎ ¹× Ã³¸®
+        '  ßº È®  Ã³
         Do
-            ' µ¿ÀÏÇÑ ¼¿·Î µ¹¾Æ¿ÔÀ» °æ¿ì ·çÇÁ Á¾·á
+            '   Æ¿   
             If FoundCell.Address = FirstFound.Address And isFound Then
                 Exit Do
             End If
 
-            ' Áßº¹µÈ µ¥ÀÌÅÍ È®ÀÎ ¹× »ç¿ëÀÚ¿¡°Ô È®ÀÎ ¸Þ½ÃÁö
+            ' ßº  È®  Ú¿ È® Þ½
             If FoundCell.Offset(0, 5).Value = SS.Cells(SR, "B").Value Then
-                AN = MsgBox(SS.Cells(1, "F") & "ÀÇ" & vbCrLf & " ½Ã·á°¡ ÀÌ¹Ì ÀÔ·ÂµÇ¾î ÀÖ½À´Ï´Ù." & vbCrLf & " ÀçÀÔ·ÂÇÏ½Ã°Ú½À´Ï±î?", vbYesNo, SS.Cells(SR, "B") & " ÀÇ·Ú Áßº¹ÀÔ·Â¢½")
+                AN = MsgBox(SS.Cells(1, "F") & "" & vbCrLf & " Ã·á°¡ Ì¹ Ô·ÂµÇ¾ Ö½Ï´." & vbCrLf & " Ô·Ï½Ã°Ú½Ï±?", vbYesNo, SS.Cells(SR, "B") & " Ç· ßºÔ·Â¢")
                 If AN = vbYes Then
-                    ' Áßº¹ µ¥ÀÌÅÍ µ¤¾î¾²±â
-                    TS.Cells(FoundCell.row, "A") = SS.Cells(1, "F") ' ³¯Â¥
-                    TS.Cells(FoundCell.row, "B") = SS.Cells(1, "K") ' ±âÅ¸ Á¤º¸
-                    TS.Cells(FoundCell.row, "D") = ÀÇ·Ú»ç¾÷ÀÚ
-                    TS.Cells(FoundCell.row, "E") = ¾àÄª
-                    TS.Cells(FoundCell.row, "F") = SS.Cells(SR, "B") ' ½Ã·á¸í
-                    TS.Cells(FoundCell.row, "G") = ÀÔÈ¸ÀÚ
-                    TS.Cells(FoundCell.row, "H") = Ã¤ÃëÀÚ1
-                    TS.Cells(FoundCell.row, "I") = Ã¤ÃëÀÚ2
+                    ' ßº  î¾²
+                    TS.Cells(FoundCell.row, "A") = SS.Cells(1, "F") ' Â¥
+                    TS.Cells(FoundCell.row, "B") = SS.Cells(1, "K") ' Å¸ 
+                    TS.Cells(FoundCell.row, "D") = Ç·Ú»
+                    TS.Cells(FoundCell.row, "E") = Äª
+                    TS.Cells(FoundCell.row, "F") = SS.Cells(SR, "B") ' Ã·
+                    TS.Cells(FoundCell.row, "G") = È¸
+                    TS.Cells(FoundCell.row, "H") = Ã¤1
+                    TS.Cells(FoundCell.row, "I") = Ã¤2
 
-                    ' ºÐ¼® Ç×¸ñ ÀÔ·Â
-                    For SC = 4 To 64 ' D3ºÎÅÍ BK1±îÁö
+                    ' Ð¼ ×¸ Ô·
+                    For SC = 4 To 64 ' D3 BK1
                         If SS.Cells(SR, SC).Value <> "" Then
                             TS.Cells(FoundCell.row, 10 + SC) = "O"
                         Else
@@ -143,29 +143,29 @@ Sub ºÐ¼®ÀÇ·ÚÀÔ·ÂTOÀÇ·ÚÁ¤º¸()
                 Exit Do
             End If
 
-            ' ´ÙÀ½ Ã£±â
+            '  Ã£
             Set FoundCell = TS.Columns(1).FindNext(FoundCell)
 
-            ' ´Ù½Ã Ã¹ ¹øÂ°·Î Ã£Àº ¼¿·Î µ¹¾Æ¿À¸é Á¾·á
+            ' Ù½ Ã¹ Â° Ã£  Æ¿ 
             If FoundCell Is Nothing Or FoundCell.Address = FirstFound.Address Then Exit Do
 
         Loop
 
 NoMatchFound:
-        ' Áßº¹ µ¥ÀÌÅÍ°¡ ¾øÀ» °æ¿ì »õ·Î µ¥ÀÌÅÍ ÀÔ·Â
+        ' ßº Í°     Ô·
         If Not isFound Then
             TR = TS.Cells(2, "A").End(xlDown).row + 1
-            TS.Cells(TR, "A") = SS.Cells(1, "F") ' ³¯Â¥
-            TS.Cells(TR, "B") = SS.Cells(1, "K") ' ±âÅ¸ Á¤º¸
-            TS.Cells(TR, "D") = ÀÇ·Ú»ç¾÷ÀÚ
-            TS.Cells(TR, "E") = ¾àÄª
-            TS.Cells(TR, "F") = SS.Cells(SR, "B") ' ½Ã·á¸í
-            TS.Cells(TR, "G") = ÀÔÈ¸ÀÚ
-            TS.Cells(TR, "H") = Ã¤ÃëÀÚ1
-            TS.Cells(TR, "I") = Ã¤ÃëÀÚ2
+            TS.Cells(TR, "A") = SS.Cells(1, "F") ' Â¥
+            TS.Cells(TR, "B") = SS.Cells(1, "K") ' Å¸ 
+            TS.Cells(TR, "D") = Ç·Ú»
+            TS.Cells(TR, "E") = Äª
+            TS.Cells(TR, "F") = SS.Cells(SR, "B") ' Ã·
+            TS.Cells(TR, "G") = È¸
+            TS.Cells(TR, "H") = Ã¤1
+            TS.Cells(TR, "I") = Ã¤2
 
-            ' ºÐ¼® Ç×¸ñ ÀÔ·Â
-            For SC = 4 To 64 ' D3ºÎÅÍ BK1±îÁö
+            ' Ð¼ ×¸ Ô·
+            For SC = 4 To 64 ' D3 BK1
                 If SS.Cells(SR, SC).Value <> "" Then
                     TS.Cells(TR, 10 + SC) = "O"
                 Else
@@ -173,18 +173,18 @@ NoMatchFound:
                 End If
             Next SC
         End If
-    Call ºÐ¼®Ç×¸ñÀû¿ë(SR)
+    Call Ð¼×¸(SR)
     Next SR
 
     
 End Sub
 
-Sub ºÐ¼®Ç×¸ñÀû¿ë(ByVal SR As Long)
+Sub Ð¼×¸(ByVal SR As Long)
     Dim TS As Worksheet
     Dim SS As Worksheet
-    Dim FirstFound As Range ' Ã¹ ¹øÂ°·Î Ã£Àº ¼¿À» ±â¾ïÇÏ´Â º¯¼ö
-    Set TS = Sheets("ºÐ¼®°á°úÀÚ·á")
-    Set SS = Sheets("ºÐ¼®ÀÇ·Ú ÀÔ·Â")
+    Dim FirstFound As Range ' Ã¹ Â° Ã£  Ï´ 
+    Set TS = Sheets("Ð¼Ú·")
+    Set SS = Sheets("Ð¼Ç· Ô·")
     
     Debug.Print SR
     
@@ -192,30 +192,30 @@ Sub ºÐ¼®Ç×¸ñÀû¿ë(ByVal SR As Long)
     targetDate = Format(SS.Cells(1, "F"), "YYYY-MM-DD")
     
 Set FoundCell = TS.Columns(1).Find(what:=CDate(targetDate), LookIn:=xlValues, lookat:=xlWhole)
-        ' ÃÊ±â »óÅÂ·Î Ã£Àº °ª ¾øÀ½
+        ' Ê± Â· Ã£  
         isFound = False
 
-        ' Ã£´Â °ªÀÌ ¾øÀ¸¸é ¹Ù·Î »õ µ¥ÀÌÅÍ ÀÔ·ÂÀ¸·Î ÀÌµ¿
+        ' Ã£   Ù·   Ô· Ìµ
         If FoundCell Is Nothing Then
             GoTo NoMatchFound
         Else
-            ' Ã¹ ¹øÂ°·Î Ã£Àº ¼¿À» ±â¾ï
+            ' Ã¹ Â° Ã£  
             Set FirstFound = FoundCell
         End If
         
         Do
-            ' µ¿ÀÏÇÑ ¼¿·Î µ¹¾Æ¿ÔÀ» °æ¿ì ·çÇÁ Á¾·á
+            '   Æ¿   
             If FoundCell.Address = FirstFound.Address And isFound Then
                 Exit Do
             End If
 
-            ' Áßº¹µÈ µ¥ÀÌÅÍ È®ÀÎ ¹× »ç¿ëÀÚ¿¡°Ô È®ÀÎ ¸Þ½ÃÁö
+            ' ßº  È®  Ú¿ È® Þ½
             If FoundCell.Offset(0, 1).Value = SS.Cells(SR, "B").Value Then
-                AN = MsgBox(SS.Cells(1, "F") & "ÀÇ ÇØ´ç½Ã·á°¡ ºÐ¼®°á°úÇ¥¿¡" & vbCrLf & " ÀÌ¹ÌÁ¸ÀçÇÕ´Ï´Ù." & vbCrLf & " ÀçÀÔ·ÂÇÏ½Ã°Ú½À´Ï±î?", vbYesNo, SS.Cells(SR, "B") & " ÀÇ·ÚÇ×¸ñ Áßº¹¡Ù")
+                AN = MsgBox(SS.Cells(1, "F") & " Ø´Ã·á°¡ Ð¼Ç¥" & vbCrLf & " Ì¹Õ´Ï´." & vbCrLf & " Ô·Ï½Ã°Ú½Ï±?", vbYesNo, SS.Cells(SR, "B") & " Ç·×¸ ßº")
                 If AN = vbYes Then
 
-                    ' ºÐ¼®(ÀÇ·Ú)Ç×¸ñ ÀÔ·Â
-                    For SC = 4 To 64 ' D3ºÎÅÍ BK1±îÁö
+                    ' Ð¼(Ç·)×¸ Ô·
+                    For SC = 4 To 64 ' D3 BK1
                         If SS.Cells(SR, SC).Value <> "" Then
                             TS.Cells(FoundCell.row, SC - 1).Interior.Pattern = -4142
                         Else
@@ -227,20 +227,20 @@ Set FoundCell = TS.Columns(1).Find(what:=CDate(targetDate), LookIn:=xlValues, lo
                 Exit Do
             End If
 
-            ' ´ÙÀ½ Ã£±â
+            '  Ã£
             Set FoundCell = TS.Columns(1).FindNext(FoundCell)
 
-            ' ´Ù½Ã Ã¹ ¹øÂ°·Î Ã£Àº ¼¿·Î µ¹¾Æ¿À¸é Á¾·á
+            ' Ù½ Ã¹ Â° Ã£  Æ¿ 
             If FoundCell Is Nothing Or FoundCell.Address = FirstFound.Address Then Exit Do
 
         Loop
 
 NoMatchFound:
-        ' Áßº¹ µ¥ÀÌÅÍ°¡ ¾øÀ» °æ¿ì »õ·Î µ¥ÀÌÅÍ ÀÔ·Â
+        ' ßº Í°     Ô·
         If Not isFound Then
             TR = TS.Cells(2, "A").End(xlDown).row + 1
-            ' ºÐ¼® Ç×¸ñ ÀÔ·Â
-            For SC = 4 To 64 ' D3ºÎÅÍ BK1±îÁö
+            ' Ð¼ ×¸ Ô·
+            For SC = 4 To 64 ' D3 BK1
                TS.Cells(TR, 1) = SS.Cells(1, "K")
                TS.Cells(TR, "B") = SS.Cells(SR, "B")
                

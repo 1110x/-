@@ -1,82 +1,82 @@
 Attribute VB_Name = "Module4"
 Dim c As Integer
 
-Sub ÀÇ·ÚÀÏÀÚ_ÀÏ°ı()
+Sub ì˜ë¢°ì¼ì_ì¼ê´„()
 For c = Columns("B").Column To Columns("AY").Column
-Sheets("ÀÇ·ÚÀÔ·Â").Cells(2, c) = Sheets("ÀÇ·ÚÀÔ·Â").Cells(2, "B")
+Sheets("ì˜ë¢°ì…ë ¥").Cells(2, c) = Sheets("ì˜ë¢°ì…ë ¥").Cells(2, "B")
 Next c
 End Sub
-Sub Ã¤ÃëÀÏÀÚ_ÀÏ°ı()
+Sub ì±„ì·¨ì¼ì_ì¼ê´„()
 For c = Columns("B").Column To Columns("AY").Column
-Sheets("ÀÇ·ÚÀÔ·Â").Cells(3, c) = Sheets("ÀÇ·ÚÀÔ·Â").Cells(3, "B")
+Sheets("ì˜ë¢°ì…ë ¥").Cells(3, c) = Sheets("ì˜ë¢°ì…ë ¥").Cells(3, "B")
 Next c
 End Sub
-Sub Ã¤Ãë½Ã°£_ÀÏ°ı()
+Sub ì±„ì·¨ì‹œê°„_ì¼ê´„()
     Dim ST As Date
     Dim AT As Date
 '    Dim c As Integer
 
-    ST = Sheets("ÀÇ·ÚÀÔ·Â").Cells(4, "B").Value
+    ST = Sheets("ì˜ë¢°ì…ë ¥").Cells(4, "B").Value
     For c = Columns("C").Column To Columns("AY").Column
         AT = AT + DateAdd("n", 10, TimeValue("00:00"))
-        Sheets("ÀÇ·ÚÀÔ·Â").Cells(4, c).Value = ST + AT
+        Sheets("ì˜ë¢°ì…ë ¥").Cells(4, c).Value = ST + AT
     Next c
 End Sub
-Sub ÀÇ·Ú»ç¾÷Àå_ÀÏ°ı()
+Sub ì˜ë¢°ì‚¬ì—…ì¥_ì¼ê´„()
 For c = Columns("B").Column To Columns("AY").Column
- Sheets("ÀÇ·ÚÀÔ·Â").Cells(5, c) = Sheets("ÀÇ·ÚÀÔ·Â").Cells(5, "B")
+ Sheets("ì˜ë¢°ì…ë ¥").Cells(5, c) = Sheets("ì˜ë¢°ì…ë ¥").Cells(5, "B")
 Next c
 End Sub
 
-Sub ÀÔÈ¸ÀÚ_ÀÏ°ı()
+Sub ì…íšŒì_ì¼ê´„()
 
 For c = Columns("B").Column To Columns("AY").Column
-Sheets("ÀÇ·ÚÀÔ·Â").Cells(8, c) = Sheets("ÀÇ·ÚÀÔ·Â").Cells(8, "B")
+Sheets("ì˜ë¢°ì…ë ¥").Cells(8, c) = Sheets("ì˜ë¢°ì…ë ¥").Cells(8, "B")
 Next c
 
 End Sub
-Sub ½Ã·áÃ¤ÃëÀÚ_ÀÏ°ı()
+Sub ì‹œë£Œì±„ì·¨ì_ì¼ê´„()
 For c = Columns("B").Column To Columns("AY").Column
-Sheets("ÀÇ·ÚÀÔ·Â").Cells(9, c) = Sheets("ÀÇ·ÚÀÔ·Â").Cells(9, "B")
-Sheets("ÀÇ·ÚÀÔ·Â").Cells(10, c) = Sheets("ÀÇ·ÚÀÔ·Â").Cells(10, "B")
+Sheets("ì˜ë¢°ì…ë ¥").Cells(9, c) = Sheets("ì˜ë¢°ì…ë ¥").Cells(9, "B")
+Sheets("ì˜ë¢°ì…ë ¥").Cells(10, c) = Sheets("ì˜ë¢°ì…ë ¥").Cells(10, "B")
 Next c
 End Sub
-Sub Á¤µµº¸Áõ_ÀÏ°ı()
+Sub ì •ë„ë³´ì¦_ì¼ê´„()
 For c = Columns("B").Column To Columns("AY").Column
-Sheets("ÀÇ·ÚÀÔ·Â").Cells(12, c) = Sheets("ÀÇ·ÚÀÔ·Â").Cells(12, "B")
+Sheets("ì˜ë¢°ì…ë ¥").Cells(12, c) = Sheets("ì˜ë¢°ì…ë ¥").Cells(12, "B")
 Next c
 End Sub
-Sub ºĞ¼®¿Ï·á_ÀÏ°ı()
+Sub ë¶„ì„ì™„ë£Œ_ì¼ê´„()
 For c = Columns("B").Column To Columns("AY").Column
-Sheets("ÀÇ·ÚÀÔ·Â").Cells(13, c) = Sheets("ÀÇ·ÚÀÔ·Â").Cells(13, "B")
+Sheets("ì˜ë¢°ì…ë ¥").Cells(13, c) = Sheets("ì˜ë¢°ì…ë ¥").Cells(13, "B")
 Next c
 End Sub
-Sub °ßÀû±¸ºĞ_ÀÏ°ı()
+Sub ê²¬ì êµ¬ë¶„_ì¼ê´„()
 For c = Columns("B").Column To Columns("AY").Column
-Sheets("ÀÇ·ÚÀÔ·Â").Cells(14, c) = Sheets("ÀÇ·ÚÀÔ·Â").Cells(14, "B")
+Sheets("ì˜ë¢°ì…ë ¥").Cells(14, c) = Sheets("ì˜ë¢°ì…ë ¥").Cells(14, "B")
 Next c
 End Sub
-Sub ÀÇ·ÚÇ×¸ñ_ÀÏ°ı()
+Sub ì˜ë¢°í•­ëª©_ì¼ê´„()
 
 For c = Columns("B").Column To Columns("AY").Column
     For r = 15 To 75
-        Sheets("ÀÇ·ÚÀÔ·Â").Cells(r, c) = Sheets("ÀÇ·ÚÀÔ·Â").Cells(r, "B")
+        Sheets("ì˜ë¢°ì…ë ¥").Cells(r, c) = Sheets("ì˜ë¢°ì…ë ¥").Cells(r, "B")
     Next r
 Next c
 
 End Sub
 
 Sub ClearX()
-Sheets("ÀÇ·ÚÀÔ·Â").Range("B2:AY5,B7:AY100") = ""
+Sheets("ì˜ë¢°ì…ë ¥").Range("B2:AY5,B7:AY100") = ""
 End Sub
-Sub ÀÇ·ÚÀÔ·Â_ÁøÇà()
+Sub ì˜ë¢°ì…ë ¥_ì§„í–‰()
 
 
 
 For c = Columns("B").Column To Columns("AY").Column
-X = Sheets("ÀÇ·ÚÁ¤º¸").Cells(Sheets("ÀÇ·ÚÁ¤º¸").Rows.Count, "A").End(xlUp).row + 1
+X = Sheets("ì˜ë¢°ì •ë³´").Cells(Sheets("ì˜ë¢°ì •ë³´").Rows.Count, "A").End(xlUp).row + 1
  For r = 2 To 75
-    Sheets("ÀÇ·ÚÁ¤º¸").Cells(X, r - 1) = Sheets("ÀÇ·ÚÀÔ·Â").Cells(r, c)
+    Sheets("ì˜ë¢°ì •ë³´").Cells(X, r - 1) = Sheets("ì˜ë¢°ì…ë ¥").Cells(r, c)
  Next r
 
 Next c

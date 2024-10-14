@@ -1,63 +1,63 @@
-Attribute VB_Name = "¹æ·ù±âÁØ°Å½Ã±â"
-Sub ¹æ·ù±âÁØÃ£±â()
+Attribute VB_Name = "Ø°Å½Ã±"
+Sub Ã£()
     Dim X As Integer
     Dim XT As Range
     Dim T As Range, TR As Range
     Dim TZ As Long
-    Dim ±âÁØ As String
+    Dim  As String
     
-    ' ListView2¿¡¼­ ±âÁØ °ªÀ» °¡Á®¿È
-    ±âÁØ = UserForm1.ListView2.ListItems(1).ListSubItems(2).text
+    ' ListView2   
+     = UserForm1.ListView2.ListItems(1).ListSubItems(2).text
     
-    ' ¹æ·ù±âÁØÇ¥ ½ÃÆ®ÀÇ 2Çà¿¡¼­ ±âÁØ °ªÀ» Ã£À½
-    Set T = Sheets("¹æ·ù±âÁØÇ¥").Rows(2).Find(what:=±âÁØ, lookat:=xlWhole)
+    ' Ç¥ Æ® 2à¿¡   Ã£
+    Set T = Sheets("Ç¥").Rows(2).Find(what:=, lookat:=xlWhole)
     
-    ' ±âÁØ °ªÀ» Ã£Àº °æ¿ì¿¡¸¸ ÀÛ¾÷ ¼öÇà
+    '   Ã£ ì¿¡ Û¾ 
     If Not T Is Nothing Then
         For r = 1 To UserForm1.ListView3.ListItems.Count
-            ' ¹æ·ù±âÁØÇ¥ ½ÃÆ®ÀÇ 1¿­¿¡¼­ ListView3 Ç×¸ñÀ» Ã£À½
-            Set TR = Sheets("¹æ·ù±âÁØÇ¥").Columns(1).Find(what:=UserForm1.ListView3.ListItems(r).text, lookat:=xlWhole)
+            ' Ç¥ Æ® 1 ListView3 ×¸ Ã£
+            Set TR = Sheets("Ç¥").Columns(1).Find(what:=UserForm1.ListView3.ListItems(r).text, lookat:=xlWhole)
          
-            ' Ç×¸ñÀ» Ã£Àº °æ¿ì¿¡¸¸ ÀÛ¾÷ ¼öÇà
+            ' ×¸ Ã£ ì¿¡ Û¾ 
             If Not TR Is Nothing Then
-                UserForm1.ListView3.ListItems(r).ListSubItems(4).text = Sheets("¹æ·ù±âÁØÇ¥").Cells(TR.row, T.Column).Value
+                UserForm1.ListView3.ListItems(r).ListSubItems(4).text = Sheets("Ç¥").Cells(TR.row, T.Column).Value
             End If
         Next r
     End If
     
-    ' "È®ÀÎ¶õ 5" Ã¼Å©¹Ú½º°¡ ¼±ÅÃµÈ °æ¿ì
-    If Sheets("½ÃÇè¼ºÀû¼­").CheckBoxes("È®ÀÎ¶õ 5").Value = 1 Then
-        ' H10:H41 ¹üÀ§¿¡ ´ëÇÑ ÀÛ¾÷ ¼öÇà
-        For Each XT In Sheets("½ÃÇè¼ºÀû¼­").Range("H10:H41").Cells
-            If Sheets("½ÃÇè¼ºÀû¼­").Cells(XT.row, "D").Value <> "" Then
-                Set TR = Sheets("¹æ·ù±âÁØÇ¥").Columns(1).Find(what:=Sheets("½ÃÇè¼ºÀû¼­").Cells(XT.row, "D").Value, lookat:=xlWhole)
+    ' "È®Î¶ 5" Ã¼Å©Ú½ Ãµ 
+    If Sheets("è¼º").CheckBoxes("È®Î¶ 5").Value = 1 Then
+        ' H10:H41   Û¾ 
+        For Each XT In Sheets("è¼º").Range("H10:H41").Cells
+            If Sheets("è¼º").Cells(XT.row, "D").Value <> "" Then
+                Set TR = Sheets("Ç¥").Columns(1).Find(what:=Sheets("è¼º").Cells(XT.row, "D").Value, lookat:=xlWhole)
                 If Not TR Is Nothing Then
-                    XT.Value = Sheets("¹æ·ù±âÁØÇ¥").Cells(TR.row, T.Column).Value
+                    XT.Value = Sheets("Ç¥").Cells(TR.row, T.Column).Value
                 End If
             End If
         Next XT
         
-        ' P10:P41 ¹üÀ§¿¡ ´ëÇÑ ÀÛ¾÷ ¼öÇà
-        For Each XT In Sheets("½ÃÇè¼ºÀû¼­").Range("P10:P41").Cells
-            If Sheets("½ÃÇè¼ºÀû¼­").Cells(XT.row, "L").Value <> "" Then
-                Set TR = Sheets("¹æ·ù±âÁØÇ¥").Columns(1).Find(what:=Sheets("½ÃÇè¼ºÀû¼­").Cells(XT.row, "L").Value, lookat:=xlWhole)
+        ' P10:P41   Û¾ 
+        For Each XT In Sheets("è¼º").Range("P10:P41").Cells
+            If Sheets("è¼º").Cells(XT.row, "L").Value <> "" Then
+                Set TR = Sheets("Ç¥").Columns(1).Find(what:=Sheets("è¼º").Cells(XT.row, "L").Value, lookat:=xlWhole)
                 If Not TR Is Nothing Then
-                    XT.Value = Sheets("¹æ·ù±âÁØÇ¥").Cells(TR.row, T.Column).Value
+                    XT.Value = Sheets("Ç¥").Cells(TR.row, T.Column).Value
                 End If
             End If
         Next XT
         
     Else
-        For Each XT In Sheets("½ÃÇè¼ºÀû¼­").Range("H10:H41").Cells
-            If Sheets("½ÃÇè¼ºÀû¼­").Cells(XT.row, "D").Value <> "" Then
+        For Each XT In Sheets("è¼º").Range("H10:H41").Cells
+            If Sheets("è¼º").Cells(XT.row, "D").Value <> "" Then
 
                     XT.Value = ""
             End If
         Next XT
         
-        ' P10:P41 ¹üÀ§¿¡ ´ëÇÑ ÀÛ¾÷ ¼öÇà
-        For Each XT In Sheets("½ÃÇè¼ºÀû¼­").Range("P10:P41").Cells
-            If Sheets("½ÃÇè¼ºÀû¼­").Cells(XT.row, "L").Value <> "" Then
+        ' P10:P41   Û¾ 
+        For Each XT In Sheets("è¼º").Range("P10:P41").Cells
+            If Sheets("è¼º").Cells(XT.row, "L").Value <> "" Then
 
                     XT.Value = ""
             End If

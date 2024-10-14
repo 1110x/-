@@ -1,5 +1,5 @@
-Attribute VB_Name = "ÇÕ°è"
-Sub ÇÕ°è±Ý¾×()
+Attribute VB_Name = "Õ°"
+Sub Õ°Ý¾()
 X = 0
 
 
@@ -17,9 +17,9 @@ If Not UserForm1.ListBox1.ListCount = 0 And UserForm1.TextBox3 <> "" Then
      End If
   Next r
 
-  UserForm1.Label5.Caption = UserForm1.ListBox1.List(0, 1) & "Æ÷ÇÔ " & UserForm1.ListBox1.ListCount & "Á¾ ¡¼" & Format(X, "#,###¿ø¡½")
+  UserForm1.Label5.Caption = UserForm1.ListBox1.List(0, 1) & " " & UserForm1.ListBox1.ListCount & " " & Format(X, "#,###")
 Else
-  UserForm1.Label5.Caption = "°ßÀû°Ç¼ö/ÃÑ¾×"
+  UserForm1.Label5.Caption = "Ç¼/Ñ¾"
 End If
 
 

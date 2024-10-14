@@ -1,5 +1,5 @@
-Attribute VB_Name = "°øÁ¤½ÃÇè¹ý¹×ºÐÀå"
-Sub ½ÃÇè¹ý()
+Attribute VB_Name = "×º"
+Sub ()
     Dim X As Integer
     Dim XT As Range
     Dim DT As Long
@@ -7,32 +7,32 @@ Sub ½ÃÇè¹ý()
     Dim FoundCell As Range
     
     For X = 1 To UserForm1.ListView3.ListItems.Count
-        ' "ÃøÁ¤DB" ½ÃÆ®¿¡¼­ ÇØ´ç ÅØ½ºÆ®¸¦ Ã£½À´Ï´Ù.
-        Set XT = Sheets("ÃøÁ¤DB").Columns(3).Find(what:=UserForm1.ListView3.ListItems(X).text, lookat:=xlWhole)
+        ' "DB" Æ® Ø´ Ø½Æ® Ã£Ï´.
+        Set XT = Sheets("DB").Columns(3).Find(what:=UserForm1.ListView3.ListItems(X).text, lookat:=xlWhole)
         
-        ' Ã£Àº °æ¿ì¿¡¸¸ ÀÛ¾÷À» ¼öÇàÇÕ´Ï´Ù.
+        ' Ã£ ì¿¡ Û¾ Õ´Ï´.
         If Not XT Is Nothing Then
-            ' ÇØ´ç ¼¿ÀÇ °ªÀ» ListView¿¡ ÇÒ´çÇÕ´Ï´Ù.
-            UserForm1.ListView3.ListItems(X).ListSubItems(2).text = Sheets("ÃøÁ¤DB").Cells(XT.row, "E").Value                       'ºÐ¼®¹æ¹ý
-            UserForm1.ListView3.ListItems(X).ListSubItems(3).text = Sheets("ÃøÁ¤DB").Cells(XT.row, "G").Value                       'ºÐ¼®Àåºñ
-            UserForm1.ListView3.ListItems(X).ListSubItems(4).text = "-"                                                             '¹ýÀû±âÁØ ¡Ù ¼öÁ¤ÇÊ¿ä
-            UserForm1.ListView3.ListItems(X).ListSubItems(5).text = Format(Sheets("ÃøÁ¤DB").Cells(XT.row, "I").Value, "0000")       'Method NO
-            UserForm1.ListView3.ListItems(X).ListSubItems(6).text = Sheets("ÃøÁ¤DB").Cells(XT.row, "H").Value                       'ºÐ¼®Àåºñ NO
+            ' Ø´   ListView Ò´Õ´Ï´.
+            UserForm1.ListView3.ListItems(X).ListSubItems(2).text = Sheets("DB").Cells(XT.row, "E").Value                       'Ð¼
+            UserForm1.ListView3.ListItems(X).ListSubItems(3).text = Sheets("DB").Cells(XT.row, "G").Value                       'Ð¼
+            UserForm1.ListView3.ListItems(X).ListSubItems(4).text = "-"                                                             '  Ê¿
+            UserForm1.ListView3.ListItems(X).ListSubItems(5).text = Format(Sheets("DB").Cells(XT.row, "I").Value, "0000")       'Method NO
+            UserForm1.ListView3.ListItems(X).ListSubItems(6).text = Sheets("DB").Cells(XT.row, "H").Value                       'Ð¼ NO
             
-            ' "ºÐÀå" ½ÃÆ®¿¡¼­ ³¯Â¥¸¦ Ã£½À´Ï´Ù.
-            Set FoundCell = Sheets("ºÐÀå").Columns(1).Find(what:=CDate(UserForm1.ListView1.ListItems(1)), lookat:=xlWhole)
+            ' "" Æ® Â¥ Ã£Ï´.
+            Set FoundCell = Sheets("").Columns(1).Find(what:=CDate(UserForm1.ListView1.ListItems(1)), lookat:=xlWhole)
             If Not FoundCell Is Nothing Then
                 DT = FoundCell.row
-                ' "ºÐÀå" ½ÃÆ®¿¡¼­ ÇØ´ç ÅØ½ºÆ®¸¦ Ã£½À´Ï´Ù.
-                DR = Sheets("ºÐÀå").Rows(1).Find(what:=UserForm1.ListView3.ListItems(X).text, lookat:=xlWhole).Column
-                UserForm1.ListView3.ListItems(X).ListSubItems(7).text = Sheets("ºÐÀå").Cells(DT, DR).text                           'ºÐ¼®Àåºñ NO
+                ' "" Æ® Ø´ Ø½Æ® Ã£Ï´.
+                DR = Sheets("").Rows(1).Find(what:=UserForm1.ListView3.ListItems(X).text, lookat:=xlWhole).Column
+                UserForm1.ListView3.ListItems(X).ListSubItems(7).text = Sheets("").Cells(DT, DR).text                           'Ð¼ NO
             Else
-                ' DT¸¦ Ã£Áö ¸øÇÑ °æ¿ì¿¡ ´ëÇÑ Ã³¸®
+                ' DT Ã£  ì¿¡  Ã³
                 UserForm1.ListView3.ListItems(X).ListSubItems(7).text = "Not Found"
             End If
         Else
-            ' XT¸¦ Ã£Áö ¸øÇÑ °æ¿ì¿¡ ´ëÇÑ Ã³¸®
-            ' MsgBox "Ã£À» ¼ö ¾ø´Â Ç×¸ñ: " & ListView3.ListItems(X).Text
+            ' XT Ã£  ì¿¡  Ã³
+            ' MsgBox "Ã£   ×¸: " & ListView3.ListItems(X).Text
         End If
     Next X
 End Sub

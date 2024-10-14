@@ -10,7 +10,7 @@ Next r
 
 End Sub
 
-Sub µ¥ÀÌÅÍ()
+Sub ë°ì´í„°()
 
 
 For r = 2 To 1819
@@ -31,173 +31,173 @@ Next r
 
 End Sub
 
-Sub µ¥ÀÌÅÍ2()
+Sub ë°ì´í„°2()
 
 
 For r = 3 To 368
-  Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, "B") = Left(Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, "I"), 4) & "-" & Mid(Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, "I"), 5, 2) & "-" & Mid(Sheets("°ßÀû¹ßÇàÁ¤º¸").Cells(r, "I"), 7, 2)
+  Sheets("ê²¬ì ë°œí–‰ì •ë³´").Cells(r, "B") = Left(Sheets("ê²¬ì ë°œí–‰ì •ë³´").Cells(r, "I"), 4) & "-" & Mid(Sheets("ê²¬ì ë°œí–‰ì •ë³´").Cells(r, "I"), 5, 2) & "-" & Mid(Sheets("ê²¬ì ë°œí–‰ì •ë³´").Cells(r, "I"), 7, 2)
 Next r
 
 
 End Sub
 
 
-Sub ±İ¼Ó·ù_¼Ò¼öÁ¡¸ÂÃã()
+Sub ê¸ˆì†ë¥˜_ì†Œìˆ˜ì ë§ì¶¤()
 
-For Each X In Range("Z2:Z1814") '±¸¸®
+For Each X In Range("Z2:Z1814") 'êµ¬ë¦¬
 If X <> "" Then
- If X <> "ºÒ°ËÃâ" Then
-   If X <> "ºĞ¼®ºÒ°¡" Then
+ If X <> "ë¶ˆê²€ì¶œ" Then
+   If X <> "ë¶„ì„ë¶ˆê°€" Then
    Cells(X.row, Range("Z1").Column) = Round(X, 3)
    End If
  End If
 End If
 Next X
 
-For Each X In Range("AA2:AA1814") '³³
+For Each X In Range("AA2:AA1814") 'ë‚©
 If X <> "" Then
- If X <> "ºÒ°ËÃâ" Then
-   If X <> "ºĞ¼®ºÒ°¡" Then
+ If X <> "ë¶ˆê²€ì¶œ" Then
+   If X <> "ë¶„ì„ë¶ˆê°€" Then
    Cells(X.row, Range("AA1").Column) = Round(X, 2)
    End If
  End If
 End If
 Next X
 
-For Each X In Range("AB2:AB1814") 'ºñ¼Ò
+For Each X In Range("AB2:AB1814") 'ë¹„ì†Œ
 If X <> "" Then
- If X <> "ºÒ°ËÃâ" Then
-   If X <> "ºĞ¼®ºÒ°¡" Then
+ If X <> "ë¶ˆê²€ì¶œ" Then
+   If X <> "ë¶„ì„ë¶ˆê°€" Then
    Cells(X.row, Range("AB1").Column) = Round(X, 2)
    End If
  End If
 End If
 Next X
 
-For Each X In Range("AC2:AC1814") '¼öÀº
+For Each X In Range("AC2:AC1814") 'ìˆ˜ì€
 If X <> "" Then
- If X <> "ºÒ°ËÃâ" Then
-   If X <> "ºĞ¼®ºÒ°¡" Then
+ If X <> "ë¶ˆê²€ì¶œ" Then
+   If X <> "ë¶„ì„ë¶ˆê°€" Then
    Cells(X.row, Range("AC1").Column) = Round(X, 4)
    End If
  End If
 End If
 Next X
 
-For Each X In Range("AD2:AD1814") '6Å©·Ò
+For Each X In Range("AD2:AD1814") '6í¬ë¡¬
 If X <> "" Then
- If X <> "ºÒ°ËÃâ" Then
-   If X <> "ºĞ¼®ºÒ°¡" Then
+ If X <> "ë¶ˆê²€ì¶œ" Then
+   If X <> "ë¶„ì„ë¶ˆê°€" Then
    Cells(X.row, Range("AD1").Column) = Round(X, 3)
    End If
  End If
 End If
 Next X
 
-For Each X In Range("AD2:AD1814") '6Å©·Ò
+For Each X In Range("AD2:AD1814") '6í¬ë¡¬
 If X <> "" Then
- If X <> "ºÒ°ËÃâ" Then
-   If X <> "ºĞ¼®ºÒ°¡" Then
+ If X <> "ë¶ˆê²€ì¶œ" Then
+   If X <> "ë¶„ì„ë¶ˆê°€" Then
    Cells(X.row, Range("AD1").Column) = Round(X, 3)
    End If
  End If
 End If
 Next X
 
-For Each X In Range("AE2:AE1814") 'Ä«µå¹Å
+For Each X In Range("AE2:AE1814") 'ì¹´ë“œë®´
 If X <> "" Then
- If X <> "ºÒ°ËÃâ" Then
-   If X <> "ºĞ¼®ºÒ°¡" Then
+ If X <> "ë¶ˆê²€ì¶œ" Then
+   If X <> "ë¶„ì„ë¶ˆê°€" Then
    Cells(X.row, Range("AE1").Column) = Round(X, 3)
    End If
  End If
 End If
 Next X
 
-For Each X In Range("AF2:AF1814") '¼¿·¹´½
+For Each X In Range("AF2:AF1814") 'ì…€ë ˆëŠ„
 If X <> "" Then
- If X <> "ºÒ°ËÃâ" Then
-   If X <> "ºĞ¼®ºÒ°¡" Then
+ If X <> "ë¶ˆê²€ì¶œ" Then
+   If X <> "ë¶„ì„ë¶ˆê°€" Then
    Cells(X.row, Range("AF1").Column) = Round(X, 3)
    End If
  End If
 End If
 Next X
 
-For Each X In Range("AG2:AG1814") '¾ÈÆ¼¸ó
+For Each X In Range("AG2:AG1814") 'ì•ˆí‹°ëª¬
 If X <> "" Then
- If X <> "ºÒ°ËÃâ" Then
-   If X <> "ºĞ¼®ºÒ°¡" Then
+ If X <> "ë¶ˆê²€ì¶œ" Then
+   If X <> "ë¶„ì„ë¶ˆê°€" Then
    Cells(X.row, Range("AG1").Column) = Round(X, 3)
    End If
  End If
 End If
 Next X
 
-For Each X In Range("AH2:AH1814") 'Å©·Ò
+For Each X In Range("AH2:AH1814") 'í¬ë¡¬
 If X <> "" Then
- If X <> "ºÒ°ËÃâ" Then
-   If X <> "ºĞ¼®ºÒ°¡" Then
+ If X <> "ë¶ˆê²€ì¶œ" Then
+   If X <> "ë¶„ì„ë¶ˆê°€" Then
    Cells(X.row, Range("AH1").Column) = Round(X, 3)
    End If
  End If
 End If
 Next X
 
-For Each X In Range("AI2:AI1814") 'Ã¶
+For Each X In Range("AI2:AI1814") 'ì² 
 If X <> "" Then
- If X <> "ºÒ°ËÃâ" Then
-   If X <> "ºĞ¼®ºÒ°¡" Then
+ If X <> "ë¶ˆê²€ì¶œ" Then
+   If X <> "ë¶„ì„ë¶ˆê°€" Then
    Cells(X.row, Range("AI1").Column) = Round(X, 3)
    End If
  End If
 End If
 Next X
 
-For Each X In Range("AJ2:AJ1814") '¾Æ¿¬
+For Each X In Range("AJ2:AJ1814") 'ì•„ì—°
 If X <> "" Then
- If X <> "ºÒ°ËÃâ" Then
-   If X <> "ºĞ¼®ºÒ°¡" Then
+ If X <> "ë¶ˆê²€ì¶œ" Then
+   If X <> "ë¶„ì„ë¶ˆê°€" Then
    Cells(X.row, Range("AJ1").Column) = Round(X, 3)
    End If
  End If
 End If
 Next X
 
-For Each X In Range("AK2:AK1814") '¸Á°£
+For Each X In Range("AK2:AK1814") 'ë§ê°„
 If X <> "" Then
- If X <> "ºÒ°ËÃâ" Then
-   If X <> "ºĞ¼®ºÒ°¡" Then
+ If X <> "ë¶ˆê²€ì¶œ" Then
+   If X <> "ë¶„ì„ë¶ˆê°€" Then
    Cells(X.row, Range("AK1").Column) = Round(X, 3)
    End If
  End If
 End If
 Next X
 
-For Each X In Range("AL2:AL1814") '¹Ù·ı
+For Each X In Range("AL2:AL1814") 'ë°”ë¥¨
 If X <> "" Then
- If X <> "ºÒ°ËÃâ" Then
-   If X <> "ºĞ¼®ºÒ°¡" Then
+ If X <> "ë¶ˆê²€ì¶œ" Then
+   If X <> "ë¶„ì„ë¶ˆê°€" Then
    Cells(X.row, Range("AL1").Column) = Round(X, 3)
    End If
  End If
 End If
 Next X
 
-For Each X In Range("AM2:AM1814") '´ÏÄÌ
+For Each X In Range("AM2:AM1814") 'ë‹ˆì¼ˆ
 If X <> "" Then
- If X <> "ºÒ°ËÃâ" Then
-   If X <> "ºĞ¼®ºÒ°¡" Then
+ If X <> "ë¶ˆê²€ì¶œ" Then
+   If X <> "ë¶„ì„ë¶ˆê°€" Then
    Cells(X.row, Range("AM1").Column) = Round(X, 3)
    End If
  End If
 End If
 Next X
 
-For Each X In Range("AO2:AO1814") 'ºÒ¼Ò
+For Each X In Range("AO2:AO1814") 'ë¶ˆì†Œ
 If X <> "" Then
- If X <> "ºÒ°ËÃâ" Then
-   If X <> "ºĞ¼®ºÒ°¡" Then
+ If X <> "ë¶ˆê²€ì¶œ" Then
+   If X <> "ë¶„ì„ë¶ˆê°€" Then
    Cells(X.row, Range("AO1").Column) = Round(X, 2)
    End If
  End If

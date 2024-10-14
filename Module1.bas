@@ -1,13 +1,13 @@
 Attribute VB_Name = "Module1"
-Sub ∏≈≈©∑Œ1()
-Attribute ∏≈≈©∑Œ1.VB_ProcData.VB_Invoke_Func = " \n14"
+Sub Îß§ÌÅ¨Î°ú1()
+Attribute Îß§ÌÅ¨Î°ú1.VB_ProcData.VB_Invoke_Func = " \n14"
 '
-' ∏≈≈©∑Œ1 ∏≈≈©∑Œ
+' Îß§ÌÅ¨Î°ú1 Îß§ÌÅ¨Î°ú
 '
 
 For r = 14 To 75
 
-    Sheets("∞ﬂ¿˚πﬂ«‡¡§∫∏").Select
+    Sheets("Í≤¨Ï†ÅÎ∞úÌñâÏ†ïÎ≥¥").Select
     Rows("1:1").Select
     A = Sheets("TESTS").Cells(r, "H").text
     B = Sheets("TESTS").Cells(r, "I").text
@@ -16,14 +16,14 @@ For r = 14 To 75
         SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
         ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
 Next r
-Debug.Print "≥°"
+Debug.Print "ÎÅù"
 End Sub
-Sub ∏≈≈©∑Œ2()
-Attribute ∏≈≈©∑Œ2.VB_ProcData.VB_Invoke_Func = " \n14"
+Sub Îß§ÌÅ¨Î°ú2()
+Attribute Îß§ÌÅ¨Î°ú2.VB_ProcData.VB_Invoke_Func = " \n14"
 
 X = 2
 For c = 3 To 63
-Sheets("TESTS").Cells(X, "H") = Sheets("∫–ºÆ∞·∞˙¿⁄∑·").Cells(1, c)
+Sheets("TESTS").Cells(X, "H") = Sheets("Î∂ÑÏÑùÍ≤∞Í≥ºÏûêÎ£å").Cells(1, c)
 X = X + 1
 Next c
 
@@ -31,11 +31,11 @@ Next c
 
 End Sub
 
-Sub ∏≈≈©∑Œ3()
+Sub Îß§ÌÅ¨Î°ú3()
 
 X = 2
 For c = 13 To 196 Step (3)
-Sheets("TESTS").Cells(X, "I") = Sheets("∞ﬂ¿˚πﬂ«‡¡§∫∏").Cells(1, c)
+Sheets("TESTS").Cells(X, "I") = Sheets("Í≤¨Ï†ÅÎ∞úÌñâÏ†ïÎ≥¥").Cells(1, c)
 X = X + 1
 Next c
 

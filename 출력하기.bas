@@ -1,32 +1,32 @@
-Attribute VB_Name = "Ãâ·ÂÇÏ±â"
+Attribute VB_Name = "Ï±"
 Sub SetPrintPageSettings()
     Dim lastRow As Long
     Dim lastColumn As Long
     Dim RowsPerPage As Long
     Dim TotalPages As Long
 
-    ' ¸¶Áö¸· Çà°ú ¿­À» Ã£½À´Ï´Ù.
+    '    Ã£Ï´.
     lastRow = Cells.Find(what:="*", SearchOrder:=xlByRows, SearchDirection:=xlPrevious).row
     lastColumn = Cells.Find(what:="*", SearchOrder:=xlByColumns, SearchDirection:=xlPrevious).Column
 
-    ' ÇÑ ÆäÀÌÁö´ç Ãâ·ÂµÉ Çà ¼ö¸¦ °è»êÇÕ´Ï´Ù.
-    RowsPerPage = 42 ' ¿¹½Ã·Î 42ÇàÀ» ÇÑ ÆäÀÌÁö·Î ¼³Á¤Çß½À´Ï´Ù.
+    '   Âµ   Õ´Ï´.
+    RowsPerPage = 42 ' Ã· 42   ß½Ï´.
 
-    ' ÃÑ ÆäÀÌÁö ¼ö¸¦ °è»êÇÕ´Ï´Ù.
+    '    Õ´Ï´.
     TotalPages = Application.WorksheetFunction.Ceiling(lastRow / RowsPerPage, 1)
 
-    ' ÆäÀÌÁö ¼³Á¤À» ÇÕ´Ï´Ù.
+    '   Õ´Ï´.
     With ActiveSheet.PageSetup
-        .Orientation = xlPortrait 'ÆäÀÌÁö ¹æÇâ ¼³Á¤ (¼öÁ÷ ¹æÇâ)
-        .Zoom = False 'Ãà¼Ò/È®´ë ¿É¼Ç ÇØÁ¦
-        .FitToPagesWide = 1 'ÆäÀÌÁö ³Êºñ¿¡ ¸ÂÃß±â
-        .FitToPagesTall = TotalPages 'ÃÑ ÆäÀÌÁö ¼ö·Î ÆäÀÌÁö ³ôÀÌ ¼³Á¤
-        'Ãß°¡ÀûÀÎ ÆäÀÌÁö ¼³Á¤À» ¿øÇÏ´Â °æ¿ì ¿©±â¿¡ Ãß°¡
+        .Orientation = xlPortrait '   ( )
+        .Zoom = False '/È® É¼ 
+        .FitToPagesWide = 1 ' Êº ß±
+        .FitToPagesTall = TotalPages '     
+        'ß°   Ï´  â¿¡ ß°
     End With
 End Sub
 
 
-Sub ºÓÀº»öÀ¸·Î¹°µé¿©¶ó()
+Sub Î¹é¿©()
 UserForm1.TreeView1.SelectedItem.ForeColor = RGB(255, 0, 0)
 UserForm1.TreeView1.SelectedItem.Selected = False
 
@@ -55,8 +55,8 @@ If r > 1 Then
     Next X
     
 For RED = s To E
-    If Not UserForm1.TreeView1.Nodes(RED).Parent Is Nothing Then ' ºÎ¸ð ³ëµå°¡ ¾ø´Â °æ¿ì¿¡¸¸ ÀÛ¾÷ ¼öÇà
-        If Not UserForm1.TreeView1.Nodes(RED).Children Then ' ÀÚ½Ä ³ëµå°¡ ¾ø´Â °æ¿ì¿¡¸¸ ÀÛ¾÷ ¼öÇà
+    If Not UserForm1.TreeView1.Nodes(RED).Parent Is Nothing Then ' Î¸ å°¡  ì¿¡ Û¾ 
+        If Not UserForm1.TreeView1.Nodes(RED).Children Then ' Ú½ å°¡  ì¿¡ Û¾ 
             UserForm1.TreeView1.Nodes(RED).ForeColor = RGB(255, 0, 0)
         End If
     End If

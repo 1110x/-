@@ -7,36 +7,36 @@ Sub Combo1()
     Dim lastColumn As Long
     Dim firstRow As Long
     
-    ' "°ßÀû´Ü°¡" ½ÃÆ® ÂüÁ¶
-    Set ws = ThisWorkbook.Sheets("°ßÀû´Ü°¡")
+    ' "ê²¬ì ë‹¨ê°€" ì‹œíŠ¸ ì°¸ì¡°
+    Set ws = ThisWorkbook.Sheets("ê²¬ì ë‹¨ê°€")
     
-    ' E ¿­ÀÇ ¸¶Áö¸· ¿­À» Ã£±â À§ÇØ Ã¹ ¹øÂ° ÇàÀÇ ¸¶Áö¸· ¿­À» Ã£À½
+    ' E ì—´ì˜ ë§ˆì§€ë§‰ ì—´ì„ ì°¾ê¸° ìœ„í•´ ì²« ë²ˆì§¸ í–‰ì˜ ë§ˆì§€ë§‰ ì—´ì„ ì°¾ìŒ
     firstRow = 1
     lastColumn = ws.Cells(firstRow, ws.Columns.Count).End(xlToLeft).Column
     
-    ' E1ºÎÅÍ ¸¶Áö¸· ¿­±îÁöÀÇ ¹üÀ§ ÂüÁ¶
+    ' E1ë¶€í„° ë§ˆì§€ë§‰ ì—´ê¹Œì§€ì˜ ë²”ìœ„ ì°¸ì¡°
     Set rng = ws.Range(ws.Cells(firstRow, 5), ws.Cells(firstRow, lastColumn))
     
-    ' UserForm1ÀÇ ComboBox1 ÂüÁ¶
+    ' UserForm1ì˜ ComboBox1 ì°¸ì¡°
     Set comboBox = UserForm1.ComboBox1
     
-    ' ComboBox ÃÊ±âÈ­ (±âÁ¸ ¾ÆÀÌÅÛ Á¦°Å)
+    ' ComboBox ì´ˆê¸°í™” (ê¸°ì¡´ ì•„ì´í…œ ì œê±°)
     comboBox.Clear
     
-    ' ¹üÀ§ÀÇ °¢ ¼¿ °ªÀ» ComboBox¿¡ Ãß°¡
+    ' ë²”ìœ„ì˜ ê° ì…€ ê°’ì„ ComboBoxì— ì¶”ê°€
     For Each cell In rng
         If cell.Value <> "" Then
             comboBox.AddItem cell.Value
         End If
     Next cell
     
-    ' Ã¹ ¹øÂ° Ç×¸ñÀ» ¼±ÅÃ
+    ' ì²« ë²ˆì§¸ í•­ëª©ì„ ì„ íƒ
     If comboBox.ListCount > 0 Then
         comboBox.ListIndex = 0
     End If
 End Sub
 Sub Combob2()
-'Real Combobox2 °ª ¼³Á¤ÀÓ ¾Æ·¡°ÍÀº ...
+'Real Combobox2 ê°’ ì„¤ì •ì„ ì•„ë˜ê²ƒì€ ...
     Dim ws As Worksheet
 
     Dim lastRow As Long
@@ -44,7 +44,7 @@ Sub Combob2()
     Dim cell As Range
     Dim selectedValue As String
     
-   Set ws = ThisWorkbook.Sheets("¾÷Ã¼´ã´çÀÚ")
+   Set ws = ThisWorkbook.Sheets("ì—…ì²´ë‹´ë‹¹ì")
     lastRow = ws.Cells(ws.Rows.Count, "A").End(xlUp).row
     
     For r = 3 To lastRow
@@ -66,49 +66,49 @@ Sub Combo2()
     Dim lastColumn As Long
     Dim firstRow As Long
     
-    ' "°ßÀû´Ü°¡" ½ÃÆ® ÂüÁ¶
-    Set ws = ThisWorkbook.Sheets("°è¾àÁ¤º¸")
+    ' "ê²¬ì ë‹¨ê°€" ì‹œíŠ¸ ì°¸ì¡°
+    Set ws = ThisWorkbook.Sheets("ê³„ì•½ì •ë³´")
     
-    ' E ¿­ÀÇ ¸¶Áö¸· ¿­À» Ã£±â À§ÇØ Ã¹ ¹øÂ° ÇàÀÇ ¸¶Áö¸· ¿­À» Ã£À½
+    ' E ì—´ì˜ ë§ˆì§€ë§‰ ì—´ì„ ì°¾ê¸° ìœ„í•´ ì²« ë²ˆì§¸ í–‰ì˜ ë§ˆì§€ë§‰ ì—´ì„ ì°¾ìŒ
     firstRow = 2
     lastRow = ws.Cells(firstRow, 2).End(xlDown).row
 
     
-    ' J1ºÎÅÍ ¸¶Áö¸· ¿­±îÁöÀÇ ¹üÀ§ ÂüÁ¶
+    ' J1ë¶€í„° ë§ˆì§€ë§‰ ì—´ê¹Œì§€ì˜ ë²”ìœ„ ì°¸ì¡°
     Set rng = ws.Range(ws.Cells(firstRow, 2), ws.Cells(lastRow, 2))
     '================================================================= COMBOBOX3
-    ' UserForm1ÀÇ ComboBox1 ÂüÁ¶
+    ' UserForm1ì˜ ComboBox1 ì°¸ì¡°
     Set comboBox = UserForm1.ComboBox3
     
-    ' ComboBox ÃÊ±âÈ­ (±âÁ¸ ¾ÆÀÌÅÛ Á¦°Å)
+    ' ComboBox ì´ˆê¸°í™” (ê¸°ì¡´ ì•„ì´í…œ ì œê±°)
     comboBox.Clear
     
-    ' ¹üÀ§ÀÇ °¢ ¼¿ °ªÀ» ComboBox¿¡ Ãß°¡
+    ' ë²”ìœ„ì˜ ê° ì…€ ê°’ì„ ComboBoxì— ì¶”ê°€
     For Each cell In rng
         If cell.Value <> "" Then
             comboBox.AddItem cell.Value
         End If
     Next cell
     
-    ' Ã¹ ¹øÂ° Ç×¸ñÀ» ¼±ÅÃ
+    ' ì²« ë²ˆì§¸ í•­ëª©ì„ ì„ íƒ
     If comboBox.ListCount > 0 Then
         comboBox.ListIndex = 0
     End If
    '================================================================= COMBOBOX5
-        ' UserForm1ÀÇ ComboBox1 ÂüÁ¶
+        ' UserForm1ì˜ ComboBox1 ì°¸ì¡°
     Set comboBox = UserForm1.ComboBox5
     
-    ' ComboBox ÃÊ±âÈ­ (±âÁ¸ ¾ÆÀÌÅÛ Á¦°Å)
+    ' ComboBox ì´ˆê¸°í™” (ê¸°ì¡´ ì•„ì´í…œ ì œê±°)
     comboBox.Clear
     
-    ' ¹üÀ§ÀÇ °¢ ¼¿ °ªÀ» ComboBox¿¡ Ãß°¡
+    ' ë²”ìœ„ì˜ ê° ì…€ ê°’ì„ ComboBoxì— ì¶”ê°€
     For Each cell In rng
         If cell.Value <> "" Then
             comboBox.AddItem cell.Value
         End If
     Next cell
     
-    ' Ã¹ ¹øÂ° Ç×¸ñÀ» ¼±ÅÃ
+    ' ì²« ë²ˆì§¸ í•­ëª©ì„ ì„ íƒ
     If comboBox.ListCount > 0 Then
         comboBox.ListIndex = 0
     End If
@@ -123,7 +123,7 @@ Sub combo4()
     Dim comboBox As MSForms.comboBox
     Dim lastColumn As Long
     Dim firstRow As Long
-        Set ws = ThisWorkbook.Sheets("´ã´çÀÚÁ¤º¸")
+        Set ws = ThisWorkbook.Sheets("ë‹´ë‹¹ìì •ë³´")
         Set comboBox = UserForm1.ComboBox4
         comboBox.Clear
 
@@ -156,7 +156,7 @@ Sub combo6()
        Set comboBox = UserForm1.ComboBox6
         comboBox.Clear
         
-           comboBox.AddItem "ÀüÃ¼±â°£ -_-'"
+           comboBox.AddItem "ì „ì²´ê¸°ê°„ -_-'"
        For c = Format(Now(), "YYYY") To 2021 Step (-1)
          
 
@@ -180,23 +180,23 @@ Sub combo7()
     Dim startDate As Date
     Dim row As Long
 
-    ' Scripting.Dictionary »ı¼º
+    ' Scripting.Dictionary ìƒì„±
     Set dict = CreateObject("Scripting.Dictionary")
 
-    ' ¿öÅ©½ÃÆ® ÁöÁ¤
-    Set ws = ThisWorkbook.Sheets("ÃøÁ¤DB") ' ºĞÀå½ÃÆ®¶ó´Â ÀÌ¸§ÀÇ ½ÃÆ®·Î ÁöÁ¤
+    ' ì›Œí¬ì‹œíŠ¸ ì§€ì •
+    Set ws = ThisWorkbook.Sheets("ì¸¡ì •DB") ' ë¶„ì¥ì‹œíŠ¸ë¼ëŠ” ì´ë¦„ì˜ ì‹œíŠ¸ë¡œ ì§€ì •
 
-    ' B2¿¡¼­ BH ¿­ÀÇ ¸¶Áö¸· Çà±îÁöÀÇ ¹üÀ§ ¼±ÅÃ
+    ' B2ì—ì„œ BH ì—´ì˜ ë§ˆì§€ë§‰ í–‰ê¹Œì§€ì˜ ë²”ìœ„ ì„ íƒ
     lastRow = ws.Cells(ws.Rows.Count, "N").End(xlUp).row
 
-    ' ½ÃÀÛ ³¯Â¥ ¼³Á¤
+    ' ì‹œì‘ ë‚ ì§œ ì„¤ì •
     startDate = DateSerial(2024, 1, 1)
 
-    ' ³¯Â¥ Á¶°Ç¿¡ ¸Â´Â µ¥ÀÌÅÍ¸¸ ComboBox7¿¡ Ãß°¡
+    ' ë‚ ì§œ ì¡°ê±´ì— ë§ëŠ” ë°ì´í„°ë§Œ ComboBox7ì— ì¶”ê°€
     For row = 2 To lastRow
-        ' A¿­ÀÇ ³¯Â¥°¡ 2024³â 1¿ù 1ÀÏ ÀÌÈÄÀÎÁö È®ÀÎ
+        ' Aì—´ì˜ ë‚ ì§œê°€ 2024ë…„ 1ì›” 1ì¼ ì´í›„ì¸ì§€ í™•ì¸
 '        If ws.Cells(row, 1).Value >= startDate Then
-            ' ÇØ´ç ÇàÀÇ B¿­ºÎÅÍ BH¿­±îÁöÀÇ µ¥ÀÌÅÍ¸¦ ¼øÈ¸
+            ' í•´ë‹¹ í–‰ì˜ Bì—´ë¶€í„° BHì—´ê¹Œì§€ì˜ ë°ì´í„°ë¥¼ ìˆœíšŒ
             For Each cell In ws.Range(ws.Cells(row, "N"), ws.Cells(row, "N"))
                 If cell.Value <> "" And Not dict.exists(cell.Value) Then
                     dict.Add cell.Value, Nothing
@@ -206,25 +206,25 @@ Sub combo7()
 '        End If
     Next row
 
-    ' ComboBox7ÀÇ Ã¹ ¹øÂ° ¾ÆÀÌÅÛÀ» ±âº» ¼±ÅÃ
+    ' ComboBox7ì˜ ì²« ë²ˆì§¸ ì•„ì´í…œì„ ê¸°ë³¸ ì„ íƒ
     If UserForm1.ComboBox7.ListCount > 0 Then
         UserForm1.ComboBox7.ListIndex = 1
     End If
     
 End Sub
-Sub ºĞÀåÇ×¸ñCombo()
+Sub ë¶„ì¥í•­ëª©Combo()
     Dim ws As Worksheet
     Dim lastRow As Long
     Dim X As Long
-    Dim Ç×¸ñ As Variant
+    Dim í•­ëª© As Variant
     Dim cell As Range
     Dim TT As String
     Dim r As Long
 
-    ' ¿öÅ©½ÃÆ® ÁöÁ¤
-    Set ws = ThisWorkbook.Sheets("ºĞÀå") ' ºĞÀå ½ÃÆ®·Î ÁöÁ¤
+    ' ì›Œí¬ì‹œíŠ¸ ì§€ì •
+    Set ws = ThisWorkbook.Sheets("ë¶„ì¥") ' ë¶„ì¥ ì‹œíŠ¸ë¡œ ì§€ì •
     
-    ' Æ®¸®ºä ÃÊ±âÈ­
+    ' íŠ¸ë¦¬ë·° ì´ˆê¸°í™”
     For r = 1 To UserForm1.TreeView7.Nodes.Count
         UserForm1.TreeView7.Nodes(r).ForeColor = RGB(0, 0, 0)
         If Not UserForm1.TreeView7.Nodes(r).Parent Is Nothing Then
@@ -232,15 +232,15 @@ Sub ºĞÀåÇ×¸ñCombo()
         End If
     Next r
     
-    ' ÇöÀç ³¯Â¥¿Í ÀÏÄ¡ÇÏ´Â Çà Ã£±â
+    ' í˜„ì¬ ë‚ ì§œì™€ ì¼ì¹˜í•˜ëŠ” í–‰ ì°¾ê¸°
     ' X = ws.Columns(1).Find(what:=CDate(Format(Now(), "YYYY-MM-DD")), lookat:=xlWhole).Row
-    X = ws.Columns(1).Find(what:=CDate("2024-07-22"), lookat:=xlWhole).row 'Å×½ºÆ®¸¦ À§ÇØ ÀÓ½Ã·Î »ç¿ë
+    X = ws.Columns(1).Find(what:=CDate("2024-07-22"), lookat:=xlWhole).row 'í…ŒìŠ¤íŠ¸ë¥¼ ìœ„í•´ ì„ì‹œë¡œ ì‚¬ìš©
 
-    ' ÁöÁ¤µÈ ÇàÀÇ B¿­ºÎÅÍ ¸¶Áö¸· ¿­±îÁöÀÇ °ªµéÀ» ¹İº¹
+    ' ì§€ì •ëœ í–‰ì˜ Bì—´ë¶€í„° ë§ˆì§€ë§‰ ì—´ê¹Œì§€ì˜ ê°’ë“¤ì„ ë°˜ë³µ
     For Each cell In ws.Range(ws.Cells(X, 2), ws.Cells(X, ws.Cells(X, ws.Columns.Count).End(xlToLeft).Column))
-        Ç×¸ñ = cell.Value
-        ' Á¶°Ç¿¡ µû¸¥ µğ¹ö±× Ãâ·Â
-        If Ç×¸ñ = UserForm1.ComboBox7.Value Then
+        í•­ëª© = cell.Value
+        ' ì¡°ê±´ì— ë”°ë¥¸ ë””ë²„ê·¸ ì¶œë ¥
+        If í•­ëª© = UserForm1.ComboBox7.Value Then
             TT = ws.Cells(1, cell.Column).Value
             
             For r = 1 To UserForm1.TreeView7.Nodes.Count

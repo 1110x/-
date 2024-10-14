@@ -1,14 +1,14 @@
-Attribute VB_Name = "견적종류"
-Sub 견적종류변경()
+Attribute VB_Name = ""
+Sub ()
 On Error Resume Next
 
-X = Sheets("견적단가").Rows(1).Find(what:=UserForm1.ComboBox1.text, lookat:=xlWhole).Column
+X = Sheets("丙").Rows(1).Find(what:=UserForm1.ComboBox1.text, lookat:=xlWhole).Column
 
 For r = 0 To UserForm1.ListBox1.ListCount - 1
-TG = Sheets("견적단가").Columns(4).Find(what:=UserForm1.ListBox1.List(r, 1), lookat:=xlWhole).row
+TG = Sheets("丙").Columns(4).Find(what:=UserForm1.ListBox1.List(r, 1), lookat:=xlWhole).row
 
-UserForm1.ListBox1.List(r, 3) = Format(Sheets("견적단가").Cells(TG, X), "#,###")
+UserForm1.ListBox1.List(r, 3) = Format(Sheets("丙").Cells(TG, X), "#,###")
 
 Next r
-합계금액
+卵附
 End Sub

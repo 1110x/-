@@ -1,6 +1,6 @@
-Attribute VB_Name = "¼öÁúÃøÁ¤±â·ÏºÎ"
-Sub ¼öÁúÃøÁ¤±â·ÏºÎÀÚ·á()
- Dim Node As MSComctlLib.Node 'TreeView ÄÁÆ®·ÑÀÇ ³ëµå¸¦ ³ªÅ¸³»´Â °³Ã¼
+Attribute VB_Name = "Ïº"
+Sub ÏºÚ·()
+ Dim Node As MSComctlLib.Node 'TreeView Æ® å¸¦ Å¸ Ã¼
     
     
     For X = 1 To UserForm1.TreeView1.Nodes.Count
@@ -19,89 +19,89 @@ Sub ¼öÁúÃøÁ¤±â·ÏºÎÀÚ·á()
     
     
 For xxx = E To s Step (-1)
-    Set Node = UserForm1.TreeView1.Nodes(xxx) '³ëµå 2¸¦ ¼±ÅÃÇÕ´Ï´Ù.
-    Node.EnsureVisible '³ëµå°¡ º¸ÀÌµµ·Ï ½ºÅ©·ÑÇÕ´Ï´Ù.
-    Node.Selected = True '³ëµå¸¦ ¼±ÅÃÇÕ´Ï´Ù.
+    Set Node = UserForm1.TreeView1.Nodes(xxx) ' 2 Õ´Ï´.
+    Node.EnsureVisible 'å°¡ Ìµ Å©Õ´Ï´.
+    Node.Selected = True 'å¸¦ Õ´Ï´.
 
 
     Dim ws As Worksheet
 If Not UserForm1.TreeView1.SelectedItem Is Nothing Then
     If Not UserForm1.TreeView1.SelectedItem.Parent Is Nothing Then
-'        Debug.Print "ÀÚ½Ä³ëµå: " & TreeView1.SelectedItem.Parent.text
-        Set ws = ThisWorkbook.Sheets("ÀÇ·ÚÁ¤º¸")
-        lastRow = Sheets("ÀÇ·ÚÁ¤º¸").Cells(Sheets("ÀÇ·ÚÁ¤º¸").Rows.Count, "A").End(xlUp).row
+'        Debug.Print "Ú½Ä³: " & TreeView1.SelectedItem.Parent.text
+        Set ws = ThisWorkbook.Sheets("Ç·")
+        lastRow = Sheets("Ç·").Cells(Sheets("Ç·").Rows.Count, "A").End(xlUp).row
         For r = 2 To lastRow
-         X = "¡¼" & Sheets("ÀÇ·ÚÁ¤º¸").Cells(r, "E").text & "¡½" & Sheets("ÀÇ·ÚÁ¤º¸").Cells(r, "F").Value '  ws.Cells(i, "C")  & ws.Cells(i, 4).Value)
-         If Sheets("ÀÇ·ÚÁ¤º¸").Cells(r, "A") = UserForm1.TreeView1.SelectedItem.Parent.text And X = UserForm1.TreeView1.SelectedItem.text Then
+         X = "" & Sheets("Ç·").Cells(r, "E").text & "" & Sheets("Ç·").Cells(r, "F").Value '  ws.Cells(i, "C")  & ws.Cells(i, 4).Value)
+         If Sheets("Ç·").Cells(r, "A") = UserForm1.TreeView1.SelectedItem.Parent.text And X = UserForm1.TreeView1.SelectedItem.text Then
 
           '===============================================================================================
          UserForm1.ListView1.ListItems.Clear
          With UserForm1.ListView1
-        .ColumnHeaders.Clear ' ±âÁ¸ ÄÃ·³ Á¦°Å
+        .ColumnHeaders.Clear '  Ã· 
         .Gridlines = True
-        .View = lvwReport ' Report ¸ðµå·Î ¼³Á¤
+        .View = lvwReport ' Report  
 
-        ' °¢ ÄÃ·³ÀÇ ³Êºñ¸¦ Á¶ÀýÇÏ·Á¸é ÇÊ¿ä¿¡ µû¶ó Width ¼Ó¼ºÀ» ¼³Á¤ÇÒ ¼ö ÀÖ½À´Ï´Ù.
-        .ColumnHeaders.Add , , "ÀÇ·ÚÀÏÀÚ", 100
-        .ColumnHeaders.Add , , "Ã¤ÃëÀÏÀÚ", 100
-        .ColumnHeaders.Add , , "ÀÇ·Ú»ç¾÷Àå", 100
-        .ColumnHeaders.Add , , "½Ã·á¸í", 120
-        .ColumnHeaders.Add , , "ÀÔÈ¸ÀÚ", 100
+        '  Ã· Êº Ï· Ê¿ä¿¡  Width Ó¼   Ö½Ï´.
+        .ColumnHeaders.Add , , "Ç·", 100
+        .ColumnHeaders.Add , , "Ã¤", 100
+        .ColumnHeaders.Add , , "Ç·Ú»", 100
+        .ColumnHeaders.Add , , "Ã·", 120
+        .ColumnHeaders.Add , , "È¸", 100
 
          End With
 
          UserForm1.ListView2.ListItems.Clear
          With UserForm1.ListView2
-        .ColumnHeaders.Clear ' ±âÁ¸ ÄÃ·³ Á¦°Å
+        .ColumnHeaders.Clear '  Ã· 
         .Gridlines = True
-        .View = lvwReport ' Report ¸ðµå·Î ¼³Á¤
-        ' °¢ ÄÃ·³ÀÇ ³Êºñ¸¦ Á¶ÀýÇÏ·Á¸é ÇÊ¿ä¿¡ µû¶ó Width ¼Ó¼ºÀ» ¼³Á¤ÇÒ ¼ö ÀÖ½À´Ï´Ù.
-        .ColumnHeaders.Add , , "½Ã·áÃ¤ÃëÀÚ1", 100
-        .ColumnHeaders.Add , , "½Ã·áÃ¤ÃëÀÚ2", 100
-        .ColumnHeaders.Add , , "¹æ·ùÇã¿ë±âÁØ", 120
-        .ColumnHeaders.Add , , "Á¤µµº¸ÁõÀ¯¹«", 100
-        .ColumnHeaders.Add , , "ºÐ¼®Á¾·áÀÏ", 100
+        .View = lvwReport ' Report  
+        '  Ã· Êº Ï· Ê¿ä¿¡  Width Ó¼   Ö½Ï´.
+        .ColumnHeaders.Add , , "Ã·Ã¤1", 100
+        .ColumnHeaders.Add , , "Ã·Ã¤2", 100
+        .ColumnHeaders.Add , , "", 120
+        .ColumnHeaders.Add , , "", 100
+        .ColumnHeaders.Add , , "Ð¼", 100
          End With
 
          UserForm1.ListView3.ListItems.Clear
          With UserForm1.ListView3
-        .ColumnHeaders.Clear ' ±âÁ¸ ÄÃ·³ Á¦°Å
+        .ColumnHeaders.Clear '  Ã· 
         .Gridlines = True
-        .View = lvwReport ' Report ¸ðµå·Î ¼³Á¤
-        ' °¢ ÄÃ·³ÀÇ ³Êºñ¸¦ Á¶ÀýÇÏ·Á¸é ÇÊ¿ä¿¡ µû¶ó Width ¼Ó¼ºÀ» ¼³Á¤ÇÒ ¼ö ÀÖ½À´Ï´Ù.
-        .ColumnHeaders.Add , , "ÀÇ·ÚÇ×¸ñ", 130
-        .ColumnHeaders.Add , , "ºÐ¼®°á°ú", 70
-        .ColumnHeaders.Add , , "ºÐ¼®¹æ¹ý", 170
-        .ColumnHeaders.Add , , "ºÐ¼®Àåºñ", 100
-        .ColumnHeaders.Add , , "¹ýÀû±âÁØ", 50
+        .View = lvwReport ' Report  
+        '  Ã· Êº Ï· Ê¿ä¿¡  Width Ó¼   Ö½Ï´.
+        .ColumnHeaders.Add , , "Ç·×¸", 130
+        .ColumnHeaders.Add , , "Ð¼", 70
+        .ColumnHeaders.Add , , "Ð¼", 170
+        .ColumnHeaders.Add , , "Ð¼", 100
+        .ColumnHeaders.Add , , "", 50
         .ColumnHeaders.Add , , "Method NO", 20
         .ColumnHeaders.Add , , "instrument NO", 20
-        .ColumnHeaders.Add , , "ºÐ¼®´ã´çÀÚ", 20
+        .ColumnHeaders.Add , , "Ð¼", 20
          End With
 
 
-         Set item = UserForm1.ListView1.ListItems.Add(1, , Sheets("ÀÇ·ÚÁ¤º¸").Cells(r, "A").Value) 'ÀÇ·ÚÀÏÀÚ
-         item.ListSubItems.Add , , Sheets("ÀÇ·ÚÁ¤º¸").Cells(r, "B").Value                'Ã¤ÃëÀÏÀÚ
-         item.ListSubItems.Add , , Sheets("ÀÇ·ÚÁ¤º¸").Cells(r, "E").Value                'ÀÇ·Ú»ç¾÷Àå '¾àÄª
-         item.ListSubItems.Add , , Sheets("ÀÇ·ÚÁ¤º¸").Cells(r, "F").Value                '½Ã·á¸í
-         item.ListSubItems.Add , , Sheets("ÀÇ·ÚÁ¤º¸").Cells(r, "G").Value                'ÀÔÈ¸ÀÚ
+         Set item = UserForm1.ListView1.ListItems.Add(1, , Sheets("Ç·").Cells(r, "A").Value) 'Ç·
+         item.ListSubItems.Add , , Sheets("Ç·").Cells(r, "B").Value                'Ã¤
+         item.ListSubItems.Add , , Sheets("Ç·").Cells(r, "E").Value                'Ç·Ú» 'Äª
+         item.ListSubItems.Add , , Sheets("Ç·").Cells(r, "F").Value                'Ã·
+         item.ListSubItems.Add , , Sheets("Ç·").Cells(r, "G").Value                'È¸
 
-         Set item = UserForm1.ListView2.ListItems.Add(1, , Sheets("ÀÇ·ÚÁ¤º¸").Cells(r, "H").Value) '½Ã·áÃ¤ÃëÀÚ-1
-         item.ListSubItems.Add , , Sheets("ÀÇ·ÚÁ¤º¸").Cells(r, "I").Value                '½Ã·áÃ¤ÃëÀÚ-2
-         item.ListSubItems.Add , , Sheets("ÀÇ·ÚÁ¤º¸").Cells(r, "J").Value                '¹æ·ùÇã¿ë±âÁØ
-         item.ListSubItems.Add , , Sheets("ÀÇ·ÚÁ¤º¸").Cells(r, "K").Value                'Á¤µµº¸ÁõÀ¯¹«
-         item.ListSubItems.Add , , Sheets("ÀÇ·ÚÁ¤º¸").Cells(r, "L").Value                'ºÐ¼®Á¾·áÀÏ
+         Set item = UserForm1.ListView2.ListItems.Add(1, , Sheets("Ç·").Cells(r, "H").Value) 'Ã·Ã¤-1
+         item.ListSubItems.Add , , Sheets("Ç·").Cells(r, "I").Value                'Ã·Ã¤-2
+         item.ListSubItems.Add , , Sheets("Ç·").Cells(r, "J").Value                '
+         item.ListSubItems.Add , , Sheets("Ç·").Cells(r, "K").Value                '
+         item.ListSubItems.Add , , Sheets("Ç·").Cells(r, "L").Value                'Ð¼
 
          For T = Range("N1").Column To Range("BT1").Column
-         If Sheets("ÀÇ·ÚÁ¤º¸").Cells(r, T) <> "" Then
-         Set Titem = UserForm1.ListView3.ListItems.Add(UserForm1.ListView3.ListItems.Count + 1, , Sheets("ÀÇ·ÚÁ¤º¸").Cells(1, T))
-                     Titem.ListSubItems.Add , , "-"             'Subitem-1 ºÐ¼®°á°ú
-                     Titem.ListSubItems.Add , , "-"             'Subitem-2 ºÐ¼®¹æ¹ý
-                     Titem.ListSubItems.Add , , "-"             'Subitem-3 ºÐ¼®Àåºñ
-                     Titem.ListSubItems.Add , , "-"             'Subitem-4 ¹ýÀû±âÁØ
+         If Sheets("Ç·").Cells(r, T) <> "" Then
+         Set Titem = UserForm1.ListView3.ListItems.Add(UserForm1.ListView3.ListItems.Count + 1, , Sheets("Ç·").Cells(1, T))
+                     Titem.ListSubItems.Add , , "-"             'Subitem-1 Ð¼
+                     Titem.ListSubItems.Add , , "-"             'Subitem-2 Ð¼
+                     Titem.ListSubItems.Add , , "-"             'Subitem-3 Ð¼
+                     Titem.ListSubItems.Add , , "-"             'Subitem-4 
                      Titem.ListSubItems.Add , , "-"             'Subitem-5 Method NO
                      Titem.ListSubItems.Add , , "-"             'Subitem-6 instrument NO
-                     Titem.ListSubItems.Add , , "-"             'Subitem-7 ºÐ¼®´ã´çÀÚ
+                     Titem.ListSubItems.Add , , "-"             'Subitem-7 Ð¼
          End If
          Next T
          '===============================================================================================
@@ -110,15 +110,15 @@ If Not UserForm1.TreeView1.SelectedItem Is Nothing Then
 
         Next r
 
-        Call ½ÃÇè¹ýÃ£±â
-        UserForm1.ListView3.ColumnHeaders(1).text = "ÀÇ·ÚÇ×¸ñ (ÃÑ " & UserForm1.ListView3.ListItems.Count & "°Ç) "
+        Call Ã£
+        UserForm1.ListView3.ColumnHeaders(1).text = "Ç·×¸ ( " & UserForm1.ListView3.ListItems.Count & ") "
     Else
-        UserForm1.Label1.Caption = "¸øÃ£°Î½À´Ï´Ù"
+        UserForm1.Label1.Caption = "Ã£Î½Ï´"
     End If
 
-ºÐ¼®°á°úºÒ·¯¿À±â
-¹æ·ù±âÁØÃ£±â
-¹ýÁ¤¾ç½Ä
+Ð¼Ò·
+Ã£
+
 UserForm1.TreeView1.Nodes(xxx).ForeColor = RGB(0, 0, 128)
 ActiveSheet.PrintOut
 End If

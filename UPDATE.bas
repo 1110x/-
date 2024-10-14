@@ -13,7 +13,7 @@ Sub UpdateAllModulesAndFormsFromGitHub()
     
     ' 모든 파일을 다운로드하고 업데이트
     For i = LBound(fileList) To UBound(fileList)
-        ' ByVal로 배열 요소를 함수에 전달
+        ' 파일명 직접 전달
         DownloadAndUpdateComponentFromGitHub fileList(i)
     Next i
 End Sub
@@ -37,7 +37,11 @@ Sub DownloadAndUpdateComponentFromGitHub(ByVal fileName As String)
     ' HTTP 요청 성공 시 처리
     If http.Status = 200 Then
         fileData = http.responseText
-        filePath = ThisWorkbook.Path & "\" & fileName
+        ' 파일 저장 경로 설정
+        filePath = "C:\Users\ironu\OneDrive\바탕 화면\" & fileName ' 경로를 명시적으로 설정
+        
+        ' 파일 경로 디버깅 출력
+        Debug.Print "Saving to: " & filePath
         
         ' 파일 저장
         Dim fileNum As Integer

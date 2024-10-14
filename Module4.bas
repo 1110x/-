@@ -1,82 +1,83 @@
 Attribute VB_Name = "Module4"
+癤풞ttribute VB_Name = "Module4"
 Dim c As Integer
 
-Sub Ƿ_ϰ()
+Sub 퓐_構()
 For c = Columns("B").Column To Columns("AY").Column
-Sheets("ǷԷ").Cells(2, c) = Sheets("ǷԷ").Cells(2, "B")
+Sheets("퓐韜").Cells(2, c) = Sheets("퓐韜").Cells(2, "B")
 Next c
 End Sub
-Sub ä_ϰ()
+Sub 채_構()
 For c = Columns("B").Column To Columns("AY").Column
-Sheets("ǷԷ").Cells(3, c) = Sheets("ǷԷ").Cells(3, "B")
+Sheets("퓐韜").Cells(3, c) = Sheets("퓐韜").Cells(3, "B")
 Next c
 End Sub
-Sub äð_ϰ()
+Sub 채챨_構()
     Dim ST As Date
     Dim AT As Date
 '    Dim c As Integer
 
-    ST = Sheets("ǷԷ").Cells(4, "B").Value
+    ST = Sheets("퓐韜").Cells(4, "B").Value
     For c = Columns("C").Column To Columns("AY").Column
         AT = AT + DateAdd("n", 10, TimeValue("00:00"))
-        Sheets("ǷԷ").Cells(4, c).Value = ST + AT
+        Sheets("퓐韜").Cells(4, c).Value = ST + AT
     Next c
 End Sub
-Sub Ƿڻ_ϰ()
+Sub 퓐迷_構()
 For c = Columns("B").Column To Columns("AY").Column
- Sheets("ǷԷ").Cells(5, c) = Sheets("ǷԷ").Cells(5, "B")
+ Sheets("퓐韜").Cells(5, c) = Sheets("퓐韜").Cells(5, "B")
 Next c
 End Sub
 
-Sub ȸ_ϰ()
+Sub 회_構()
 
 For c = Columns("B").Column To Columns("AY").Column
-Sheets("ǷԷ").Cells(8, c) = Sheets("ǷԷ").Cells(8, "B")
+Sheets("퓐韜").Cells(8, c) = Sheets("퓐韜").Cells(8, "B")
 Next c
 
 End Sub
-Sub ÷ä_ϰ()
+Sub 첨채_構()
 For c = Columns("B").Column To Columns("AY").Column
-Sheets("ǷԷ").Cells(9, c) = Sheets("ǷԷ").Cells(9, "B")
-Sheets("ǷԷ").Cells(10, c) = Sheets("ǷԷ").Cells(10, "B")
+Sheets("퓐韜").Cells(9, c) = Sheets("퓐韜").Cells(9, "B")
+Sheets("퓐韜").Cells(10, c) = Sheets("퓐韜").Cells(10, "B")
 Next c
 End Sub
-Sub _ϰ()
+Sub _構()
 For c = Columns("B").Column To Columns("AY").Column
-Sheets("ǷԷ").Cells(12, c) = Sheets("ǷԷ").Cells(12, "B")
+Sheets("퓐韜").Cells(12, c) = Sheets("퓐韜").Cells(12, "B")
 Next c
 End Sub
-Sub мϷ_ϰ()
+Sub 劇狗_構()
 For c = Columns("B").Column To Columns("AY").Column
-Sheets("ǷԷ").Cells(13, c) = Sheets("ǷԷ").Cells(13, "B")
+Sheets("퓐韜").Cells(13, c) = Sheets("퓐韜").Cells(13, "B")
 Next c
 End Sub
-Sub _ϰ()
+Sub _構()
 For c = Columns("B").Column To Columns("AY").Column
-Sheets("ǷԷ").Cells(14, c) = Sheets("ǷԷ").Cells(14, "B")
+Sheets("퓐韜").Cells(14, c) = Sheets("퓐韜").Cells(14, "B")
 Next c
 End Sub
-Sub Ƿ׸_ϰ()
+Sub 퓐琉_構()
 
 For c = Columns("B").Column To Columns("AY").Column
     For r = 15 To 75
-        Sheets("ǷԷ").Cells(r, c) = Sheets("ǷԷ").Cells(r, "B")
+        Sheets("퓐韜").Cells(r, c) = Sheets("퓐韜").Cells(r, "B")
     Next r
 Next c
 
 End Sub
 
 Sub ClearX()
-Sheets("ǷԷ").Range("B2:AY5,B7:AY100") = ""
+Sheets("퓐韜").Range("B2:AY5,B7:AY100") = ""
 End Sub
-Sub ǷԷ_()
+Sub 퓐韜_()
 
 
 
 For c = Columns("B").Column To Columns("AY").Column
-X = Sheets("Ƿ").Cells(Sheets("Ƿ").Rows.Count, "A").End(xlUp).row + 1
+X = Sheets("퓐").Cells(Sheets("퓐").Rows.Count, "A").End(xlUp).row + 1
  For r = 2 To 75
-    Sheets("Ƿ").Cells(X, r - 1) = Sheets("ǷԷ").Cells(r, c)
+    Sheets("퓐").Cells(X, r - 1) = Sheets("퓐韜").Cells(r, c)
  Next r
 
 Next c

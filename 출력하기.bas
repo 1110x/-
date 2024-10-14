@@ -1,32 +1,32 @@
-Attribute VB_Name = "ϱ"
+Attribute VB_Name = "출력하기"
 Sub SetPrintPageSettings()
     Dim lastRow As Long
     Dim lastColumn As Long
     Dim RowsPerPage As Long
     Dim TotalPages As Long
 
-    '    ãϴ.
+    ' 마지막 행과 열을 찾습니다.
     lastRow = Cells.Find(what:="*", SearchOrder:=xlByRows, SearchDirection:=xlPrevious).row
     lastColumn = Cells.Find(what:="*", SearchOrder:=xlByColumns, SearchDirection:=xlPrevious).Column
 
-    '   µ   մϴ.
-    RowsPerPage = 42 ' ÷ 42   ߽ϴ.
+    ' 한 페이지당 출력될 행 수를 계산합니다.
+    RowsPerPage = 42 ' 예시로 42행을 한 페이지로 설정했습니다.
 
-    '    մϴ.
+    ' 총 페이지 수를 계산합니다.
     TotalPages = Application.WorksheetFunction.Ceiling(lastRow / RowsPerPage, 1)
 
-    '   մϴ.
+    ' 페이지 설정을 합니다.
     With ActiveSheet.PageSetup
-        .Orientation = xlPortrait '   ( )
-        .Zoom = False '/Ȯ ɼ 
-        .FitToPagesWide = 1 ' ʺ ߱
-        .FitToPagesTall = TotalPages '     
-        '߰   ϴ  ⿡ ߰
+        .Orientation = xlPortrait '페이지 방향 설정 (수직 방향)
+        .Zoom = False '축소/확대 옵션 해제
+        .FitToPagesWide = 1 '페이지 너비에 맞추기
+        .FitToPagesTall = TotalPages '총 페이지 수로 페이지 높이 설정
+        '추가적인 페이지 설정을 원하는 경우 여기에 추가
     End With
 End Sub
 
 
-Sub ι鿩()
+Sub 붉은색으로물들여라()
 UserForm1.TreeView1.SelectedItem.ForeColor = RGB(255, 0, 0)
 UserForm1.TreeView1.SelectedItem.Selected = False
 
@@ -55,8 +55,8 @@ If r > 1 Then
     Next X
     
 For RED = s To E
-    If Not UserForm1.TreeView1.Nodes(RED).Parent Is Nothing Then ' θ 尡  쿡 ۾ 
-        If Not UserForm1.TreeView1.Nodes(RED).Children Then ' ڽ 尡  쿡 ۾ 
+    If Not UserForm1.TreeView1.Nodes(RED).Parent Is Nothing Then ' 부모 노드가 없는 경우에만 작업 수행
+        If Not UserForm1.TreeView1.Nodes(RED).Children Then ' 자식 노드가 없는 경우에만 작업 수행
             UserForm1.TreeView1.Nodes(RED).ForeColor = RGB(255, 0, 0)
         End If
     End If

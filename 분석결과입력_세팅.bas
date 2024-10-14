@@ -1,12 +1,12 @@
-Attribute VB_Name = "мԷ_"
-Sub мԷ¸Ʈǹ()
+Attribute VB_Name = "분석결과입력_세팅"
+Sub 분석결과입력리스트의법적기준()
 
     Dim targetDate As Date
     Dim targetObj As String
     Dim ws As Worksheet
     Dim FoundCell As Range
     Dim currentCell As Range
-    Dim 
+    Dim 단위
     Dim FullText As String
     Dim ExtractedText As String
     Dim BracketPosition As Integer
@@ -16,39 +16,39 @@ Sub мԷ¸Ʈǹ()
    
 
 
-    ' ϴ ۾  Ʈ 
-    Set ws = ThisWorkbook.Sheets("Ƿ") ' Ʈ ̸ ڽ Ʈ ̸ ° 
+    ' 원하는 작업을 할 시트를 지정
+    Set ws = ThisWorkbook.Sheets("의뢰정보") ' 시트 이름을 자신의 시트 이름에 맞게 수정
 
-    ' Find ޼带 Ͽ ġϴ  ã
+    ' Find 메서드를 사용하여 일치하는 셀을 찾음
     Set FoundCell = ws.Columns(1).Find(what:=targetDate, LookIn:=xlValues, lookat:=xlWhole)
     Set RealSampList = UserForm1.ListView4.ListItems(UserForm1.ListView4.ListItems.Count).ListSubItems(2)
-    BracketPosition = InStr(RealSampList, "")
+    BracketPosition = InStr(RealSampList, "】")
     
     If BracketPosition > 0 Then
        ExtractedText = Mid(RealSampList, BracketPosition + 1)
     Else
-       ExtractedText = "ش ڰ ϴ."
+       ExtractedText = "해당 문자가 없습니다."
     End If
 
     
     
-    Set ws = ThisWorkbook.Sheets("Ƿ") ' Ʈ ̸ ڽ Ʈ ̸ ° 
+    Set ws = ThisWorkbook.Sheets("의뢰정보") ' 시트 이름을 자신의 시트 이름에 맞게 수정
 
     searchValue = UserForm1.ListView4.ListItems(UserForm1.ListView4.ListItems.Count).ListSubItems(1).text
     Set FoundCell = ws.Columns(1).Find(what:=CDate(searchValue), LookIn:=xlValues, lookat:=xlWhole)
 
 
 
-    ' ã  ְ, ÷ ġϸ ش   ȣ 
+    ' 찾은 셀이 있고, 시료명이 일치하면 해당 셀의 행 번호를 출력
     Do While Not FoundCell Is Nothing
 
         If FoundCell.Offset(0, 5).Value = ExtractedText Then
             
            UserForm1.ListView4.ListItems(UserForm1.ListView4.ListItems.Count).ListSubItems(3).text = FoundCell.Offset(0, 9)
-            Exit Do ' ġϴ  ãǷ ݺ 
+            Exit Do ' 일치하는 셀을 찾았으므로 반복문 종료
         End If
 
-        ' ġ   ġϴ  ã    ˻
+        ' 일치하지 않으면 다음 일치하는 셀을 찾기 위해 다음 셀 검색
         Set FoundCell = ws.Columns(1).FindNext(FoundCell)
         
         
@@ -56,10 +56,10 @@ Sub мԷ¸Ʈǹ()
     Loop
     
 End Sub
-Sub ۾() '÷ Ʈ ̵
+Sub 작업시작() '시료명 리스트 이동
 Application.ScreenUpdating = False
 Dim TX As Worksheet
-Set TX = Sheets("м Է")
+Set TX = Sheets("분석결과 입력")
 TX.Activate
 TX.Range("A3:BM100") = ""
 If UserForm1.ListView4.ListItems.Count > 0 Then
@@ -74,11 +74,11 @@ Next r
 End If
 Application.ScreenUpdating = True
 End Sub
-Sub ۾2() 'м׸
+Sub 작업시작2() '분석항목
 Application.ScreenUpdating = False
 
 Dim TX As Worksheet
-Set TX = Sheets("м Է")
+Set TX = Sheets("분석결과 입력")
 TX.Activate
 TX.Range("E2:BM2") = " "
 
@@ -98,7 +98,7 @@ Next N
 
 Application.ScreenUpdating = True
 End Sub
-Sub мڷԷ()
+Sub 분석결과자료최종입력()
     Dim TX As Worksheet
     Dim r As Long
     Dim text As String
@@ -107,45 +107,45 @@ Sub мڷԷ()
     Dim textToExtract As String
     Dim lengthTextToExtract As Long
     
-    '  ũƮ 
-    Set TX = Sheets("м Է")
+    ' 현재 워크시트 설정
+    Set TX = Sheets("분석결과 입력")
     
-    ' Ͱ ִ   ݺ (100  ͱ)
+    ' 데이터가 있는 셀 범위 반복 (100행부터 마지막 데이터까지)
     For r = 2 To TX.Cells(100, "C").End(xlUp).row
         text = TX.Cells(r, "C").Value
         
-        ' ȣ ۰  ġ ã
-        startPos = InStr(text, "")
-        endPos = InStr(text, "")
+        ' 대괄호의 시작과 끝 위치 찾기
+        startPos = InStr(text, "【")
+        endPos = InStr(text, "】")
         
         If startPos > 0 And endPos > startPos Then
             textToExtract = Mid(text, endPos + 1)
             
-            '   ۼ
-''''            TX.Cells(r, "D").Value = Trim(textToExtract) '  D Է
+            ' 결과를 셀에 작성
+''''            TX.Cells(r, "D").Value = Trim(textToExtract) ' 결과를 D열에 입력
 
                  
 
             
             Debug.Print Trim(textToExtract)
         Else
-            ' ȣ  
-'''            TX.Cells(r, "D").Value = "ȣ "
+            ' 대괄호가 없는 경우
+'''            TX.Cells(r, "D").Value = "대괄호가 없음"
         End If
     Next r
 End Sub
 
 Function ExtractDesiredText(text As String) As String
-    ' ϴ ؽƮ ϴ  ߰մϴ.
-    '  , Ư ڿ Ե ؽƮ ȯϵ   ֽϴ.
+    ' 원하는 텍스트를 추출하는 로직을 추가합니다.
+    ' 예를 들어, 특정 문자열이 포함된 텍스트를 반환하도록 수정할 수 있습니다.
     
-    '  ÷ ü ؽƮ ״ ȯϰ ֽϴ.
+    ' 현재는 예시로 전체 텍스트를 그대로 반환하고 있습니다.
     ExtractDesiredText = text
     
-    ' ߰  ʿ信  ۼϼ.
+    ' 추가 로직 필요에 따라 작성하세요.
 End Function
 
-' ListView4 ߺ ׸ ˻
+' ListView4에서 중복 항목 검사
 Function IsInListView(ByVal NodeText As String, ByVal parentNodeText As String) As Boolean
     Dim i As Integer
     Dim ListItem As ListItem
@@ -160,38 +160,38 @@ Function IsInListView(ByVal NodeText As String, ByVal parentNodeText As String) 
     Next i
 End Function
 
-Sub мXԷϱ()
+Sub 분석X결과입력하기()
     Dim targetDate As Date
     Dim targetObj As String
     Dim FoundCell As Range
     Dim currentCell As Range
-    Dim 
+    Dim 단위
     Dim RX As Worksheet
     Dim TX As Worksheet
     Dim XX As Range
     
     
-    Set RX = Sheets("м Է")
-    Set TX = ThisWorkbook.Sheets("мڷ") ' Ʈ ̸ ڽ Ʈ ̸ ° 
+    Set RX = Sheets("분석결과 입력")
+    Set TX = ThisWorkbook.Sheets("분석결과자료") ' 시트 이름을 자신의 시트 이름에 맞게 수정
     
    Application.ScreenUpdating = False
 
-   For r = 3 To Sheets("м Է").Cells(2, 3).End(xlDown).row
+   For r = 3 To Sheets("분석결과 입력").Cells(2, 3).End(xlDown).row
    
 
-    ' ڷκ ¥ ÷ 
-    targetDate = Format(Sheets("м Է").Cells(r, "B"), "YYYY-MM-DD")
-    targetObj = Right(RX.Cells(r, "C"), Len(RX.Cells(r, "C")) - InStr(RX.Cells(r, "C"), ""))
+    ' 사용자로부터 날짜와 시료명을 얻어옴
+    targetDate = Format(Sheets("분석결과 입력").Cells(r, "B"), "YYYY-MM-DD")
+    targetObj = Right(RX.Cells(r, "C"), Len(RX.Cells(r, "C")) - InStr(RX.Cells(r, "C"), "】"))
        
 
-    ' ϴ ۾  Ʈ 
+    ' 원하는 작업을 할 시트를 지정
 
 
-    ' Find ޼带 Ͽ ġϴ  ã
+    ' Find 메서드를 사용하여 일치하는 셀을 찾음
     Set FoundCell = TX.Columns(1).Find(what:=targetDate, LookIn:=xlValues, lookat:=xlWhole)
 
 
-    ' ã  ְ, ÷ ġϸ ش   ȣ 
+    ' 찾은 셀이 있고, 시료명이 일치하면 해당 셀의 행 번호를 출력
     Do While Not FoundCell Is Nothing
 
         If FoundCell.Offset(0, 1).Value = targetObj Then
@@ -202,7 +202,7 @@ Sub мXԷϱ()
                 Set XX = TX.Rows(1).Find(what:=RX.Cells(2, H).Value, lookat:=xlWhole)
                  
                  If XX <> "" Then
-                   A = MsgBox(XX.Value & " Էµ  [" & TX.Cells(X, XX.Column) & "]  [" & RX.Cells(r, H) & "]  Ͻðڽϱ", vbYesNo, RX.Cells(r, "C") & "ڷ Ȯ ")
+                   A = MsgBox(XX.Value & "의 기존입력된 결과값 [" & TX.Cells(X, XX.Column) & "] 에서 [" & RX.Cells(r, H) & "] 로 변경하시겠습니까", vbYesNo, RX.Cells(r, "C") & "기존자료 확인 ♡")
                     If A = vbYes Then
                     TX.Cells(X, XX.Column) = RX.Cells(r, H)
                     End If
@@ -217,17 +217,17 @@ Sub мXԷϱ()
               
             Next H
 
-            Exit Do ' ġϴ  ãǷ ݺ 
+            Exit Do ' 일치하는 셀을 찾았으므로 반복문 종료
         End If
 
-        ' ġ   ġϴ  ã    ˻
+        ' 일치하지 않으면 다음 일치하는 셀을 찾기 위해 다음 셀 검색
         Set FoundCell = TX.Columns(1).FindNext(FoundCell)
     Loop
 
-    '   Ȯ ġϴ  ã   ޽ 
+    ' 모든 셀을 확인했지만 일치하는 셀을 찾지 못한 경우 메시지 출력
     If FoundCell Is Nothing Then
         Application.ScreenUpdating = True
-        Debug.Print "ġϴ ¥ ã  ų ÷ ġ ʽϴ."
+        Debug.Print "일치하는 날짜를 찾을 수 없거나 시료명이 일치하지 않습니다."
     End If
     
 

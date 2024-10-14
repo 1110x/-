@@ -1,5 +1,5 @@
-Attribute VB_Name = "Ư"
-Sub ƯϰԷ()
+Attribute VB_Name = "특정수질견적"
+Sub 특정수질견적일괄입력()
     Dim ws As Worksheet
     Dim cell As Range
     Dim item As String
@@ -11,14 +11,14 @@ Sub ƯϰԷ()
     Dim i As Long
     Dim lastRow As Long
     
-    ' UserForm1 ListBox1  ComboBox1 
+    ' UserForm1의 ListBox1 및 ComboBox1 참조
     Set listBox = UserForm1.ListBox1
     Set comboBox = UserForm1.ComboBox1
     
-    ' "ܰ" Ʈ 
-    Set ws = ThisWorkbook.Sheets("ܰ")
+    ' "견적단가" 시트 참조
+    Set ws = ThisWorkbook.Sheets("견적단가")
     
-    ' ComboBox  ׸ شϴ ÷ ã
+    ' ComboBox에서 선택한 항목에 해당하는 컬럼 찾기
     Dim selectedColumn As Integer
     selectedColumn = 0
     For i = 1 To ws.Cells(1, ws.Columns.Count).End(xlToLeft).Column
@@ -29,15 +29,15 @@ Sub ƯϰԷ()
     Next i
     
     If selectedColumn = 0 Then
-        MsgBox "ComboBox  ׸ شϴ ÷ ã  ϴ.", vbExclamation
+        MsgBox "ComboBox에서 선택한 항목에 해당하는 컬럼을 찾을 수 없습니다.", vbExclamation
         Exit Sub
     End If
     
-    ' D2:D33    ݺ
+    ' D2:D33 범위의 각 셀을 반복
     For Each cell In ws.Range("D2:D33")
         item = cell.Value
         
-        ' ListBox1 ߺ Ȯ
+        ' ListBox1에서 중복 확인
         IsDuplicate = False
         For i = 0 To listBox.ListCount - 1
             If listBox.List(i, 1) = item Then
@@ -46,13 +46,13 @@ Sub ƯϰԷ()
             End If
         Next i
         
-        ' ߺ ƴϸ ListBox1 ߰
+        ' 중복이 아니면 ListBox1에 추가
         If Not IsDuplicate And item <> "" Then
-            ' θ   ݾ  
-            parentNode = ws.Cells(cell.row, 3).Value ' θ 
-            amount = ws.Cells(cell.row, selectedColumn).Value '  ܰ
+            ' 부모 노드 및 금액을 가져오는 예제
+            parentNode = ws.Cells(cell.row, 3).Value ' 부모 노드
+            amount = ws.Cells(cell.row, selectedColumn).Value ' 견적 단가
             
-            ' ListBox1 ׸ ߰
+            ' ListBox1에 항목 추가
             listBox.AddItem
             listBox.List(listBox.ListCount - 1, 0) = parentNode
             listBox.List(listBox.ListCount - 1, 1) = item

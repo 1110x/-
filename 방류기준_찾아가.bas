@@ -1,12 +1,12 @@
-Attribute VB_Name = "_ãư"
-Sub 3_Click()
+Attribute VB_Name = "방류기준_찾아가"
+Sub 단추3_Click()
     Dim TX As Worksheet
     Dim SX As Worksheet
     Dim TR As Range
     Dim r As Long
     
-    Set TX = Sheets("ǥ ")
-    Set SX = Sheets("мǷ Է")
+    Set TX = Sheets("방류기준표 정리")
+    Set SX = Sheets("분석의뢰 입력")
 
     ' Loop through each row starting from row 3
     For r = 3 To SX.Cells(2, 2).End(xlDown).row

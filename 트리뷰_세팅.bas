@@ -1,4 +1,4 @@
-Attribute VB_Name = "Ʈ_"
+Attribute VB_Name = "트리뷰_세팅"
 Sub LoadTreeViewWithData1()
     Dim ws As Worksheet
     Dim treeView As Object
@@ -8,19 +8,19 @@ Sub LoadTreeViewWithData1()
     Dim currentDate As Variant
     Application.ScreenUpdating = False
     
-    ' "Ƿ" Ʈ ãϴ. Ʈ ̸ ° ּ.
-    Set ws = ThisWorkbook.Sheets("Ƿ")
+    ' "의뢰정보" 시트를 찾습니다. 시트 이름에 맞게 수정해주세요.
+    Set ws = ThisWorkbook.Sheets("의뢰정보")
     
-    ' Ʈ並 ߰մϴ. "MSComctlLib.TreeCtrl"  ߰ؾ մϴ.
+    ' 트리뷰를 추가합니다. "MSComctlLib.TreeCtrl"를 참조 추가해야 합니다.
     Set treeView = UserForm1.TreeView1
 
-    ' Ʈ ʱȭ
+    ' 트리뷰 초기화
     treeView.Nodes.Clear
     
-    '   ãϴ.
+    ' 마지막 행을 찾습니다.
     lastRow = ws.Cells(ws.Rows.Count, "A").End(xlUp).row
     
-    ' ¥   
+    ' 날짜를 기준으로 내림차순 정렬
     ws.Sort.SortFields.Clear
     ws.Sort.SortFields.Add Key:=Range("A2:A" & lastRow), SortOn:=xlSortOnValues, Order:=xlDescending, DataOption:=xlSortNormal
     With ws.Sort
@@ -32,20 +32,20 @@ Sub LoadTreeViewWithData1()
         .Apply
     End With
     
-    '  ¥ θ  ڽ 带 ߰
+    ' 각 날짜별로 부모 노드와 자식 노드를 추가
     For i = 2 To lastRow
-        '  ¥ ɴϴ.
+        ' 현재 날짜를 가져옵니다.
         currentDate = ws.Cells(i, 1).Value
         
-        ' θ 尡 ų  ¥  ¥ ٸ  ο θ 带 ߰
+        ' 부모 노드가 없거나 현재 날짜와 이전 날짜가 다를 경우 새로운 부모 노드를 추가
         If parentNode Is Nothing Or currentDate <> ws.Cells(i - 1, 1).Value Then
             Set parentNode = treeView.Nodes.Add(, , "ParentKey" & i, currentDate)
             parentNode.ForeColor = RGB(0, 128, 0)
         End If
         
         Dim childNode As Object
-        Set childNode = treeView.Nodes.Add(parentNode.index, tvwChild, "ChildKey" & i, "" & ws.Cells(i, "E").text & "" & ws.Cells(i, "F").Value)
-        ' ڽ  ؽƮ  Ķ 
+        Set childNode = treeView.Nodes.Add(parentNode.index, tvwChild, "ChildKey" & i, "【" & ws.Cells(i, "E").text & "】" & ws.Cells(i, "F").Value)
+        ' 자식 노드 텍스트의 색상을 파란색으로 설정
         childNode.ForeColor = RGB(0, 0, 128)
     Next i
     
@@ -54,7 +54,7 @@ Sub LoadTreeViewWithData1()
         treeView.Nodes(i).Expanded = False
     Next i
 
-    ' ó 20 θ 常  · 
+    ' 처음 20개의 부모 노드만 펼쳐진 상태로 설정
     For i = 1 To 60
         If treeView.Nodes(i).Children > 0 Then
             treeView.Nodes(i).Expanded = True
@@ -80,56 +80,56 @@ Sub LoadTreeViewWithData3()
     
 
     
-    ' TreeView2 Ʈ 
+    ' TreeView2 컨트롤 참조
     Set treeView = UserForm1.TreeView2
     
-    ' Ʈ ʱȭ
+    ' 트리뷰 초기화
     treeView.Nodes.Clear
     
-    ' "ܰ" Ʈ 
-    Set ws = ThisWorkbook.Sheets("ܰ")
+    ' "견적단가" 시트 참조
+    Set ws = ThisWorkbook.Sheets("견적단가")
 
-    ' C    ã
+    ' C 열의 마지막 행 찾기
     lastRow = ws.Cells(ws.Rows.Count, "C").End(xlUp).row
 
-    ' ųʸ ʱȭ
+    ' 딕셔너리 초기화
     Set parentDict = CreateObject("Scripting.Dictionary")
 
-    ' C2:C41 θ  ߰  ߺ ó
+    ' C2:C41의 부모 노드 추가 및 중복 처리
     For i = 2 To lastRow
         ParentItem = ws.Cells(i, 3).Value
 
-        ' θ 尡 ̹ ųʸ ִ Ȯ
+        ' 부모 노드가 이미 딕셔너리에 있는지 확인
         If Not parentDict.exists(ParentItem) Then
-            ' θ 尡  ߰
+            ' 부모 노드가 없으면 추가
             Set parentNode = treeView.Nodes.Add(, , "P" & i, ParentItem)
             parentDict.Add ParentItem, parentNode
         Else
-            ' θ 尡  
+            ' 부모 노드가 있으면 가져오기
             Set parentNode = parentDict(ParentItem)
         End If
 
-        ' D2:D42   ߰
+        ' D2:D42의 하위 노드 추가
         childItem = ws.Cells(i, 4).Value
         If childItem <> "" Then
             treeView.Nodes.Add parentNode, tvwChild, "C" & i, childItem
         End If
     Next i
 
-    ' "Ưع" θ  ߰
+    ' "특정수질유해물질" 부모 노드 추가
     Dim specificNode As MSComctlLib.Node
-    If Not parentDict.exists("Ưع") Then
-        Set specificNode = treeView.Nodes.Add(, , "P_Special", "Ưع")
-        parentDict.Add "Ưع", specificNode
+    If Not parentDict.exists("특정수질유해물질") Then
+        Set specificNode = treeView.Nodes.Add(, , "P_Special", "특정수질유해물질")
+        parentDict.Add "특정수질유해물질", specificNode
     Else
-        Set specificNode = parentDict("Ưع")
+        Set specificNode = parentDict("특정수질유해물질")
     End If
     
     For i = 1 To treeView.Nodes.Count
         treeView.Nodes(i).Expanded = False
     Next i
 
-    ' ó 20 θ 常  · 
+    ' 처음 20개의 부모 노드만 펼쳐진 상태로 설정
     For i = 1 To 60
         If treeView.Nodes(i).Children > 0 Then
             treeView.Nodes(i).Expanded = True
@@ -147,19 +147,19 @@ Sub LoadTreeViewWithData2()
     Dim currentDate As Variant
     Application.ScreenUpdating = False
     
-    ' "Ƿ" Ʈ ãϴ. Ʈ ̸ ° ּ.
-    Set ws = ThisWorkbook.Sheets("")
+    ' "의뢰정보" 시트를 찾습니다. 시트 이름에 맞게 수정해주세요.
+    Set ws = ThisWorkbook.Sheets("견적발행정보")
     
-    ' Ʈ並 ߰մϴ. "MSComctlLib.TreeCtrl"  ߰ؾ մϴ.
+    ' 트리뷰를 추가합니다. "MSComctlLib.TreeCtrl"를 참조 추가해야 합니다.
     Set treeView = UserForm1.TreeView3
     
-    ' Ʈ ʱȭ
+    ' 트리뷰 초기화
     treeView.Nodes.Clear
     
-    '   ãϴ.
+    ' 마지막 행을 찾습니다.
     lastRow = ws.Cells(ws.Rows.Count, "A").End(xlUp).row
     
-    ' ¥   
+    ' 날짜를 기준으로 내림차순 정렬
     ws.Sort.SortFields.Clear
     ws.Sort.SortFields.Add Key:=Range("A3:A" & lastRow), SortOn:=xlSortOnValues, Order:=xlDescending, DataOption:=xlSortNormal
     With ws.Sort
@@ -171,27 +171,27 @@ Sub LoadTreeViewWithData2()
         .Apply
     End With
     
-    '  ¥ θ  ڽ 带 ߰
+    ' 각 날짜별로 부모 노드와 자식 노드를 추가
     For i = 3 To lastRow
-        '  ¥ ɴϴ.
+        ' 현재 날짜를 가져옵니다.
         currentDate = ws.Cells(i, 1).Value
         
-        ' θ 尡 ų  ¥  ¥ ٸ  ο θ 带 ߰
+        ' 부모 노드가 없거나 현재 날짜와 이전 날짜가 다를 경우 새로운 부모 노드를 추가
         If parentNode Is Nothing Or currentDate <> ws.Cells(i - 1, 1).Value Then
             Set parentNode = treeView.Nodes.Add(, , "ParentKey" & i, currentDate)
             parentNode.ForeColor = RGB(0, 128, 0)
         End If
         
         Dim childNode As Object
-        Set childNode = treeView.Nodes.Add(parentNode.index, tvwChild, "ChildKey" & i, "" & ws.Cells(i, "C").text & "" & ws.Cells(i, "H").Value)
-        ' ڽ  ؽƮ  Ķ 
+        Set childNode = treeView.Nodes.Add(parentNode.index, tvwChild, "ChildKey" & i, "【" & ws.Cells(i, "C").text & "】" & ws.Cells(i, "H").Value)
+        ' 자식 노드 텍스트의 색상을 파란색으로 설정
         childNode.ForeColor = RGB(0, 0, 128)
     Next i
     For i = 1 To treeView.Nodes.Count
         treeView.Nodes(i).Expanded = False
     Next i
 
-    ' ó 20 θ 常  · 
+    ' 처음 20개의 부모 노드만 펼쳐진 상태로 설정
     For i = 1 To 60
         If treeView.Nodes(i).Children > 0 Then
             treeView.Nodes(i).Expanded = True
@@ -210,19 +210,19 @@ Sub LoadTreeViewWithData4()
     Dim currentDate As Variant
     Application.ScreenUpdating = False
     
-    ' "Ƿ" Ʈ ãϴ. Ʈ ̸ ° ּ.
-    Set ws = ThisWorkbook.Sheets("Ƿ")
+    ' "의뢰정보" 시트를 찾습니다. 시트 이름에 맞게 수정해주세요.
+    Set ws = ThisWorkbook.Sheets("의뢰정보")
     
-    ' Ʈ並 ߰մϴ. "MSComctlLib.TreeCtrl"  ߰ؾ մϴ.
+    ' 트리뷰를 추가합니다. "MSComctlLib.TreeCtrl"를 참조 추가해야 합니다.
     Set treeView = UserForm1.TreeView4
 
-    ' Ʈ ʱȭ
+    ' 트리뷰 초기화
     treeView.Nodes.Clear
     
-    '   ãϴ.
+    ' 마지막 행을 찾습니다.
     lastRow = ws.Cells(ws.Rows.Count, "A").End(xlUp).row
     
-    ' ¥   
+    ' 날짜를 기준으로 내림차순 정렬
     ws.Sort.SortFields.Clear
     ws.Sort.SortFields.Add Key:=Range("A2:A" & lastRow), SortOn:=xlSortOnValues, Order:=xlDescending, DataOption:=xlSortNormal
     With ws.Sort
@@ -234,20 +234,20 @@ Sub LoadTreeViewWithData4()
         .Apply
     End With
     
-    '  ¥ θ  ڽ 带 ߰
+    ' 각 날짜별로 부모 노드와 자식 노드를 추가
     For i = 2 To lastRow
-        '  ¥ ɴϴ.
+        ' 현재 날짜를 가져옵니다.
         currentDate = ws.Cells(i, 1).Value
         
-        ' θ 尡 ų  ¥  ¥ ٸ  ο θ 带 ߰
+        ' 부모 노드가 없거나 현재 날짜와 이전 날짜가 다를 경우 새로운 부모 노드를 추가
         If parentNode Is Nothing Or currentDate <> ws.Cells(i - 1, 1).Value Then
             Set parentNode = treeView.Nodes.Add(, , "ParentKey" & i, currentDate)
             parentNode.ForeColor = RGB(0, 128, 0)
         End If
         
         Dim childNode As Object
-        Set childNode = treeView.Nodes.Add(parentNode.index, tvwChild, "ChildKey" & i, "" & ws.Cells(i, "E").text & "" & ws.Cells(i, "F").Value)
-        ' ڽ  ؽƮ  Ķ 
+        Set childNode = treeView.Nodes.Add(parentNode.index, tvwChild, "ChildKey" & i, "【" & ws.Cells(i, "E").text & "】" & ws.Cells(i, "F").Value)
+        ' 자식 노드 텍스트의 색상을 파란색으로 설정
         childNode.ForeColor = RGB(0, 0, 128)
     Next i
     
@@ -256,7 +256,7 @@ Sub LoadTreeViewWithData4()
         treeView.Nodes(i).Expanded = False
     Next i
 
-    ' ó 20 θ 常  · 
+    ' 처음 20개의 부모 노드만 펼쳐진 상태로 설정
     For i = 1 To 60
         If treeView.Nodes(i).Children > 0 Then
             treeView.Nodes(i).Expanded = True
@@ -278,19 +278,19 @@ Sub LoadTreeViewWithData5()
     Dim currentDate As Variant
     Application.ScreenUpdating = False
     
-    ' "Ƿ" Ʈ ãϴ. Ʈ ̸ ° ּ.
-    Set ws = ThisWorkbook.Sheets("Ƿ")
+    ' "의뢰정보" 시트를 찾습니다. 시트 이름에 맞게 수정해주세요.
+    Set ws = ThisWorkbook.Sheets("의뢰정보")
     
-    ' Ʈ並 ߰մϴ. "MSComctlLib.TreeCtrl"  ߰ؾ մϴ.
+    ' 트리뷰를 추가합니다. "MSComctlLib.TreeCtrl"를 참조 추가해야 합니다.
     Set treeView = UserForm1.TreeView5
 
-    ' Ʈ ʱȭ
+    ' 트리뷰 초기화
     treeView.Nodes.Clear
     
-    '   ãϴ.
+    ' 마지막 행을 찾습니다.
     lastRow = ws.Cells(ws.Rows.Count, "A").End(xlUp).row
     
-    ' ¥   
+    ' 날짜를 기준으로 내림차순 정렬
     ws.Sort.SortFields.Clear
     ws.Sort.SortFields.Add Key:=Range("A2:A" & lastRow), SortOn:=xlSortOnValues, Order:=xlDescending, DataOption:=xlSortNormal
     With ws.Sort
@@ -302,20 +302,20 @@ Sub LoadTreeViewWithData5()
         .Apply
     End With
     
-    '  ¥ θ  ڽ 带 ߰
+    ' 각 날짜별로 부모 노드와 자식 노드를 추가
     For i = 2 To lastRow
-        '  ¥ ɴϴ.
+        ' 현재 날짜를 가져옵니다.
         currentDate = ws.Cells(i, 1).Value
         
-        ' θ 尡 ų  ¥  ¥ ٸ  ο θ 带 ߰
+        ' 부모 노드가 없거나 현재 날짜와 이전 날짜가 다를 경우 새로운 부모 노드를 추가
         If parentNode Is Nothing Or currentDate <> ws.Cells(i - 1, 1).Value Then
             Set parentNode = treeView.Nodes.Add(, , "ParentKey" & i, currentDate)
             parentNode.ForeColor = RGB(0, 128, 0)
         End If
         
         Dim childNode As Object
-        Set childNode = treeView.Nodes.Add(parentNode.index, tvwChild, "ChildKey" & i, "" & ws.Cells(i, "E").text & "" & ws.Cells(i, "F").Value)
-        ' ڽ  ؽƮ  Ķ 
+        Set childNode = treeView.Nodes.Add(parentNode.index, tvwChild, "ChildKey" & i, "【" & ws.Cells(i, "E").text & "】" & ws.Cells(i, "F").Value)
+        ' 자식 노드 텍스트의 색상을 파란색으로 설정
         childNode.ForeColor = RGB(0, 0, 128)
     Next i
     
@@ -324,7 +324,7 @@ Sub LoadTreeViewWithData5()
         treeView.Nodes(i).Expanded = False
     Next i
 
-    ' ó 20 θ 常  · 
+    ' 처음 20개의 부모 노드만 펼쳐진 상태로 설정
     For i = 1 To 60
         If treeView.Nodes(i).Children > 0 Then
             treeView.Nodes(i).Expanded = True
@@ -346,19 +346,19 @@ Sub LoadTreeViewWithData6()
     Dim currentDate As Variant
     Application.ScreenUpdating = False
     
-    ' "Ƿ" Ʈ ãϴ. Ʈ ̸ ° ּ.
-    Set ws = ThisWorkbook.Sheets("")
+    ' "의뢰정보" 시트를 찾습니다. 시트 이름에 맞게 수정해주세요.
+    Set ws = ThisWorkbook.Sheets("견적발행정보")
     
-    ' Ʈ並 ߰մϴ. "MSComctlLib.TreeCtrl"  ߰ؾ մϴ.
+    ' 트리뷰를 추가합니다. "MSComctlLib.TreeCtrl"를 참조 추가해야 합니다.
     Set treeView = UserForm1.TreeView6
     
-    ' Ʈ ʱȭ
+    ' 트리뷰 초기화
     treeView.Nodes.Clear
     
-    '   ãϴ.
+    ' 마지막 행을 찾습니다.
     lastRow = ws.Cells(ws.Rows.Count, "A").End(xlUp).row
     
-    ' ¥   
+    ' 날짜를 기준으로 내림차순 정렬
     ws.Sort.SortFields.Clear
     ws.Sort.SortFields.Add Key:=Range("A3:A" & lastRow), SortOn:=xlSortOnValues, Order:=xlDescending, DataOption:=xlSortNormal
     With ws.Sort
@@ -370,27 +370,27 @@ Sub LoadTreeViewWithData6()
         .Apply
     End With
     
-    '  ¥ θ  ڽ 带 ߰
+    ' 각 날짜별로 부모 노드와 자식 노드를 추가
     For i = 3 To lastRow
-        '  ¥ ɴϴ.
+        ' 현재 날짜를 가져옵니다.
         currentDate = ws.Cells(i, 1).Value
         
-        ' θ 尡 ų  ¥  ¥ ٸ  ο θ 带 ߰
+        ' 부모 노드가 없거나 현재 날짜와 이전 날짜가 다를 경우 새로운 부모 노드를 추가
         If parentNode Is Nothing Or currentDate <> ws.Cells(i - 1, 1).Value Then
             Set parentNode = treeView.Nodes.Add(, , "ParentKey" & i, currentDate)
             parentNode.ForeColor = RGB(0, 128, 0)
         End If
         
         Dim childNode As Object
-        Set childNode = treeView.Nodes.Add(parentNode.index, tvwChild, "ChildKey" & i, "" & ws.Cells(i, "C").text & "" & ws.Cells(i, "H").Value)
-        ' ڽ  ؽƮ  Ķ 
+        Set childNode = treeView.Nodes.Add(parentNode.index, tvwChild, "ChildKey" & i, "【" & ws.Cells(i, "C").text & "】" & ws.Cells(i, "H").Value)
+        ' 자식 노드 텍스트의 색상을 파란색으로 설정
         childNode.ForeColor = RGB(0, 0, 128)
     Next i
     For i = 1 To treeView.Nodes.Count
         treeView.Nodes(i).Expanded = False
     Next i
 
-    ' ó 20 θ 常  · 
+    ' 처음 20개의 부모 노드만 펼쳐진 상태로 설정
     For i = 1 To 60
         If treeView.Nodes(i).Children > 0 Then
             treeView.Nodes(i).Expanded = True
@@ -411,36 +411,36 @@ Sub LoadTreeViewWithData7()
     
 
     
-    ' TreeView2 Ʈ 
+    ' TreeView2 컨트롤 참조
     Set treeView = UserForm1.TreeView7
     
-    ' Ʈ ʱȭ
+    ' 트리뷰 초기화
     treeView.Nodes.Clear
     
-    ' "ܰ" Ʈ 
-    Set ws = ThisWorkbook.Sheets("ܰ")
+    ' "견적단가" 시트 참조
+    Set ws = ThisWorkbook.Sheets("견적단가")
 
-    ' C    ã
+    ' C 열의 마지막 행 찾기
     lastRow = ws.Cells(ws.Rows.Count, "C").End(xlUp).row
 
-    ' ųʸ ʱȭ
+    ' 딕셔너리 초기화
     Set parentDict = CreateObject("Scripting.Dictionary")
 
-    ' C2:C41 θ  ߰  ߺ ó
+    ' C2:C41의 부모 노드 추가 및 중복 처리
     For i = 2 To lastRow
         ParentItem = ws.Cells(i, 3).Value
 
-        ' θ 尡 ̹ ųʸ ִ Ȯ
+        ' 부모 노드가 이미 딕셔너리에 있는지 확인
         If Not parentDict.exists(ParentItem) Then
-            ' θ 尡  ߰
+            ' 부모 노드가 없으면 추가
             Set parentNode = treeView.Nodes.Add(, , "P" & i, ParentItem)
             parentDict.Add ParentItem, parentNode
         Else
-            ' θ 尡  
+            ' 부모 노드가 있으면 가져오기
             Set parentNode = parentDict(ParentItem)
         End If
 
-        ' D2:D42   ߰
+        ' D2:D42의 하위 노드 추가
         childItem = ws.Cells(i, 4).Value
         If childItem <> "" Then
             treeView.Nodes.Add parentNode, tvwChild, "C" & i, childItem
@@ -453,7 +453,7 @@ Sub LoadTreeViewWithData7()
         treeView.Nodes(i).Expanded = False
     Next i
 
-    ' ó 20 θ 常  · 
+    ' 처음 20개의 부모 노드만 펼쳐진 상태로 설정
     For i = 1 To 60
         If treeView.Nodes(i).Children > 0 Then
             treeView.Nodes(i).Expanded = True
@@ -479,7 +479,7 @@ Sub SetInitialNodeStates1()
     
     Set treeView = UserForm1.TreeView1
     
-    ' ó 20 θ   ·,     · 
+    ' 처음부터 20개의 부모 노드는 펼쳐진 상태로, 그 이후의 노드는 닫힌 상태로 설정
     For i = 1 To treeView.Nodes.Count
         If i <= 20 Then
             treeView.Nodes(i).Expanded = True
@@ -488,12 +488,12 @@ Sub SetInitialNodeStates1()
         End If
     Next i
 
-    '  带  · 
+    ' 모든 노드를 닫힌 상태로 설정
     For i = 1 To treeView.Nodes.Count
         treeView.Nodes(i).Expanded = False
     Next i
 
-    ' ó 20 θ 常  · 
+    ' 처음 20개의 부모 노드만 펼쳐진 상태로 설정
     For i = 1 To 60
         If treeView.Nodes(i).Children > 0 Then
             treeView.Nodes(i).Expanded = True
@@ -521,59 +521,59 @@ Sub SetInitialNodeStates2()
     
     
 
-    ' TreeView2 Ʈ 
+    ' TreeView2 컨트롤 참조
     Set treeView = UserForm1.TreeView2
 
-    ' "ܰ" Ʈ 
-    Set ws = ThisWorkbook.Sheets("ܰ")
+    ' "견적단가" 시트 참조
+    Set ws = ThisWorkbook.Sheets("견적단가")
 
-    ' C    ã
+    ' C 열의 마지막 행 찾기
     lastRow = ws.Cells(ws.Rows.Count, "C").End(xlUp).row
 
-    ' ųʸ ʱȭ
+    ' 딕셔너리 초기화
     Set parentDict = CreateObject("Scripting.Dictionary")
 
-    ' C2:C41 θ  ߰  ߺ ó
+    ' C2:C41의 부모 노드 추가 및 중복 처리
     For i = 2 To lastRow
         ParentItem = ws.Cells(i, 3).Value
 
-        ' θ 尡 ̹ ųʸ ִ Ȯ
+        ' 부모 노드가 이미 딕셔너리에 있는지 확인
         If Not parentDict.exists(ParentItem) Then
-            ' θ 尡  ߰
+            ' 부모 노드가 없으면 추가
             Set parentNode = treeView.Nodes.Add(, , "P" & i, ParentItem)
             parentDict.Add ParentItem, parentNode
         Else
-            ' θ 尡  
+            ' 부모 노드가 있으면 가져오기
             Set parentNode = parentDict(ParentItem)
         End If
 
-        ' D2:D42   ߰
+        ' D2:D42의 하위 노드 추가
         childItem = ws.Cells(i, 4).Value
         If childItem <> "" Then
             treeView.Nodes.Add parentNode, tvwChild, "C" & i, childItem
         End If
     Next i
 
-    ' "Ưع" θ  ߰
+    ' "특정수질유해물질" 부모 노드 추가
     Dim specificNode As MSComctlLib.Node
-    If Not parentDict.exists("Ưع") Then
-        Set specificNode = treeView.Nodes.Add(, , "P_Special", "Ưع")
-        parentDict.Add "Ưع", specificNode
+    If Not parentDict.exists("특정수질유해물질") Then
+        Set specificNode = treeView.Nodes.Add(, , "P_Special", "특정수질유해물질")
+        parentDict.Add "특정수질유해물질", specificNode
     Else
-        Set specificNode = parentDict("Ưع")
+        Set specificNode = parentDict("특정수질유해물질")
     End If
 
-    ' Ư  Ʒ   ߰ 
-    ' ⿡   ߰ ڵ带 ۼϼ
-'    treeView.Nodes.Add specificNode, tvwChild, "C_Special1", "1"
-'    treeView.Nodes.Add specificNode, tvwChild, "C_Special2", "2"
+    ' 특정 노드 아래에 하위 노드 추가 예시
+    ' 여기에 하위 노드 추가 코드를 작성하세요
+'    treeView.Nodes.Add specificNode, tvwChild, "C_Special1", "하위노드1"
+'    treeView.Nodes.Add specificNode, tvwChild, "C_Special2", "하위노드2"
 
-    '  带  · 
+    ' 모든 노드를 닫힌 상태로 설정
     For i = 1 To treeView.Nodes.Count
         treeView.Nodes(i).Expanded = False
     Next i
 
-    ' ó 20 θ 常  · 
+    ' 처음 20개의 부모 노드만 펼쳐진 상태로 설정
     parentNodesCount = 0
     For Each ParentItem In parentDict.keys
         If parentNodesCount < 20 Then
@@ -587,12 +587,12 @@ Sub SetInitialNodeStates2()
     
     Set treeView = UserForm1.TreeView3
     
-        '  带  · 
+        ' 모든 노드를 닫힌 상태로 설정
     For i = 1 To treeView.Nodes.Count
         treeView.Nodes(i).Expanded = False
     Next i
 
-    ' ó 20 θ 常  · 
+    ' 처음 20개의 부모 노드만 펼쳐진 상태로 설정
     parentNodesCount = 0
     For Each ParentItem In parentDict.keys
         If parentNodesCount < 20 Then
@@ -614,22 +614,22 @@ Sub AddTreeViewItem()
 
     Application.ScreenUpdating = False
 
-    ' TreeView ʱȭ
+    ' TreeView를 초기화
     UserForm1.TreeView4.Nodes.Clear
     
-    ' Ʈ COMBOBOX5  
-    Set ws = ThisWorkbook.Sheets("Ƿ")
+    ' 시트와 COMBOBOX5의 값을 설정
+    Set ws = ThisWorkbook.Sheets("의뢰정보")
     comboValue = UserForm1.ComboBox5.Value
     
-    ' Dictionary ü ʱȭ (Scripting.Dictionary )
+    ' Dictionary 객체 초기화 (Scripting.Dictionary 사용)
     Set dict = CreateObject("Scripting.Dictionary")
     
 
     
     
     
-    ' Ƿ Ʈ   ãϴ.
-    If UserForm1.ComboBox6.Value <> "üⰣ -_-'" Then
+    ' 의뢰정보 시트의 마지막 행을 찾습니다.
+    If UserForm1.ComboBox6.Value <> "전체기간 -_-'" Then
 
 
        For Z = ws.Cells(ws.Rows.Count, 4).End(xlUp).row To 2 Step (-1)
@@ -645,18 +645,18 @@ Sub AddTreeViewItem()
     
     
 '    lastRow = ws.Cells(ws.Rows.Count, 4).End(xlUp).Row
-    ' ޺ڽ  ִ Ȯմϴ.
+    ' 콤보박스 값이 비어있는지 확인합니다.
     If comboValue = "" Then
-        MsgBox "޺ڽ   ֽϴ.", vbExclamation
+        MsgBox "콤보박스의 값이 비어 있습니다.", vbExclamation
         Exit Sub
     End If
     
-    ' Ƿ Ʈ ޺ڽ  ġϴ ׸ ãϴ.
+    ' 의뢰정보 시트에서 콤보박스 값과 일치하는 항목을 찾습니다.
     For i = 2 To lastRow ' Assuming headers are in the first row
         If ws.Cells(i, 4).Value = comboValue Then
-            ' Dictionary Ͽ ̹ ߰ ׸ Ȯ
+            ' Dictionary를 사용하여 이미 추가된 항목인지 확인
             If Not dict.exists(ws.Cells(i, 6).Value) Then
-                ' ׸ ߰ ʾ TreeView ߰ϰ, Dictionary ߰
+                ' 항목이 추가되지 않았으면 TreeView에 추가하고, Dictionary에 추가
                 UserForm1.TreeView4.Nodes.Add , , , ws.Cells(i, 6).Value
                 dict.Add ws.Cells(i, 6).Value, Nothing
             End If
@@ -666,17 +666,17 @@ Sub AddTreeViewItem()
     Application.ScreenUpdating = True
 End Sub
 
-Sub Ʈ3Ŭüũ()
+Sub 트리뷰3클릭체크()
     Dim r As Integer
     Dim X As Node
     Dim NodeText As String
 
-    '   ڻ  ʱȭ
+    ' 모든 노드의 글자색을 검정으로 초기화
     For r = 1 To UserForm1.TreeView2.Nodes.Count
         UserForm1.TreeView2.Nodes(r).ForeColor = RGB(0, 0, 0)
     Next r
 
-    ' ListBox1 ׸ ˻Ͽ شϴ  ڻ  
+    ' ListBox1의 항목을 검사하여 해당하는 노드의 글자색을 빨간색으로 변경
     For r = 0 To UserForm1.ListBox1.ListCount - 1
         For Each X In UserForm1.TreeView2.Nodes
             NodeText = X.text

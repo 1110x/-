@@ -1,5 +1,5 @@
-Attribute VB_Name = "հ"
-Sub հݾ()
+Attribute VB_Name = "합계"
+Sub 합계금액()
 X = 0
 
 
@@ -17,9 +17,9 @@ If Not UserForm1.ListBox1.ListCount = 0 And UserForm1.TextBox3 <> "" Then
      End If
   Next r
 
-  UserForm1.Label5.Caption = UserForm1.ListBox1.List(0, 1) & " " & UserForm1.ListBox1.ListCount & " " & Format(X, "#,###")
+  UserForm1.Label5.Caption = UserForm1.ListBox1.List(0, 1) & "포함 " & UserForm1.ListBox1.ListCount & "종 【" & Format(X, "#,###원】")
 Else
-  UserForm1.Label5.Caption = "Ǽ/Ѿ"
+  UserForm1.Label5.Caption = "견적건수/총액"
 End If
 
 

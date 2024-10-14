@@ -1,8 +1,9 @@
 Attribute VB_Name = "Module1"
-Sub ũ1()
-Attribute ũ1.VB_ProcData.VB_Invoke_Func = " \n14"
+attribute VB_Name = "Module1"
+Sub 野1()
+Attribute 野1.VB_ProcData.VB_Invoke_Func = " \n14"
 '
-' ũ1 ũ
+' 野1 野
 '
 
 For r = 14 To 75
@@ -18,12 +19,12 @@ For r = 14 To 75
 Next r
 Debug.Print ""
 End Sub
-Sub ũ2()
-Attribute ũ2.VB_ProcData.VB_Invoke_Func = " \n14"
+Sub 野2()
+Attribute 野2.VB_ProcData.VB_Invoke_Func = " \n14"
 
 X = 2
 For c = 3 To 63
-Sheets("TESTS").Cells(X, "H") = Sheets("мڷ").Cells(1, c)
+Sheets("TESTS").Cells(X, "H") = Sheets("萸살궄").Cells(1, c)
 X = X + 1
 Next c
 
@@ -31,7 +32,7 @@ Next c
 
 End Sub
 
-Sub ũ3()
+Sub 野3()
 
 X = 2
 For c = 13 To 196 Step (3)

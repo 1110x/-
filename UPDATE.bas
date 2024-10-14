@@ -1,7 +1,7 @@
 Sub UpdateAllModulesAndFormsFromGitHub()
     Dim fileList As Variant
     Dim i As Integer
-    '수정됨
+    
     ' 업데이트할 파일 목록
     fileList = Array( _
         "Combo.bas", "Module1.bas", "Module2.bas", "Module3.bas", "UPDATE.bas", "Module4.bas", "TESTModule.bas", _
@@ -13,12 +13,12 @@ Sub UpdateAllModulesAndFormsFromGitHub()
     
     ' 모든 파일을 다운로드하고 업데이트
     For i = LBound(fileList) To UBound(fileList)
-        DownloadAndUpdateComponentFromGitHub fileList(i) ' Call 없이 배열 요소를 직접 전달
+        ' ByVal로 배열 요소를 함수에 전달
+        DownloadAndUpdateComponentFromGitHub fileList(i)
     Next i
 End Sub
 
-
-Sub DownloadAndUpdateComponentFromGitHub(fileName As String)
+Sub DownloadAndUpdateComponentFromGitHub(ByVal fileName As String)
     Dim http As Object
     Dim url As String
     Dim fileData As String
@@ -60,5 +60,3 @@ Sub DownloadAndUpdateComponentFromGitHub(fileName As String)
         MsgBox fileName & " 업데이트 실패: " & http.Status
     End If
 End Sub
-
-

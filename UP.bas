@@ -2,9 +2,9 @@ Sub DownloadFromGitHub()
     Dim http As Object
     Dim LocalFilePath As String
     Dim GitRepoUrl As String
-    Dim Stream As Object
-    'WOW   ~
-    GitRepoUrl = "https://github.com/1110x/Center/archive/refs/heads/main.zip"
+    GitRepoUrl = "https://github.com/1110x/Center/archive/refs/heads/main.zip" ' 메인 브랜치의 파일 다운로드 URL
+    
+    ' 임시로 다운로드할 위치 설정
     LocalFilePath = "C:\Center\update.zip"
     
     ' WinHTTP 객체 생성
@@ -82,3 +82,4 @@ Sub ImportModules(FolderPath As String)
     
     MsgBox "새로운 모듈과 유저폼이 추가되었습니다."
 End Sub
+

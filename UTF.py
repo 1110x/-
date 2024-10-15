@@ -1,5 +1,5 @@
 import os
-# TEST 입니다.
+# TEST 입니다22.
 # 변환할 디렉토리 경로
 directory = r"C:\CENTER"
 

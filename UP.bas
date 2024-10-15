@@ -3,7 +3,7 @@ Sub DownloadFromGitHub()
     Dim LocalFilePath As String
     Dim GitRepoUrl As String
     GitRepoUrl = "https://github.com/1110x/Center/archive/refs/heads/main.zip" ' 메인 브랜치의 파일 다운로드 URL
-    
+    'WTFFFFFFFFFFFFFFFFFFFFFFF
     ' 임시로 다운로드할 위치 설정
     LocalFilePath = "C:\Center\update.zip"
     
@@ -15,6 +15,7 @@ Sub DownloadFromGitHub()
     ' HTTP 상태 확인
     If http.Status = 200 Then
         ' 파일 다운로드 후 저장
+        Dim Stream As Object
         Set Stream = CreateObject("ADODB.Stream")
         Stream.Open
         Stream.Type = 1
@@ -26,6 +27,7 @@ Sub DownloadFromGitHub()
         MsgBox "업데이트 파일을 다운로드하지 못했습니다. 상태 코드: " & http.Status
     End If
 End Sub
+
 Sub DeleteAllModulesExceptCurrent()
     Dim VBComp As Object
     Dim VBProj As Object
@@ -44,17 +46,17 @@ Sub DeleteAllModulesExceptCurrent()
         End If
     Next VBComp
     
-    ' 나중에 현재 모듈을 삭제할 수 있도록 메시지 출력
     MsgBox "모든 모듈과 유저폼이 삭제되었습니다. 이제 업데이트를 실행합니다."
     
-    ' 이후 업데이트 실행 (새 모듈 추가 등)
+    ' 새로운 모듈 및 유저폼 추가
     ImportModules "C:\Center\Extracted\Center-main\Modules\"
-    
+
     ' 마지막에 현재 모듈 삭제
     VBProj.VBComponents.Remove VBProj.VBComponents(CurrentModule)
     
     MsgBox "현재 모듈도 삭제되었습니다. 업데이트 완료!"
 End Sub
+
 Sub ImportModules(FolderPath As String)
     Dim VBProj As Object
     Dim FileName As String
@@ -82,4 +84,3 @@ Sub ImportModules(FolderPath As String)
     
     MsgBox "새로운 모듈과 유저폼이 추가되었습니다."
 End Sub
-
